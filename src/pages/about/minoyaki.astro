@@ -1,0 +1,259 @@
+---
+/**
+ * 美濃焼についてページ
+ * 美濃焼の歴史と特徴
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionTitle from '../../components/SectionTitle.astro';
+---
+
+<BaseLayout title="美濃焼について" description="美濃焼の歴史、特徴、産地についてご紹介。日本の陶磁器生産量の半分以上を占める美濃焼の魅力をお伝えします。">
+  <!-- ヒーロー -->
+  <section class="bg-ai text-hakuji section-padding-sm">
+    <div class="container-ma text-center">
+      <h1 class="hero-title font-serif text-3xl md:text-4xl lg:text-5xl mb-6 tracking-wider">美濃焼について</h1>
+      <p class="hero-subtitle text-hakuji/80 text-lg">1300年の歴史を持つ日本最大の陶磁器産地</p>
+    </div>
+  </section>
+
+  <!-- 美濃焼とは -->
+  <section class="section-padding">
+    <div class="max-w-4xl mx-auto px-6">
+      <SectionTitle title="美濃焼とは" />
+      <div class="prose-content space-y-6 text-sumi/80 text-lg leading-loose">
+        <p>
+          美濃焼という名称は、<strong class="text-ai">多治見市、土岐市、瑞浪市、笠原町</strong>を中心とした岐阜県南東部で生産される陶磁器のことをいい、かつてこの地が美濃の国と呼ばれていたことに由来しています。
+        </p>
+        <p>
+          志野、織部に代表される美濃焼は、岐阜県東濃地方を中心に発展してきました。
+          この辺りは良質の粘土に恵まれ、すでに平安時代からやきものが盛んでした。
+          ことに安土桃山時代、日本で最もやきものが発達した時代に、美濃焼も例外ではなく、数多くの名品が世に送り出されました。
+        </p>
+        <blockquote class="border-l-4 border-ai pl-6 py-2 italic text-sumi/70 bg-kinari/50 rounded-r">
+          「特徴がないのが美濃焼の特徴」と言われているくらい、バラエティ豊かな焼き物を生み出しています。
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- 岐阜県多治見市 -->
+  <section class="section-padding bg-hakuji">
+    <div class="max-w-4xl mx-auto px-6">
+      <SectionTitle title="産地 - 岐阜県多治見市" />
+      <div class="prose-content space-y-6 text-sumi/80 text-lg leading-loose">
+        <p>
+          岐阜県の南端に位置し、市の中央部を土岐川が流れています。
+          四方を山で囲まれており、良質の粘土に恵まれ、古くから焼き物の製造が行われていました。
+        </p>
+        <p>
+          多治見市は美濃焼の中心地として、伝統的な技法を守りながらも、時代のニーズに合わせた新しいものづくりにも積極的に取り組んでいます。
+          市内には多くの窯元が点在し、陶器祭りなどのイベントも盛んに開催されています。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 美濃焼の歴史 -->
+  <section class="section-padding">
+    <div class="max-w-4xl mx-auto px-6">
+      <SectionTitle title="美濃焼の歴史" />
+      <div class="space-y-8">
+        <div class="history-item flex gap-6">
+          <div class="flex-shrink-0 w-24 text-center">
+            <span class="block font-serif text-2xl text-ai">平安</span>
+            <span class="text-sm text-sumi/60">時代</span>
+          </div>
+          <div class="flex-grow border-l-2 border-ai/20 pl-6 pb-8">
+            <h3 class="font-serif text-xl text-ai mb-2">焼き物の始まり</h3>
+            <p class="text-sumi/80">
+              この地域では平安時代から須恵器の生産が行われていました。良質な粘土と豊富な燃料となる山林に恵まれ、焼き物に適した土地でした。
+            </p>
+          </div>
+        </div>
+
+        <div class="history-item flex gap-6">
+          <div class="flex-shrink-0 w-24 text-center">
+            <span class="block font-serif text-2xl text-shu">桃山</span>
+            <span class="text-sm text-sumi/60">時代</span>
+          </div>
+          <div class="flex-grow border-l-2 border-shu/20 pl-6 pb-8">
+            <h3 class="font-serif text-xl text-ai mb-2">志野・織部の誕生</h3>
+            <p class="text-sumi/80">
+              茶の湯文化の隆盛とともに、志野焼、織部焼といった革新的な陶器が生まれました。特に織部焼は千利休の弟子・古田織部の好みを反映した斬新なデザインで知られています。
+            </p>
+          </div>
+        </div>
+
+        <div class="history-item flex gap-6">
+          <div class="flex-shrink-0 w-24 text-center">
+            <span class="block font-serif text-2xl text-yuu-green">江戸</span>
+            <span class="text-sm text-sumi/60">時代</span>
+          </div>
+          <div class="flex-grow border-l-2 border-yuu-green/20 pl-6 pb-8">
+            <h3 class="font-serif text-xl text-ai mb-2">磁器生産の開始</h3>
+            <p class="text-sumi/80">
+              江戸時代中期以降、磁器の生産も始まり、陶器と磁器の両方を生産する産地として発展しました。日用品から茶道具まで、幅広い製品が作られるようになりました。
+            </p>
+          </div>
+        </div>
+
+        <div class="history-item flex gap-6">
+          <div class="flex-shrink-0 w-24 text-center">
+            <span class="block font-serif text-2xl text-sumi">現代</span>
+            <span class="text-sm text-sumi/60"></span>
+          </div>
+          <div class="flex-grow border-l-2 border-sumi/20 pl-6">
+            <h3 class="font-serif text-xl text-ai mb-2">日本最大の陶磁器産地</h3>
+            <p class="text-sumi/80">
+              現在、日本で日常的に使われている陶磁器の半分以上が美濃焼です。伝統を守りながらも、新しいデザインや技術を取り入れ、時代とともに進化を続けています。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 美濃焼の種類 -->
+  <section class="section-padding bg-hakuji">
+    <div class="max-w-4xl mx-auto px-6">
+      <SectionTitle title="美濃焼の代表的な種類" />
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="type-card bg-white p-6 rounded-lg shadow-md">
+          <h3 class="font-serif text-xl text-ai mb-3 border-b border-ai/20 pb-2">志野焼（しの）</h3>
+          <p class="text-sumi/80">
+            白い釉薬をかけた柔らかな風合いが特徴。桃山時代に確立された、美濃焼を代表する様式のひとつです。
+          </p>
+        </div>
+        <div class="type-card bg-white p-6 rounded-lg shadow-md">
+          <h3 class="font-serif text-xl text-ai mb-3 border-b border-ai/20 pb-2">織部焼（おりべ）</h3>
+          <p class="text-sumi/80">
+            緑色の釉薬と大胆な形、独特の文様が特徴。古田織部の美意識を反映した革新的なスタイルです。
+          </p>
+        </div>
+        <div class="type-card bg-white p-6 rounded-lg shadow-md">
+          <h3 class="font-serif text-xl text-ai mb-3 border-b border-ai/20 pb-2">黄瀬戸（きぜと）</h3>
+          <p class="text-sumi/80">
+            淡い黄色の釉薬が特徴で、温かみのある素朴な風合い。茶道具として珍重されています。
+          </p>
+        </div>
+        <div class="type-card bg-white p-6 rounded-lg shadow-md">
+          <h3 class="font-serif text-xl text-ai mb-3 border-b border-ai/20 pb-2">瀬戸黒（せとぐろ）</h3>
+          <p class="text-sumi/80">
+            漆黒の深い色合いが特徴。茶碗に多く用いられ、その重厚感から茶人に愛されています。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 美濃焼の特徴 -->
+  <section class="section-padding">
+    <div class="max-w-4xl mx-auto px-6">
+      <SectionTitle title="美濃焼の特徴" subtitle="日本最大の陶磁器産地の強み" />
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="feature-card text-center">
+          <div class="w-20 h-20 mx-auto mb-4 bg-ai rounded-full flex items-center justify-center">
+            <span class="font-serif text-2xl text-hakuji">多</span>
+          </div>
+          <h3 class="font-serif text-lg text-ai mb-2">多様性</h3>
+          <p class="text-sumi/70 text-sm">
+            伝統的な様式から現代的なデザインまで、あらゆるスタイルに対応できる幅広さ
+          </p>
+        </div>
+        <div class="feature-card text-center">
+          <div class="w-20 h-20 mx-auto mb-4 bg-shu rounded-full flex items-center justify-center">
+            <span class="font-serif text-2xl text-hakuji">量</span>
+          </div>
+          <h3 class="font-serif text-lg text-ai mb-2">生産力</h3>
+          <p class="text-sumi/70 text-sm">
+            日本の陶磁器生産量の50%以上を占める圧倒的な生産能力
+          </p>
+        </div>
+        <div class="feature-card text-center">
+          <div class="w-20 h-20 mx-auto mb-4 bg-yuu-green rounded-full flex items-center justify-center">
+            <span class="font-serif text-2xl text-hakuji">技</span>
+          </div>
+          <h3 class="font-serif text-lg text-ai mb-2">技術力</h3>
+          <p class="text-sumi/70 text-sm">
+            1300年の歴史で培われた伝統技術と最新技術の融合
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 小田井窯へ -->
+  <section class="section-padding-sm bg-ai text-hakuji">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <p class="text-lg mb-6">
+        小田井窯では、美濃焼の伝統を受け継ぎながら、欧州の作風を取り入れた独自の陶器を制作しています。
+      </p>
+      <a href="/about/" class="btn-secondary inline-block">
+        小田井窯について
+      </a>
+    </div>
+  </section>
+</BaseLayout>
+
+<!-- アニメーション -->
+<script>
+  import { gsap, prefersReducedMotion } from '../../utils/animations';
+  import { fadeInOnScroll } from '../../utils/scrollAnimations';
+
+  window.addEventListener('gsap:ready', () => {
+    if (prefersReducedMotion()) return;
+
+    // ヒーローアニメーション
+    const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    heroTl
+      .from('.hero-title', { y: 50, opacity: 0, duration: 0.8 })
+      .from('.hero-subtitle', { y: 30, opacity: 0, duration: 0.6 }, '-=0.4');
+
+    // セクションヘッダー
+    document.querySelectorAll('.section-header').forEach((el) => {
+      fadeInOnScroll(el, { y: 30 });
+    });
+
+    // 歴史タイムライン
+    gsap.from('.history-item', {
+      x: -30,
+      opacity: 0,
+      duration: 0.6,
+      stagger: 0.2,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: '.history-item',
+        start: 'top 80%',
+        toggleActions: 'play none none reverse',
+      },
+    });
+
+    // 種類カード
+    gsap.from('.type-card', {
+      y: 40,
+      opacity: 0,
+      duration: 0.6,
+      stagger: 0.15,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: '.type-card',
+        start: 'top 85%',
+        toggleActions: 'play none none reverse',
+      },
+    });
+
+    // 特徴カード
+    gsap.from('.feature-card', {
+      y: 40,
+      opacity: 0,
+      duration: 0.6,
+      stagger: 0.15,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: '.feature-card',
+        start: 'top 85%',
+        toggleActions: 'play none none reverse',
+      },
+    });
+  });
+</script>

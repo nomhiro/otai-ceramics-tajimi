@@ -27,6 +27,16 @@
 - **Azure Static Web Apps** - 静的サイトホスティング
 - 設定ファイル: `staticwebapp.config.json`, `azure.yaml`
 
+## CI/CD
+- **GitHub Actions** - 自動デプロイ
+- ワークフロー: `.github/workflows/azure-static-web-apps.yml`
+- トリガー: `main`ブランチへのプッシュ、PRでプレビュー環境作成
+
+## API (Azure Functions)
+- **ランタイム**: Node.js 18 (Managed Functions)
+- **形式**: JavaScript (v3互換、function.json使用)
+- **エンドポイント**: `/api/contact` (お問い合わせフォーム)
+
 ## ディレクトリ構造
 ```
 src/

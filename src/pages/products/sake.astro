@@ -1,0 +1,268 @@
+---
+/**
+ * 酒器専門ページ
+ * 徳利・盃の専門カタログ
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionTitle from '../../components/SectionTitle.astro';
+import { getCollection } from 'astro:content';
+
+// 酒器カテゴリの商品を取得（sakeシリーズがあれば）
+const allProducts = await getCollection('products');
+const sakeProducts = allProducts.filter(product =>
+  product.data.series === 'sake' ||
+  product.data.tags?.includes('酒器') ||
+  product.data.tags?.includes('徳利') ||
+  product.data.tags?.includes('盃')
+);
+---
+
+<BaseLayout title="徳利・盃 - 酒器専門" description="小田井窯の徳利・盃専門ページ。オリジナルの名入れ酒器、料亭・居酒屋向けの業務用酒器も承ります。">
+  <!-- ヒーロー -->
+  <section class="bg-ai text-hakuji section-padding-sm">
+    <div class="container-ma text-center">
+      <h1 class="hero-title font-serif text-3xl md:text-4xl lg:text-5xl mb-6 tracking-wider">徳利・盃</h1>
+      <p class="hero-subtitle text-hakuji/80 text-lg">酒を愉しむための器</p>
+    </div>
+  </section>
+
+  <!-- イントロダクション -->
+  <section class="section-padding">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="prose-content space-y-6 text-sumi/80 text-lg leading-loose text-center">
+        <p>
+          日本酒を味わう時間をより豊かにする、小田井窯の酒器。<br />
+          徳利と盃の組み合わせで、お酒の味わいも雰囲気も変わります。
+        </p>
+        <p>
+          飲食店様向けの<strong class="text-ai">オリジナル名入れ酒器</strong>も承っております。<br />
+          店名やロゴを入れた徳利・盃で、お店の個性を演出しませんか。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 徳利の種類 -->
+  <section class="section-padding bg-hakuji">
+    <div class="max-w-5xl mx-auto px-6">
+      <SectionTitle title="徳利（とっくり）" subtitle="お酒を注ぐ器" />
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="sake-card bg-white p-6 rounded-lg shadow-md text-center">
+          <div class="w-24 h-32 mx-auto mb-4 bg-kinari rounded-lg flex items-center justify-center">
+            <span class="font-serif text-4xl text-ai">壱</span>
+          </div>
+          <h3 class="font-serif text-lg text-ai mb-2">一合徳利</h3>
+          <p class="text-sumi/70 text-sm">
+            約180ml。一人酒や少人数での晩酌に最適なサイズです。
+          </p>
+        </div>
+        <div class="sake-card bg-white p-6 rounded-lg shadow-md text-center">
+          <div class="w-24 h-32 mx-auto mb-4 bg-kinari rounded-lg flex items-center justify-center">
+            <span class="font-serif text-4xl text-ai">弐</span>
+          </div>
+          <h3 class="font-serif text-lg text-ai mb-2">二合徳利</h3>
+          <p class="text-sumi/70 text-sm">
+            約360ml。二人での食事やお酌を楽しむのにちょうど良いサイズ。
+          </p>
+        </div>
+        <div class="sake-card bg-white p-6 rounded-lg shadow-md text-center">
+          <div class="w-24 h-32 mx-auto mb-4 bg-kinari rounded-lg flex items-center justify-center">
+            <span class="font-serif text-4xl text-ai">参</span>
+          </div>
+          <h3 class="font-serif text-lg text-ai mb-2">三合徳利</h3>
+          <p class="text-sumi/70 text-sm">
+            約540ml。宴会や大人数での食事に。存在感のある佇まい。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 盃の種類 -->
+  <section class="section-padding">
+    <div class="max-w-5xl mx-auto px-6">
+      <SectionTitle title="盃（さかずき）・猪口（ちょこ）" subtitle="お酒を味わう器" />
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="sake-card bg-hakuji p-5 rounded-lg text-center">
+          <h3 class="font-serif text-lg text-ai mb-2">ぐい呑み</h3>
+          <p class="text-sumi/70 text-sm">
+            手のひらに収まる小ぶりなサイズ。一口で飲み干す粋な器。
+          </p>
+        </div>
+        <div class="sake-card bg-hakuji p-5 rounded-lg text-center">
+          <h3 class="font-serif text-lg text-ai mb-2">猪口</h3>
+          <p class="text-sumi/70 text-sm">
+            小さめの杯。熱燗をちびちびと楽しむのに最適です。
+          </p>
+        </div>
+        <div class="sake-card bg-hakuji p-5 rounded-lg text-center">
+          <h3 class="font-serif text-lg text-ai mb-2">平盃</h3>
+          <p class="text-sumi/70 text-sm">
+            浅く広い形状。香りを楽しみたい吟醸酒などにおすすめ。
+          </p>
+        </div>
+        <div class="sake-card bg-hakuji p-5 rounded-lg text-center">
+          <h3 class="font-serif text-lg text-ai mb-2">片口</h3>
+          <p class="text-sumi/70 text-sm">
+            注ぎ口がついた器。冷酒を入れて卓上に置いても様になります。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- オリジナル名入れ -->
+  <section class="section-padding bg-ai text-hakuji">
+    <div class="max-w-4xl mx-auto px-6">
+      <SectionTitle title="オリジナル名入れ酒器" subtitle="飲食店様・企業様向け" align="center" />
+      <div class="space-y-8">
+        <p class="text-center text-hakuji/90 text-lg">
+          店名、ロゴ、オリジナルデザインを入れた酒器を制作いたします。<br />
+          料亭、居酒屋、旅館など、多くの飲食店様にご利用いただいております。
+        </p>
+
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="text-center">
+            <div class="w-16 h-16 mx-auto mb-4 bg-hakuji/20 rounded-full flex items-center justify-center">
+              <span class="text-2xl">🏮</span>
+            </div>
+            <h3 class="font-serif text-lg mb-2">居酒屋・料亭</h3>
+            <p class="text-hakuji/70 text-sm">
+              店名入りの統一感ある酒器でお店の格を上げます
+            </p>
+          </div>
+          <div class="text-center">
+            <div class="w-16 h-16 mx-auto mb-4 bg-hakuji/20 rounded-full flex items-center justify-center">
+              <span class="text-2xl">🏨</span>
+            </div>
+            <h3 class="font-serif text-lg mb-2">旅館・ホテル</h3>
+            <p class="text-hakuji/70 text-sm">
+              おもてなしの心を形に。記念に持ち帰れるサービスにも
+            </p>
+          </div>
+          <div class="text-center">
+            <div class="w-16 h-16 mx-auto mb-4 bg-hakuji/20 rounded-full flex items-center justify-center">
+              <span class="text-2xl">🍶</span>
+            </div>
+            <h3 class="font-serif text-lg mb-2">酒蔵・酒販店</h3>
+            <p class="text-hakuji/70 text-sm">
+              銘柄に合わせたオリジナル酒器で差別化を
+            </p>
+          </div>
+        </div>
+
+        <div class="text-center pt-4">
+          <a href="/custom/" class="btn-secondary inline-block">
+            オリジナル制作について
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 酒器の選び方 -->
+  <section class="section-padding">
+    <div class="max-w-4xl mx-auto px-6">
+      <SectionTitle title="酒器の選び方" />
+      <div class="space-y-8">
+        <div class="tip-card flex gap-6 items-start">
+          <div class="flex-shrink-0 w-12 h-12 bg-shu rounded-full flex items-center justify-center">
+            <span class="text-hakuji font-bold">1</span>
+          </div>
+          <div>
+            <h3 class="font-serif text-lg text-ai mb-2">飲む温度で選ぶ</h3>
+            <p class="text-sumi/80">
+              <strong>熱燗</strong>には厚手で口が広めの器、<strong>冷酒</strong>には薄手でシャープな形の器がおすすめです。
+              器の形状で口当たりや香りの立ち方が変わります。
+            </p>
+          </div>
+        </div>
+        <div class="tip-card flex gap-6 items-start">
+          <div class="flex-shrink-0 w-12 h-12 bg-shu rounded-full flex items-center justify-center">
+            <span class="text-hakuji font-bold">2</span>
+          </div>
+          <div>
+            <h3 class="font-serif text-lg text-ai mb-2">お酒の種類で選ぶ</h3>
+            <p class="text-sumi/80">
+              <strong>純米酒</strong>には素朴な風合いの陶器、<strong>大吟醸</strong>には繊細な磁器や平盃が合います。
+              お酒の個性を引き立てる器選びを楽しんでください。
+            </p>
+          </div>
+        </div>
+        <div class="tip-card flex gap-6 items-start">
+          <div class="flex-shrink-0 w-12 h-12 bg-shu rounded-full flex items-center justify-center">
+            <span class="text-hakuji font-bold">3</span>
+          </div>
+          <div>
+            <h3 class="font-serif text-lg text-ai mb-2">シーンで選ぶ</h3>
+            <p class="text-sumi/80">
+              一人の晩酌、大切な人との食事、おもてなしの席。
+              シーンに合わせて器を変えることで、お酒の時間がより豊かになります。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- お問い合わせ -->
+  <section class="section-padding bg-hakuji">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <SectionTitle title="酒器のご相談" />
+      <p class="text-sumi/80 text-lg mb-6">
+        酒器選びのご相談、名入れ酒器のお見積もりなど、お気軽にお問い合わせください。
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="/contact/" class="btn-primary inline-block">
+          お問い合わせ
+        </a>
+        <a href="/products/" class="btn-secondary inline-block">
+          商品一覧へ
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<!-- アニメーション -->
+<script>
+  import { gsap, prefersReducedMotion } from '../../utils/animations';
+
+  window.addEventListener('gsap:ready', () => {
+    if (prefersReducedMotion()) return;
+
+    // ヒーローアニメーション
+    const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    heroTl
+      .from('.hero-title', { y: 50, opacity: 0, duration: 0.8 })
+      .from('.hero-subtitle', { y: 30, opacity: 0, duration: 0.6 }, '-=0.4');
+
+    // カード
+    gsap.from('.sake-card', {
+      y: 40,
+      opacity: 0,
+      duration: 0.6,
+      stagger: 0.1,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: '.sake-card',
+        start: 'top 85%',
+        toggleActions: 'play none none reverse',
+      },
+    });
+
+    // ヒント
+    gsap.from('.tip-card', {
+      x: -30,
+      opacity: 0,
+      duration: 0.6,
+      stagger: 0.2,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: '.tip-card',
+        start: 'top 80%',
+        toggleActions: 'play none none reverse',
+      },
+    });
+  });
+</script>

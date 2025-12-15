@@ -1,0 +1,188 @@
+---
+/**
+ * About Page (English)
+ * Introduction to Otai Ceramics
+ */
+import BaseLayoutEn from '../../layouts/BaseLayoutEn.astro';
+import SectionTitle from '../../components/SectionTitle.astro';
+---
+
+<BaseLayoutEn title="About Otai Ceramics" description="Learn about Otai Ceramics, a Mino ware pottery studio in Tajimi, Gifu, Japan. Blending traditional Japanese techniques with European artistic influences since 1949.">
+  <!-- Hero -->
+  <section class="bg-ai text-hakuji section-padding-sm">
+    <div class="container-ma text-center">
+      <h1 class="hero-title font-serif text-3xl md:text-4xl lg:text-5xl mb-6 tracking-wider">About Otai Ceramics</h1>
+      <p class="hero-subtitle text-hakuji/80 text-lg">Blending Mino ware tradition with European artistry</p>
+    </div>
+  </section>
+
+  <!-- Introduction -->
+  <section class="section-padding">
+    <div class="max-w-4xl mx-auto px-6">
+      <SectionTitle title="Our Story" />
+      <div class="prose-content space-y-6 text-sumi/80 text-lg leading-loose">
+        <p>
+          At Otai Ceramics, we incorporate European artistic influences into traditional Mino ware techniques to create distinctive pieces.
+          Our beautiful cobalt blue plates, unique sometsuke (blue-and-white) ware, and decorative pieces are designed to bring joy and warmth to your daily life.
+        </p>
+        <p>
+          Otai Ceramics Co., Ltd. offers a wide variety of Mino ware and welcomes visitors to our showroom.
+          We also accept orders for custom products for restaurants and commemorative items. Please feel free to contact us.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Four Elements -->
+  <section class="section-padding bg-hakuji">
+    <div class="container-ma">
+      <SectionTitle title="Four Elements of Pottery" subtitle="Essential elements in crafting ceramics" />
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-12">
+        <div class="element-card text-center">
+          <div class="w-20 h-20 md:w-24 md:h-24 mx-auto mb-6 bg-shu rounded-full flex items-center justify-center shadow-lg">
+            <span class="font-serif text-2xl md:text-3xl text-hakuji">炎</span>
+          </div>
+          <h3 class="font-serif text-xl text-sumi mb-2">Kiln (Fire)</h3>
+          <p class="text-sumi/60 text-sm">Firing and temperature control</p>
+        </div>
+        <div class="element-card text-center">
+          <div class="w-20 h-20 md:w-24 md:h-24 mx-auto mb-6 bg-yuu-green rounded-full flex items-center justify-center shadow-lg">
+            <span class="font-serif text-2xl md:text-3xl text-hakuji">釉</span>
+          </div>
+          <h3 class="font-serif text-xl text-sumi mb-2">Glaze</h3>
+          <p class="text-sumi/60 text-sm">Glass coating for beauty and function</p>
+        </div>
+        <div class="element-card text-center">
+          <div class="w-20 h-20 md:w-24 md:h-24 mx-auto mb-6 bg-sumi rounded-full flex items-center justify-center shadow-lg">
+            <span class="font-serif text-2xl md:text-3xl text-hakuji">土</span>
+          </div>
+          <h3 class="font-serif text-xl text-sumi mb-2">Clay</h3>
+          <p class="text-sumi/60 text-sm">Foundation of all ceramics</p>
+        </div>
+        <div class="element-card text-center">
+          <div class="w-20 h-20 md:w-24 md:h-24 mx-auto mb-6 bg-ai rounded-full flex items-center justify-center shadow-lg">
+            <span class="font-serif text-2xl md:text-3xl text-hakuji">絵</span>
+          </div>
+          <h3 class="font-serif text-xl text-sumi mb-2">Pigment</h3>
+          <p class="text-sumi/60 text-sm">Hand-painted decorations</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Mino Ware -->
+  <section class="section-padding">
+    <div class="max-w-4xl mx-auto px-6">
+      <SectionTitle title="About Mino Ware" />
+      <div class="prose-content space-y-6 text-sumi/80 text-lg leading-loose">
+        <p>
+          <strong class="text-ai">Mino ware</strong> refers to ceramics produced in the southeastern part of Gifu Prefecture,
+          centered around Tajimi, Toki, Mizunami, and Kasahara. The name derives from the ancient Mino Province that once encompassed this area.
+        </p>
+        <p>
+          Represented by styles such as Shino and Oribe, Mino ware developed in the Tono region of Gifu.
+          The area is blessed with high-quality clay, and pottery has flourished here since the Heian period (794-1185).
+          During the Azuchi-Momoyama period (1568-1600), when Japanese ceramics reached their peak, Mino ware produced many masterpieces.
+        </p>
+        <p>
+          Today, Mino ware encompasses a wide variety of ceramic styles, and this diversity is one of its defining characteristics.
+          The production technology of this region is unmatched, and <strong class="text-ai">more than half of all ceramics used daily in Japan are Mino ware</strong>.
+          Mino ware combines ancient tradition with the familiarity of everyday use.
+        </p>
+        <blockquote class="border-l-4 border-ai pl-6 py-2 italic text-sumi/70 bg-kinari/50">
+          "Having no single distinctive characteristic is itself the characteristic of Mino ware" — a testament to its incredible variety.
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- Company Info -->
+  <section class="section-padding bg-hakuji">
+    <div class="max-w-4xl mx-auto px-6">
+      <SectionTitle title="Company Information" />
+      <div class="overflow-x-auto">
+        <table class="w-full">
+          <tbody class="divide-y divide-gray-200">
+            <tr>
+              <th class="py-5 px-4 text-left font-medium text-ai w-1/3 bg-kinari/30">Company Name</th>
+              <td class="py-5 px-4 bg-hakuji">Otai Ceramics Co., Ltd. (株式会社小田井商店)</td>
+            </tr>
+            <tr>
+              <th class="py-5 px-4 text-left font-medium text-ai bg-kinari/30">Brand Name</th>
+              <td class="py-5 px-4 bg-hakuji">Otai-gama (小田井窯)</td>
+            </tr>
+            <tr>
+              <th class="py-5 px-4 text-left font-medium text-ai bg-kinari/30">Representative</th>
+              <td class="py-5 px-4 bg-hakuji">Seiryo Kato</td>
+            </tr>
+            <tr>
+              <th class="py-5 px-4 text-left font-medium text-ai bg-kinari/30">Address</th>
+              <td class="py-5 px-4 bg-hakuji">1-39 Oda-cho, Tajimi, Gifu 507-0071, Japan</td>
+            </tr>
+            <tr>
+              <th class="py-5 px-4 text-left font-medium text-ai bg-kinari/30">Phone</th>
+              <td class="py-5 px-4 bg-hakuji">+81-572-22-2161</td>
+            </tr>
+            <tr>
+              <th class="py-5 px-4 text-left font-medium text-ai bg-kinari/30">FAX</th>
+              <td class="py-5 px-4 bg-hakuji">+81-572-22-2163</td>
+            </tr>
+            <tr>
+              <th class="py-5 px-4 text-left font-medium text-ai bg-kinari/30">Founded</th>
+              <td class="py-5 px-4 bg-hakuji">1949</td>
+            </tr>
+            <tr>
+              <th class="py-5 px-4 text-left font-medium text-ai bg-kinari/30">Products</th>
+              <td class="py-5 px-4 bg-hakuji">Japanese, Western, and Chinese tableware; Custom sake vessels</td>
+            </tr>
+            <tr>
+              <th class="py-5 px-4 text-left font-medium text-ai bg-kinari/30">Business Hours</th>
+              <td class="py-5 px-4 bg-hakuji">Monday - Friday, 8:00 AM - 5:00 PM (JST)</td>
+            </tr>
+            <tr>
+              <th class="py-5 px-4 text-left font-medium text-ai bg-kinari/30">Closed</th>
+              <td class="py-5 px-4 bg-hakuji">Weekends, national holidays, summer break (Aug 12-16), year-end (Dec 29 - Jan 5)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-padding">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <p class="text-sumi/80 text-lg mb-6">
+        Interested in our products or custom orders?
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="/en/products/" class="btn-primary inline-block">
+          View Products
+        </a>
+        <a href="/en/contact/" class="btn-secondary inline-block">
+          Contact Us
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayoutEn>
+
+<!-- Animations -->
+<script>
+  import { gsap, prefersReducedMotion } from '../../utils/animations';
+  import { fadeInOnScroll, elementsReveal } from '../../utils/scrollAnimations';
+
+  window.addEventListener('gsap:ready', () => {
+    if (prefersReducedMotion()) return;
+
+    // Hero
+    const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    heroTl
+      .from('.hero-title', { y: 50, opacity: 0, duration: 0.8 })
+      .from('.hero-subtitle', { y: 30, opacity: 0, duration: 0.6 }, '-=0.4');
+
+    // Elements
+    fadeInOnScroll('.section-header', { y: 30 });
+    elementsReveal('.element-card', '.element-card');
+  });
+</script>

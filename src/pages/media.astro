@@ -1,0 +1,137 @@
+---
+/**
+ * メディア掲載ページ
+ * 新聞・雑誌等への掲載履歴
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionTitle from '../components/SectionTitle.astro';
+---
+
+<BaseLayout title="メディア掲載" description="小田井窯のメディア掲載履歴。サライ、朝日新聞など、各種メディアでご紹介いただいた記事をまとめています。">
+  <!-- ヒーロー -->
+  <section class="bg-ai text-hakuji section-padding-sm">
+    <div class="container-ma text-center">
+      <h1 class="hero-title font-serif text-3xl md:text-4xl lg:text-5xl mb-6 tracking-wider">メディア掲載</h1>
+      <p class="hero-subtitle text-hakuji/80 text-lg">各種メディアでご紹介いただきました</p>
+    </div>
+  </section>
+
+  <!-- 掲載一覧 -->
+  <section class="section-padding">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="space-y-8">
+        <!-- サライ -->
+        <article class="media-item bg-hakuji p-6 md:p-8 rounded-lg shadow-md">
+          <div class="flex flex-col md:flex-row gap-6">
+            <div class="flex-shrink-0 md:w-1/4">
+              <div class="bg-kinari p-4 rounded text-center">
+                <span class="block font-serif text-2xl text-shu">サライ</span>
+                <span class="text-sm text-sumi/60">小学館</span>
+              </div>
+            </div>
+            <div class="flex-grow">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="px-3 py-1 bg-ai text-hakuji text-xs rounded-full">雑誌</span>
+                <time class="text-sumi/60 text-sm">掲載</time>
+              </div>
+              <h2 class="font-serif text-xl text-ai mb-3">鳥絵シリーズ・ろく絵シリーズ</h2>
+              <p class="text-sumi/80">
+                大人のための上質なライフスタイル誌「サライ」にて、小田井窯の鳥絵シリーズとろく絵シリーズをご紹介いただきました。
+                伝統的な技法と現代的なデザインの融合が評価されました。
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- 朝日新聞 -->
+        <article class="media-item bg-hakuji p-6 md:p-8 rounded-lg shadow-md">
+          <div class="flex flex-col md:flex-row gap-6">
+            <div class="flex-shrink-0 md:w-1/4">
+              <div class="bg-kinari p-4 rounded text-center">
+                <span class="block font-serif text-2xl text-sumi">朝日新聞</span>
+                <span class="text-sm text-sumi/60">朝日新聞社</span>
+              </div>
+            </div>
+            <div class="flex-grow">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="px-3 py-1 bg-sumi text-hakuji text-xs rounded-full">新聞</span>
+                <time class="text-sumi/60 text-sm">掲載</time>
+              </div>
+              <h2 class="font-serif text-xl text-ai mb-3">染付シリーズ</h2>
+              <p class="text-sumi/80">
+                朝日新聞にて、小田井窯の染付シリーズが取り上げられました。
+                呉須による藍色の美しさと、南欧風のデザインが調和した独自の作風が紹介されました。
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- その他メディア -->
+        <article class="media-item bg-hakuji p-6 md:p-8 rounded-lg shadow-md">
+          <div class="flex flex-col md:flex-row gap-6">
+            <div class="flex-shrink-0 md:w-1/4">
+              <div class="bg-kinari p-4 rounded text-center">
+                <span class="block font-serif text-2xl text-yuu-green">地元</span>
+                <span class="text-sm text-sumi/60">メディア</span>
+              </div>
+            </div>
+            <div class="flex-grow">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="px-3 py-1 bg-yuu-green text-hakuji text-xs rounded-full">テレビ・新聞</span>
+                <time class="text-sumi/60 text-sm">随時</time>
+              </div>
+              <h2 class="font-serif text-xl text-ai mb-3">美濃焼産地の窯元として</h2>
+              <p class="text-sumi/80">
+                岐阜県内のテレビ局や新聞社より、美濃焼の窯元として取材をいただいております。
+                伝統工芸の継承と新しいものづくりへの挑戦についてお話ししています。
+              </p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 取材について -->
+  <section class="section-padding bg-hakuji">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <SectionTitle title="取材・撮影について" />
+      <p class="text-sumi/80 text-lg mb-6">
+        メディア関係者様からの取材・撮影のお問い合わせを承っております。<br />
+        商品の撮影用貸出等もご相談ください。
+      </p>
+      <a href="/contact/" class="btn-primary inline-block">
+        お問い合わせ
+      </a>
+    </div>
+  </section>
+</BaseLayout>
+
+<!-- アニメーション -->
+<script>
+  import { gsap, prefersReducedMotion } from '../utils/animations';
+
+  window.addEventListener('gsap:ready', () => {
+    if (prefersReducedMotion()) return;
+
+    // ヒーローアニメーション
+    const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    heroTl
+      .from('.hero-title', { y: 50, opacity: 0, duration: 0.8 })
+      .from('.hero-subtitle', { y: 30, opacity: 0, duration: 0.6 }, '-=0.4');
+
+    // メディアアイテム
+    gsap.from('.media-item', {
+      y: 40,
+      opacity: 0,
+      duration: 0.6,
+      stagger: 0.2,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: '.media-item',
+        start: 'top 85%',
+        toggleActions: 'play none none reverse',
+      },
+    });
+  });
+</script>

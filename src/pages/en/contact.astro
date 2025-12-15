@@ -1,0 +1,203 @@
+---
+/**
+ * Contact Page (English)
+ * Contact form and information
+ */
+import BaseLayoutEn from '../../layouts/BaseLayoutEn.astro';
+import SectionTitle from '../../components/SectionTitle.astro';
+---
+
+<BaseLayoutEn title="Contact Us" description="Contact Otai Ceramics. Questions about products, catalog requests, custom orders - we're happy to help.">
+  <!-- Hero -->
+  <section class="bg-ai text-hakuji section-padding-sm">
+    <div class="container-ma text-center">
+      <h1 class="hero-title font-serif text-3xl md:text-4xl lg:text-5xl mb-6 tracking-wider">Contact Us</h1>
+      <p class="hero-subtitle text-hakuji/80 text-lg">Feel free to ask us anything. Catalog requests are also welcome.</p>
+    </div>
+  </section>
+
+  <!-- Contact Form -->
+  <section class="section-padding">
+    <div class="max-w-2xl mx-auto px-6">
+      <form id="contact-form" class="space-y-8">
+        <div class="form-field">
+          <label for="name" class="form-label">
+            Name <span class="text-shu">*</span>
+          </label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            required
+            class="form-input"
+          />
+        </div>
+
+        <div class="form-field">
+          <label for="email" class="form-label">
+            Email <span class="text-shu">*</span>
+          </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            class="form-input"
+          />
+        </div>
+
+        <div class="form-field">
+          <label for="phone" class="form-label">
+            Phone
+          </label>
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            class="form-input"
+          />
+        </div>
+
+        <div class="form-field">
+          <label for="category" class="form-label">
+            Category <span class="text-shu">*</span>
+          </label>
+          <select
+            id="category"
+            name="category"
+            required
+            class="form-input"
+          >
+            <option value="">Please select</option>
+            <option value="product">Product Inquiry</option>
+            <option value="custom">Custom Order</option>
+            <option value="catalog">Catalog Request</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div class="form-field">
+          <label for="message" class="form-label">
+            Message <span class="text-shu">*</span>
+          </label>
+          <textarea
+            id="message"
+            name="message"
+            rows="6"
+            required
+            class="form-input resize-none"
+          ></textarea>
+        </div>
+
+        <div class="text-center pt-4">
+          <button type="submit" class="btn-primary" id="submit-btn">
+            Send Message
+          </button>
+        </div>
+
+        <div id="form-message" class="hidden text-center py-4 text-lg"></div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Other Contact Methods -->
+  <section class="section-padding bg-hakuji">
+    <div class="max-w-4xl mx-auto px-6">
+      <SectionTitle title="Other Ways to Contact Us" />
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="text-center bg-white p-6 rounded-lg shadow-sm">
+          <h3 class="font-serif text-xl text-ai mb-4">Phone</h3>
+          <p class="text-2xl md:text-3xl font-medium text-sumi mb-3">+81-572-22-2161</p>
+          <p class="text-sm text-sumi/60 leading-relaxed">
+            Mon-Fri 8:00 AM - 5:00 PM (JST)<br />
+            Closed on weekends and holidays
+          </p>
+        </div>
+        <div class="text-center bg-white p-6 rounded-lg shadow-sm">
+          <h3 class="font-serif text-xl text-ai mb-4">FAX</h3>
+          <p class="text-2xl md:text-3xl font-medium text-sumi mb-3">+81-572-22-2163</p>
+          <p class="text-sm text-sumi/60">Available 24 hours</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Address -->
+  <section class="section-padding">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <SectionTitle title="Our Location" />
+      <address class="not-italic text-sumi/80 text-lg leading-loose">
+        <p class="font-serif text-xl text-ai mb-2">Otai Ceramics Co., Ltd.</p>
+        <p>1-39 Oda-cho, Tajimi</p>
+        <p>Gifu 507-0071, Japan</p>
+      </address>
+      <p class="mt-6 text-sumi/60">
+        Please contact us in advance if you plan to visit.
+      </p>
+    </div>
+  </section>
+</BaseLayoutEn>
+
+<!-- Form handling and animations -->
+<script>
+  import { gsap, prefersReducedMotion } from '../../utils/animations';
+  import { fadeInOnScroll, formFieldsReveal } from '../../utils/scrollAnimations';
+
+  // Form submission
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+  const formMessage = document.getElementById('form-message') as HTMLDivElement;
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        formMessage.classList.remove('hidden', 'text-shu');
+        formMessage.classList.add('text-yuu-green');
+        formMessage.textContent = 'Thank you for your inquiry. We will get back to you soon.';
+        form.reset();
+
+        if (!prefersReducedMotion()) {
+          gsap.from(formMessage, { y: 20, opacity: 0, duration: 0.5 });
+        }
+      } else {
+        throw new Error('Failed to send');
+      }
+    } catch (error) {
+      formMessage.classList.remove('hidden', 'text-yuu-green');
+      formMessage.classList.add('text-shu');
+      formMessage.textContent = 'Failed to send. Please contact us by phone or FAX.';
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send Message';
+    }
+  });
+
+  // Animations
+  window.addEventListener('gsap:ready', () => {
+    if (prefersReducedMotion()) return;
+
+    const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    heroTl
+      .from('.hero-title', { y: 50, opacity: 0, duration: 0.8 })
+      .from('.hero-subtitle', { y: 30, opacity: 0, duration: 0.6 }, '-=0.4');
+
+    formFieldsReveal('#contact-form', '.form-field');
+    fadeInOnScroll('#submit-btn', { y: 20, delay: 0.5 });
+  });
+</script>

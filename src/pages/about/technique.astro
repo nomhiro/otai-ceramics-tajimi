@@ -1,0 +1,287 @@
+---
+/**
+ * 製作技術ページ
+ * 陶器の4要素（窯・釉薬・粘土・顔料）の詳細解説
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionTitle from '../../components/SectionTitle.astro';
+---
+
+<BaseLayout title="製作技術 - 陶器の4要素" description="小田井窯の陶器づくりに欠かせない4つの要素（窯・釉薬・粘土・顔料）について詳しくご紹介します。">
+  <!-- ヒーロー -->
+  <section class="bg-ai text-hakuji section-padding-sm">
+    <div class="container-ma text-center">
+      <h1 class="hero-title font-serif text-3xl md:text-4xl lg:text-5xl mb-6 tracking-wider">製作技術</h1>
+      <p class="hero-subtitle text-hakuji/80 text-lg">陶器づくりを支える4つの要素</p>
+    </div>
+  </section>
+
+  <!-- イントロダクション -->
+  <section class="section-padding">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <p class="text-sumi/80 text-lg leading-loose">
+        陶器づくりには、<strong class="text-ai">窯（炎）・釉薬・粘土・顔料</strong>の4つの要素が欠かせません。<br />
+        これらが調和することで、美しく使いやすい陶器が生まれます。<br />
+        小田井窯が大切にしている、それぞれの要素についてご紹介します。
+      </p>
+    </div>
+  </section>
+
+  <!-- 4要素ナビゲーション -->
+  <section class="py-8 bg-hakuji sticky top-16 z-40 shadow-sm">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="flex justify-center gap-4 md:gap-8">
+        <a href="#kama" class="element-nav flex flex-col items-center group">
+          <div class="w-12 h-12 md:w-16 md:h-16 bg-shu rounded-full flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
+            <span class="font-serif text-lg md:text-xl text-hakuji">炎</span>
+          </div>
+          <span class="text-sm text-sumi/70 mt-2">窯</span>
+        </a>
+        <a href="#yuu" class="element-nav flex flex-col items-center group">
+          <div class="w-12 h-12 md:w-16 md:h-16 bg-yuu-green rounded-full flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
+            <span class="font-serif text-lg md:text-xl text-hakuji">釉</span>
+          </div>
+          <span class="text-sm text-sumi/70 mt-2">釉薬</span>
+        </a>
+        <a href="#tsuchi" class="element-nav flex flex-col items-center group">
+          <div class="w-12 h-12 md:w-16 md:h-16 bg-sumi rounded-full flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
+            <span class="font-serif text-lg md:text-xl text-hakuji">土</span>
+          </div>
+          <span class="text-sm text-sumi/70 mt-2">粘土</span>
+        </a>
+        <a href="#ganryo" class="element-nav flex flex-col items-center group">
+          <div class="w-12 h-12 md:w-16 md:h-16 bg-ai rounded-full flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
+            <span class="font-serif text-lg md:text-xl text-hakuji">絵</span>
+          </div>
+          <span class="text-sm text-sumi/70 mt-2">顔料</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 窯（炎） -->
+  <section id="kama" class="section-padding scroll-mt-40">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="flex items-center gap-4 mb-8">
+        <div class="w-16 h-16 bg-shu rounded-full flex items-center justify-center shadow-lg">
+          <span class="font-serif text-2xl text-hakuji">炎</span>
+        </div>
+        <div>
+          <h2 class="font-serif text-2xl md:text-3xl text-ai">窯（かま）</h2>
+          <p class="text-sumi/60">焼成について</p>
+        </div>
+      </div>
+      <div class="prose-content space-y-6 text-sumi/80 text-lg leading-loose">
+        <p>
+          陶器づくりにおいて、窯は「炎の力」を使って土を焼き締め、釉薬を溶かし、作品に命を吹き込む重要な存在です。
+          焼成の温度や時間、窯の中での置き場所によって、同じ材料を使っても全く異なる表情の作品が生まれます。
+        </p>
+        <h3 class="font-serif text-xl text-ai border-l-4 border-shu pl-4">焼成温度</h3>
+        <p>
+          美濃焼の焼成温度は一般的に<strong class="text-ai">1200〜1300℃</strong>です。
+          この高温で土と釉薬が化学変化を起こし、丈夫で美しい陶器が完成します。
+          温度管理は熟練の技が必要とされる、陶器づくりの要です。
+        </p>
+        <h3 class="font-serif text-xl text-ai border-l-4 border-shu pl-4">酸化焼成と還元焼成</h3>
+        <p>
+          窯の中の酸素量を調整することで、「酸化焼成」と「還元焼成」という異なる焼き方ができます。
+          酸化焼成では明るい色合いに、還元焼成では深みのある色合いに仕上がります。
+          小田井窯では、作品の特性に合わせて焼成方法を選んでいます。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 釉薬 -->
+  <section id="yuu" class="section-padding bg-hakuji scroll-mt-40">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="flex items-center gap-4 mb-8">
+        <div class="w-16 h-16 bg-yuu-green rounded-full flex items-center justify-center shadow-lg">
+          <span class="font-serif text-2xl text-hakuji">釉</span>
+        </div>
+        <div>
+          <h2 class="font-serif text-2xl md:text-3xl text-ai">釉薬（ゆうやく）</h2>
+          <p class="text-sumi/60">うわぐすりについて</p>
+        </div>
+      </div>
+      <div class="prose-content space-y-6 text-sumi/80 text-lg leading-loose">
+        <p>
+          釉薬（うわぐすり）は、陶器の表面を覆うガラス質の膜です。
+          焼成によって溶けてガラス化し、陶器に光沢と色彩、そして水を通さない機能を与えます。
+        </p>
+        <h3 class="font-serif text-xl text-ai border-l-4 border-yuu-green pl-4">釉薬の役割</h3>
+        <ul class="list-disc list-inside space-y-2 ml-4">
+          <li><strong>防水性</strong> - 素地への水の浸透を防ぎます</li>
+          <li><strong>美観</strong> - 色や光沢で器を美しく彩ります</li>
+          <li><strong>強度</strong> - 表面を保護し、耐久性を高めます</li>
+          <li><strong>衛生面</strong> - 汚れが付きにくく、洗いやすくなります</li>
+        </ul>
+        <h3 class="font-serif text-xl text-ai border-l-4 border-yuu-green pl-4">小田井窯の釉薬</h3>
+        <p>
+          小田井窯では、伝統的な釉薬に加え、独自に調合した釉薬を使用しています。
+          特に<strong class="text-ai">コバルト色の美しい釉薬</strong>は、欧州の作風を取り入れた小田井窯の特徴的な色彩です。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 粘土 -->
+  <section id="tsuchi" class="section-padding scroll-mt-40">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="flex items-center gap-4 mb-8">
+        <div class="w-16 h-16 bg-sumi rounded-full flex items-center justify-center shadow-lg">
+          <span class="font-serif text-2xl text-hakuji">土</span>
+        </div>
+        <div>
+          <h2 class="font-serif text-2xl md:text-3xl text-ai">粘土（ねんど）</h2>
+          <p class="text-sumi/60">土について</p>
+        </div>
+      </div>
+      <div class="prose-content space-y-6 text-sumi/80 text-lg leading-loose">
+        <p>
+          陶器の「素地」となる粘土は、作品の形、質感、強度を決定づける基本素材です。
+          美濃地方は良質な粘土に恵まれ、古くから焼き物の産地として栄えてきました。
+        </p>
+        <h3 class="font-serif text-xl text-ai border-l-4 border-sumi pl-4">粘土の種類</h3>
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="bg-kinari/30 p-4 rounded-lg">
+            <h4 class="font-medium text-ai mb-2">陶土（とうど）</h4>
+            <p class="text-sm">
+              鉄分を含み、焼くと赤茶色になる土。素朴で温かみのある風合いが特徴です。
+            </p>
+          </div>
+          <div class="bg-kinari/30 p-4 rounded-lg">
+            <h4 class="font-medium text-ai mb-2">磁土（じど）</h4>
+            <p class="text-sm">
+              カオリンを主成分とする白い土。高温で焼くと半透明のガラス質になります。
+            </p>
+          </div>
+        </div>
+        <h3 class="font-serif text-xl text-ai border-l-4 border-sumi pl-4">土づくり</h3>
+        <p>
+          良い陶器を作るには、粘土の準備が重要です。
+          土を練り、空気を抜き、適度な硬さに調整する「土練り」は、職人の基本技術のひとつです。
+          均一に練られた土は、ゆがみや割れの少ない、美しい作品につながります。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 顔料 -->
+  <section id="ganryo" class="section-padding bg-hakuji scroll-mt-40">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="flex items-center gap-4 mb-8">
+        <div class="w-16 h-16 bg-ai rounded-full flex items-center justify-center shadow-lg">
+          <span class="font-serif text-2xl text-hakuji">絵</span>
+        </div>
+        <div>
+          <h2 class="font-serif text-2xl md:text-3xl text-ai">顔料（がんりょう）</h2>
+          <p class="text-sumi/60">絵付けについて</p>
+        </div>
+      </div>
+      <div class="prose-content space-y-6 text-sumi/80 text-lg leading-loose">
+        <p>
+          陶器に描かれる絵や模様には、専用の顔料が使われます。
+          絵付けのタイミングや顔料の種類によって、さまざまな表現が可能になります。
+        </p>
+        <h3 class="font-serif text-xl text-ai border-l-4 border-ai pl-4">下絵付けと上絵付け</h3>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="bg-white p-5 rounded-lg shadow-sm">
+            <h4 class="font-serif text-lg text-ai mb-3">下絵付け（したえつけ）</h4>
+            <p class="text-sm mb-3">
+              素焼きした器に絵を描き、その上から釉薬をかけて本焼きします。
+              呉須（ごす）による藍色の染付が代表的です。
+            </p>
+            <p class="text-xs text-sumi/60">
+              特徴：釉薬の下で発色するため、色が落ちにくく耐久性に優れます。
+            </p>
+          </div>
+          <div class="bg-white p-5 rounded-lg shadow-sm">
+            <h4 class="font-serif text-lg text-ai mb-3">上絵付け（うわえつけ）</h4>
+            <p class="text-sm mb-3">
+              釉薬をかけて本焼きした器の上に絵を描き、低温で再度焼き付けます。
+              赤絵や金彩など華やかな色彩が可能です。
+            </p>
+            <p class="text-xs text-sumi/60">
+              特徴：多彩な色が使え、繊細で華やかな表現ができます。
+            </p>
+          </div>
+        </div>
+        <h3 class="font-serif text-xl text-ai border-l-4 border-ai pl-4">小田井窯の絵付け</h3>
+        <p>
+          小田井窯では、<strong class="text-ai">南欧風のオリジナルデザイン</strong>を施した絵付けが特徴です。
+          二輪花、鳥絵、染付など、さまざまなシリーズで独自の世界観を表現しています。
+          一つひとつ手描きで仕上げる絵付けは、同じ商品でもそれぞれに個性があります。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 商品へ -->
+  <section class="section-padding">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <p class="text-sumi/80 text-lg mb-6">
+        4つの要素が調和して生まれる小田井窯の陶器をご覧ください。
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="/products/" class="btn-primary inline-block">
+          商品一覧
+        </a>
+        <a href="/about/" class="btn-secondary inline-block">
+          小田井窯について
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<!-- アニメーション -->
+<script>
+  import { gsap, prefersReducedMotion } from '../../utils/animations';
+  import { fadeInOnScroll } from '../../utils/scrollAnimations';
+
+  window.addEventListener('gsap:ready', () => {
+    if (prefersReducedMotion()) return;
+
+    // ヒーローアニメーション
+    const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    heroTl
+      .from('.hero-title', { y: 50, opacity: 0, duration: 0.8 })
+      .from('.hero-subtitle', { y: 30, opacity: 0, duration: 0.6 }, '-=0.4');
+
+    // 要素ナビゲーション
+    gsap.from('.element-nav', {
+      y: 20,
+      opacity: 0,
+      duration: 0.5,
+      stagger: 0.1,
+      ease: 'power2.out',
+    });
+
+    // 各セクション
+    ['#kama', '#yuu', '#tsuchi', '#ganryo'].forEach((selector) => {
+      gsap.from(`${selector} .prose-content`, {
+        y: 40,
+        opacity: 0,
+        duration: 0.7,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: selector,
+          start: 'top 70%',
+          toggleActions: 'play none none reverse',
+        },
+      });
+    });
+  });
+
+  // スムーススクロール
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = document.querySelector(anchor.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+</script>

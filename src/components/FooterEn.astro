@@ -1,0 +1,86 @@
+---
+/**
+ * Footer コンポーネント（英語版）
+ * 和紙テクスチャ、新カラーパレット適用
+ */
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-ai text-hakuji mt-24 washi-texture">
+  <div class="container-ma py-16 md:py-20">
+    <div class="grid md:grid-cols-3 gap-12 md:gap-16">
+      <!-- Company Info -->
+      <div>
+        <h3 class="font-serif text-2xl mb-6 tracking-wider">Otai Ceramics</h3>
+        <address class="not-italic text-sm leading-loose text-hakuji/80 space-y-1">
+          <p>1-39 Oda-cho, Tajimi</p>
+          <p>Gifu 507-0071, Japan</p>
+          <p class="mt-4">TEL: +81-572-22-2161</p>
+          <p>FAX: +81-572-22-2163</p>
+        </address>
+      </div>
+
+      <!-- Business Hours -->
+      <div>
+        <h3 class="font-serif text-2xl mb-6 tracking-wider">Business Hours</h3>
+        <p class="text-sm text-hakuji/80 leading-loose">
+          Monday - Friday<br />
+          8:00 AM - 5:00 PM (JST)
+        </p>
+        <p class="text-xs text-hakuji/60 mt-4">
+          Closed on weekends and holidays
+        </p>
+      </div>
+
+      <!-- Links -->
+      <div>
+        <h3 class="font-serif text-2xl mb-6 tracking-wider">Links</h3>
+        <ul class="space-y-3 text-sm">
+          <li>
+            <a
+              href="/en/about/"
+              class="text-hakuji/80 hover:text-hakuji transition-colors duration-300"
+            >
+              About Us
+            </a>
+          </li>
+          <li>
+            <a
+              href="/en/products/"
+              class="text-hakuji/80 hover:text-hakuji transition-colors duration-300"
+            >
+              Products
+            </a>
+          </li>
+          <li>
+            <a
+              href="/en/custom/"
+              class="text-hakuji/80 hover:text-hakuji transition-colors duration-300"
+            >
+              Custom Orders
+            </a>
+          </li>
+          <li>
+            <a
+              href="/en/contact/"
+              class="text-hakuji/80 hover:text-hakuji transition-colors duration-300"
+            >
+              Contact
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="my-12 flex justify-center">
+      <div class="w-24 h-0.5 bg-hakuji/20 rounded-full"></div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="text-center text-sm text-hakuji/60">
+      <p>&copy; 1949-{currentYear} Otai Ceramics Co., Ltd.</p>
+      <p class="mt-2 text-xs tracking-wider">Preserving the tradition of Mino ware</p>
+    </div>
+  </div>
+</footer>

@@ -102,6 +102,10 @@
 otai-ceramics-tajimi/
 ├── CLAUDE.md              # 本ファイル
 ├── README.md              # プロジェクト概要
+├── .github/workflows/     # GitHub Actions CI/CD
+├── api/                   # Azure Functions API
+│   ├── contact/           # お問い合わせAPI
+│   └── host.json          # Functions設定
 ├── docs/
 │   ├── Requirements.md    # 要件定義書
 │   └── SPEC.md            # 仕様書
@@ -112,8 +116,9 @@ otai-ceramics-tajimi/
 │   ├── hooks/             # カスタムフック
 │   ├── types/             # 型定義
 │   └── tests/             # テストファイル
+├── infra/                 # Bicep (Azure IaC)
 ├── public/                # 静的ファイル
-└── config/                # 設定ファイル
+└── staticwebapp.config.json # SWA設定
 ```
 
 ### コメント規則
@@ -185,6 +190,38 @@ fix/SPEC-002-form-validation
 - 詳細1
 - 詳細2
 ```
+
+---
+
+## CI/CD
+
+### GitHub Actions 自動デプロイ
+
+`main`ブランチへのプッシュで自動的にAzure Static Web Appsへデプロイされます。
+
+**ワークフローファイル**: `.github/workflows/azure-static-web-apps.yml`
+
+### デプロイフロー
+
+```
+main へプッシュ → GitHub Actions → ビルド → Azure Static Web Apps へデプロイ
+```
+
+### PRプレビュー環境
+
+Pull Request作成時にステージング環境が自動作成されます。PRマージ/クローズで自動削除。
+
+### 必要なSecrets
+
+| Secret名 | 説明 |
+|---------|------|
+| `AZURE_STATIC_WEB_APPS_API_TOKEN` | Static Web Appsデプロイトークン |
+
+### API (Azure Functions)
+
+- **ランタイム**: Node.js 18
+- **形式**: JavaScript (Managed Functions v3互換)
+- **設定**: `staticwebapp.config.json` で `apiRuntime: "node:18"` を指定
 
 ---
 

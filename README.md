@@ -31,8 +31,9 @@
 フレームワーク: Astro 5.x
 スタイリング:   TailwindCSS 3.x
 ホスティング:   Azure Static Web Apps
-API:           Azure Functions (Node.js)
+API:           Azure Functions (Node.js 18, Managed Functions)
 インフラ:      Bicep (Azure Developer CLI対応)
+CI/CD:         GitHub Actions
 ```
 
 ### 共通
@@ -62,7 +63,8 @@ otai-ceramics-tajimi/
 │   │   ├── thanks.astro     # 送信完了
 │   │   └── 404.astro        # 404エラー
 │   └── styles/         # グローバルスタイル
-├── api/                # Azure Functions (お問い合わせAPI等)
+├── .github/workflows/  # GitHub Actions CI/CD
+├── api/                # Azure Functions (お問い合わせAPI)
 ├── infra/              # Bicepテンプレート (Azure IaC)
 ├── public/             # 静的ファイル
 ├── docs/               # ドキュメント
@@ -129,8 +131,21 @@ npm run dev
 
 ### Azureへのデプロイ
 
+#### 方法1: GitHub Actions（自動デプロイ・推奨）
+
+`main`ブランチへのプッシュで自動デプロイされます。
+
 ```bash
-# Azure Developer CLIでデプロイ
+git push origin main
+```
+
+**初回セットアップ:**
+1. Azure PortalでStatic Web Appsのデプロイトークンを取得
+2. GitHubリポジトリのSecretsに`AZURE_STATIC_WEB_APPS_API_TOKEN`として登録
+
+#### 方法2: Azure Developer CLI（手動デプロイ）
+
+```bash
 azd up
 ```
 

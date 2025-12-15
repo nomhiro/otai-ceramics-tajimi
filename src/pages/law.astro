@@ -1,0 +1,130 @@
+---
+/**
+ * 特定商取引法に基づく表記ページ
+ * 通信販売に関する法的表示
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="特定商取引法に基づく表記" description="小田井窯の特定商取引法に基づく表記。通信販売に関する事項をご確認いただけます。">
+  <!-- ヒーロー -->
+  <section class="bg-ai text-hakuji section-padding-sm">
+    <div class="container-ma text-center">
+      <h1 class="font-serif text-3xl md:text-4xl lg:text-5xl mb-6 tracking-wider">特定商取引法に基づく表記</h1>
+      <p class="text-hakuji/80 text-lg">通信販売に関する事項</p>
+    </div>
+  </section>
+
+  <!-- 本文 -->
+  <section class="section-padding">
+    <div class="max-w-3xl mx-auto px-6">
+      <div class="space-y-0">
+        <!-- テーブル形式の表記 -->
+        <table class="w-full border-collapse">
+          <tbody>
+            <tr class="border-b border-sumi/10">
+              <th class="py-5 px-4 text-left font-serif text-ai bg-shironeri w-1/3 align-top">販売業者</th>
+              <td class="py-5 px-4 text-sumi/80">小田井窯</td>
+            </tr>
+            <tr class="border-b border-sumi/10">
+              <th class="py-5 px-4 text-left font-serif text-ai bg-shironeri w-1/3 align-top">代表者</th>
+              <td class="py-5 px-4 text-sumi/80">加藤 芳平</td>
+            </tr>
+            <tr class="border-b border-sumi/10">
+              <th class="py-5 px-4 text-left font-serif text-ai bg-shironeri w-1/3 align-top">所在地</th>
+              <td class="py-5 px-4 text-sumi/80">〒507-0071<br />岐阜県多治見市小田町1-39</td>
+            </tr>
+            <tr class="border-b border-sumi/10">
+              <th class="py-5 px-4 text-left font-serif text-ai bg-shironeri w-1/3 align-top">電話番号</th>
+              <td class="py-5 px-4 text-sumi/80">0572-22-2161<br />（受付時間：平日 8:00〜17:00）</td>
+            </tr>
+            <tr class="border-b border-sumi/10">
+              <th class="py-5 px-4 text-left font-serif text-ai bg-shironeri w-1/3 align-top">FAX番号</th>
+              <td class="py-5 px-4 text-sumi/80">0572-22-2163</td>
+            </tr>
+            <tr class="border-b border-sumi/10">
+              <th class="py-5 px-4 text-left font-serif text-ai bg-shironeri w-1/3 align-top">メールアドレス</th>
+              <td class="py-5 px-4 text-sumi/80">
+                <a href="/contact/" class="text-ai hover:underline">お問い合わせフォーム</a>よりご連絡ください
+              </td>
+            </tr>
+            <tr class="border-b border-sumi/10">
+              <th class="py-5 px-4 text-left font-serif text-ai bg-shironeri w-1/3 align-top">商品代金以外の<br />必要料金</th>
+              <td class="py-5 px-4 text-sumi/80">
+                <ul class="space-y-1">
+                  <li>・送料：地域により異なります（詳細はお問い合わせください）</li>
+                  <li>・代金引換手数料：330円（税込）</li>
+                  <li>・振込手数料：お客様負担</li>
+                </ul>
+              </td>
+            </tr>
+            <tr class="border-b border-sumi/10">
+              <th class="py-5 px-4 text-left font-serif text-ai bg-shironeri w-1/3 align-top">支払方法</th>
+              <td class="py-5 px-4 text-sumi/80">
+                <ul class="space-y-1">
+                  <li>・代金引換</li>
+                  <li>・銀行振込（前払い）</li>
+                  <li>・郵便振替（前払い）</li>
+                </ul>
+              </td>
+            </tr>
+            <tr class="border-b border-sumi/10">
+              <th class="py-5 px-4 text-left font-serif text-ai bg-shironeri w-1/3 align-top">支払期限</th>
+              <td class="py-5 px-4 text-sumi/80">
+                <ul class="space-y-1">
+                  <li>・代金引換：商品お届け時</li>
+                  <li>・銀行振込・郵便振替：ご注文から7日以内</li>
+                </ul>
+              </td>
+            </tr>
+            <tr class="border-b border-sumi/10">
+              <th class="py-5 px-4 text-left font-serif text-ai bg-shironeri w-1/3 align-top">引渡時期</th>
+              <td class="py-5 px-4 text-sumi/80">
+                在庫商品：ご入金確認後、3〜7営業日以内に発送<br />
+                受注生産品：ご入金確認後、約2〜4週間で発送<br />
+                <span class="text-sm text-sumi/60">※在庫状況により変動する場合がございます</span>
+              </td>
+            </tr>
+            <tr class="border-b border-sumi/10">
+              <th class="py-5 px-4 text-left font-serif text-ai bg-shironeri w-1/3 align-top">返品・交換について</th>
+              <td class="py-5 px-4 text-sumi/80">
+                <p class="mb-3"><strong>お客様都合の場合</strong></p>
+                <p class="mb-4 text-sm">
+                  商品到着後7日以内にご連絡ください。<br />
+                  未使用品に限り返品を承ります。<br />
+                  返送料はお客様負担となります。
+                </p>
+                <p class="mb-3"><strong>不良品・誤送の場合</strong></p>
+                <p class="text-sm">
+                  商品到着後7日以内にご連絡ください。<br />
+                  送料当方負担にて交換または返金いたします。
+                </p>
+              </td>
+            </tr>
+            <tr class="border-b border-sumi/10">
+              <th class="py-5 px-4 text-left font-serif text-ai bg-shironeri w-1/3 align-top">返品不可の場合</th>
+              <td class="py-5 px-4 text-sumi/80">
+                <ul class="space-y-1">
+                  <li>・一度ご使用になった商品</li>
+                  <li>・お客様の責任で傷や破損が生じた商品</li>
+                  <li>・商品到着後8日以上経過した商品</li>
+                  <li>・オーダーメイド・オリジナル制作品</li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- 注意事項 -->
+        <div class="mt-12 p-6 bg-shironeri rounded-lg">
+          <h2 class="font-serif text-lg text-ai mb-4">ご注意事項</h2>
+          <ul class="text-sumi/80 text-sm space-y-2">
+            <li>・当窯の商品はすべて手作りのため、サイズ・色合い・風合いに若干の個体差がございます。</li>
+            <li>・掲載写真と実物では、モニターの特性により色味が異なって見える場合がございます。</li>
+            <li>・上記の個体差・色味の違いは返品・交換の対象外となります。あらかじめご了承ください。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,173 @@
+---
+/**
+ * English Home Page
+ * Otai Ceramics introduction and featured products
+ */
+import BaseLayoutEn from '../../layouts/BaseLayoutEn.astro';
+import SectionTitle from '../../components/SectionTitle.astro';
+import { getCollection } from 'astro:content';
+
+const products = await getCollection('products');
+const featuredProducts = products.filter((p) => p.data.featured).slice(0, 4);
+
+const series = [
+  { slug: 'nirin', name: 'Nirin-ka', nameJa: '二輪花', desc: 'Two-flower pattern' },
+  { slug: 'tori', name: 'Tori-e', nameJa: '鳥絵', desc: 'Bird illustrations' },
+  { slug: 'raku', name: 'Raku-raku-e', nameJa: '楽々絵', desc: 'Casual designs' },
+  { slug: 'roku', name: 'Roku-e', nameJa: 'ろく絵', desc: 'Traditional patterns' },
+  { slug: 'bara', name: 'Bara-e', nameJa: 'ばら絵', desc: 'Rose motifs' },
+  { slug: 'sono', name: 'Sono-e', nameJa: '園絵', desc: 'Garden themes' },
+  { slug: 'some', name: 'Sometsuke', nameJa: '染付', desc: 'Indigo blue dye' },
+  { slug: 'akae', name: 'Aka-e', nameJa: '赤絵', desc: 'Red overglaze' },
+];
+---
+
+<BaseLayoutEn title="Home" description="Otai Ceramics - Handcrafted Mino ware pottery from Tajimi, Gifu, Japan. Blending traditional techniques with European artistic influences since 1949.">
+  <!-- Hero -->
+  <section class="hero-section relative h-[70vh] min-h-[500px] flex items-center bg-ai">
+    <div class="absolute inset-0 bg-gradient-to-b from-ai/80 to-ai"></div>
+    <div class="container-ma relative z-10 text-center text-hakuji">
+      <h1 class="hero-title font-serif text-4xl md:text-5xl lg:text-6xl mb-6 tracking-wide">
+        Mino Ware Tradition<br />
+        <span class="text-3xl md:text-4xl lg:text-5xl opacity-90">with European Flair</span>
+      </h1>
+      <p class="hero-subtitle text-lg md:text-xl text-hakuji/80 mb-10 max-w-2xl mx-auto">
+        Handcrafted ceramics from Tajimi, Gifu, Japan since 1949
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="/en/products/" class="btn-primary">
+          Browse Products
+        </a>
+        <a href="/en/about/" class="btn-secondary">
+          About Us
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Introduction -->
+  <section class="intro-section section-padding">
+    <div class="max-w-4xl mx-auto px-6">
+      <SectionTitle title="Welcome to Otai Ceramics" subtitle="小田井窯へようこそ" />
+      <div class="prose-content space-y-6 text-sumi/80 text-lg leading-loose text-center">
+        <p>
+          At Otai Ceramics, we create distinctive pieces that blend traditional Mino ware techniques with European artistic influences.
+          Our cobalt blue glazes, unique patterns, and decorative plates bring warmth and beauty to your daily life.
+        </p>
+        <p>
+          We also offer custom production for restaurants, commemorative items, and corporate gifts.
+          Feel free to contact us with your ideas.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Series -->
+  <section class="series-section section-padding bg-hakuji">
+    <div class="container-ma">
+      <SectionTitle title="Product Series" subtitle="商品シリーズ" />
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+        {series.map((s) => (
+          <a
+            href={`/en/products/?series=${s.slug}`}
+            class="series-card group text-center p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow"
+          >
+            <div class="w-16 h-16 mx-auto mb-4 bg-ai/10 rounded-full flex items-center justify-center group-hover:bg-ai/20 transition-colors">
+              <span class="font-serif text-lg text-ai">{s.nameJa.charAt(0)}</span>
+            </div>
+            <h3 class="font-serif text-lg text-ai mb-1">{s.name}</h3>
+            <p class="text-xs text-sumi/60">{s.desc}</p>
+          </a>
+        ))}
+      </div>
+      <div class="text-center mt-10">
+        <a href="/en/products/" class="btn-secondary">
+          View All Products
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Custom Orders -->
+  <section class="custom-section section-padding bg-ai text-hakuji">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <SectionTitle title="Custom & OEM Orders" subtitle="オリジナル制作" align="center" />
+      <p class="text-hakuji/80 text-lg mb-8">
+        We accept orders for original ceramics with your logo, design, or branding.<br />
+        Popular with restaurants, hotels, sake breweries, and as corporate gifts.
+      </p>
+      <a href="/en/custom/" class="btn-secondary inline-block">
+        Learn More
+      </a>
+    </div>
+  </section>
+
+  <!-- Mino Ware Introduction -->
+  <section class="minoyaki-section section-padding">
+    <div class="max-w-4xl mx-auto px-6">
+      <SectionTitle title="About Mino Ware" subtitle="美濃焼について" />
+      <div class="prose-content space-y-6 text-sumi/80 text-lg leading-loose">
+        <p>
+          <strong class="text-ai">Mino ware</strong> refers to ceramics produced in the southeastern part of Gifu Prefecture, Japan,
+          centered around Tajimi, Toki, and Mizunami cities. The name derives from the ancient Mino Province.
+        </p>
+        <p>
+          With a history spanning over 1,300 years, Mino ware accounts for more than half of all ceramics produced in Japan.
+          Its versatility and variety have made it an integral part of Japanese daily life.
+        </p>
+        <div class="text-center mt-8">
+          <a href="/en/about/" class="btn-primary">
+            Learn More About Us
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact CTA -->
+  <section class="cta-section section-padding bg-hakuji">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <SectionTitle title="Get in Touch" subtitle="お問い合わせ" />
+      <p class="text-sumi/80 text-lg mb-8">
+        Questions about our products? Interested in custom orders?<br />
+        We'd love to hear from you.
+      </p>
+      <a href="/en/contact/" class="btn-primary inline-block">
+        Contact Us
+      </a>
+    </div>
+  </section>
+</BaseLayoutEn>
+
+<!-- Animations -->
+<script>
+  import { gsap, prefersReducedMotion } from '../../utils/animations';
+  import { fadeInOnScroll } from '../../utils/scrollAnimations';
+
+  window.addEventListener('gsap:ready', () => {
+    if (prefersReducedMotion()) return;
+
+    // Hero animation
+    const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    heroTl
+      .from('.hero-title', { y: 60, opacity: 0, duration: 1 })
+      .from('.hero-subtitle', { y: 40, opacity: 0, duration: 0.8 }, '-=0.5')
+      .from('.hero-section .btn-primary, .hero-section .btn-secondary', { y: 30, opacity: 0, duration: 0.6, stagger: 0.1 }, '-=0.4');
+
+    // Section animations
+    fadeInOnScroll('.intro-section .section-header', { y: 30 });
+    fadeInOnScroll('.intro-section .prose-content', { y: 40 });
+
+    gsap.from('.series-card', {
+      y: 40,
+      opacity: 0,
+      duration: 0.5,
+      stagger: 0.08,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: '.series-section',
+        start: 'top 75%',
+      },
+    });
+  });
+</script>

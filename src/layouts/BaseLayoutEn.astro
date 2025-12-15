@@ -1,0 +1,52 @@
+---
+/**
+ * BaseLayout (English) - 和モダンデザイン
+ * 英語版用の基本レイアウト
+ */
+import '../styles/global.css';
+import HeaderEn from '../components/HeaderEn.astro';
+import FooterEn from '../components/FooterEn.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'Otai Ceramics - Handcrafted Mino ware pottery from Tajimi, Gifu, Japan. Traditional techniques with European artistic influences.' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="alternate" hreflang="ja" href={Astro.url.href.replace('/en/', '/')} />
+    <link rel="alternate" hreflang="en" href={Astro.url.href} />
+    <title>{title} | Otai Ceramics - Mino Ware</title>
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <HeaderEn />
+    <main class="flex-grow">
+      <slot />
+    </main>
+    <FooterEn />
+
+    <!-- GSAP 初期化スクリプト -->
+    <script>
+      import { gsap, ScrollTrigger, prefersReducedMotion } from '../utils/animations';
+
+      document.addEventListener('DOMContentLoaded', () => {
+        if (!prefersReducedMotion()) {
+          window.dispatchEvent(new CustomEvent('gsap:ready'));
+        }
+      });
+
+      document.addEventListener('astro:page-load', () => {
+        ScrollTrigger.refresh();
+      });
+    </script>
+  </body>
+</html>

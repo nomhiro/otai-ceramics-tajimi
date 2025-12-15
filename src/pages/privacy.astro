@@ -1,0 +1,123 @@
+---
+/**
+ * プライバシーポリシーページ
+ * 個人情報の取扱いについて
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="プライバシーポリシー" description="小田井窯のプライバシーポリシー。個人情報の取扱いについてご説明します。">
+  <!-- ヒーロー -->
+  <section class="bg-ai text-hakuji section-padding-sm">
+    <div class="container-ma text-center">
+      <h1 class="font-serif text-3xl md:text-4xl lg:text-5xl mb-6 tracking-wider">プライバシーポリシー</h1>
+      <p class="text-hakuji/80 text-lg">個人情報の取扱いについて</p>
+    </div>
+  </section>
+
+  <!-- 本文 -->
+  <section class="section-padding">
+    <div class="max-w-3xl mx-auto px-6">
+      <div class="prose prose-lg prose-sumi">
+        <p class="text-sumi/80 leading-relaxed mb-12">
+          小田井窯（以下「当窯」）は、お客様の個人情報の重要性を認識し、その保護の徹底を図るため、以下のプライバシーポリシーを定め、適切な取扱いに努めます。
+        </p>
+
+        <div class="space-y-12">
+          <!-- 1. 収集する情報 -->
+          <div class="policy-section">
+            <h2 class="font-serif text-xl md:text-2xl text-ai mb-4 pb-2 border-b border-ai/20">1. 収集する情報</h2>
+            <p class="text-sumi/80 leading-relaxed mb-4">当窯は、以下の場合に個人情報を収集することがあります。</p>
+            <ul class="list-disc list-inside text-sumi/80 space-y-2 ml-4">
+              <li>お問い合わせフォームからのご連絡時（お名前、メールアドレス、電話番号）</li>
+              <li>商品のご注文時（お名前、ご住所、電話番号、メールアドレス）</li>
+              <li>カタログ請求時（お名前、ご住所）</li>
+            </ul>
+          </div>
+
+          <!-- 2. 利用目的 -->
+          <div class="policy-section">
+            <h2 class="font-serif text-xl md:text-2xl text-ai mb-4 pb-2 border-b border-ai/20">2. 利用目的</h2>
+            <p class="text-sumi/80 leading-relaxed mb-4">収集した個人情報は、以下の目的で利用いたします。</p>
+            <ul class="list-disc list-inside text-sumi/80 space-y-2 ml-4">
+              <li>お問い合わせへの回答</li>
+              <li>商品の発送および関連するご連絡</li>
+              <li>カタログ・資料の送付</li>
+              <li>当窯からのお知らせ（ご希望の方のみ）</li>
+              <li>サービス向上のための統計分析（個人を特定しない形式で）</li>
+            </ul>
+          </div>
+
+          <!-- 3. 第三者提供 -->
+          <div class="policy-section">
+            <h2 class="font-serif text-xl md:text-2xl text-ai mb-4 pb-2 border-b border-ai/20">3. 第三者への提供</h2>
+            <p class="text-sumi/80 leading-relaxed">
+              当窯は、以下の場合を除き、お客様の個人情報を第三者に提供することはありません。
+            </p>
+            <ul class="list-disc list-inside text-sumi/80 space-y-2 ml-4 mt-4">
+              <li>お客様の同意がある場合</li>
+              <li>商品配送のため運送会社に必要な情報を提供する場合</li>
+              <li>法令に基づき開示が求められた場合</li>
+            </ul>
+          </div>
+
+          <!-- 4. 安全管理 -->
+          <div class="policy-section">
+            <h2 class="font-serif text-xl md:text-2xl text-ai mb-4 pb-2 border-b border-ai/20">4. 安全管理措置</h2>
+            <p class="text-sumi/80 leading-relaxed">
+              当窯は、個人情報の漏洩、滅失、毀損の防止のため、適切な安全管理措置を講じます。
+              また、個人情報を取り扱う従業員に対して、適切な監督を行います。
+            </p>
+          </div>
+
+          <!-- 5. Cookieの使用 -->
+          <div class="policy-section">
+            <h2 class="font-serif text-xl md:text-2xl text-ai mb-4 pb-2 border-b border-ai/20">5. Cookieの使用について</h2>
+            <p class="text-sumi/80 leading-relaxed">
+              当ウェブサイトでは、利便性の向上やアクセス解析のためにCookieを使用する場合があります。
+              Cookieはお客様個人を特定するものではありません。
+              ブラウザの設定によりCookieを無効にすることも可能ですが、一部のサービスが正常に機能しなくなる場合があります。
+            </p>
+          </div>
+
+          <!-- 6. 開示・訂正 -->
+          <div class="policy-section">
+            <h2 class="font-serif text-xl md:text-2xl text-ai mb-4 pb-2 border-b border-ai/20">6. 個人情報の開示・訂正・削除</h2>
+            <p class="text-sumi/80 leading-relaxed">
+              お客様ご本人から個人情報の開示、訂正、削除のご請求があった場合は、
+              ご本人であることを確認のうえ、合理的な範囲で速やかに対応いたします。
+            </p>
+          </div>
+
+          <!-- 7. お問い合わせ窓口 -->
+          <div class="policy-section">
+            <h2 class="font-serif text-xl md:text-2xl text-ai mb-4 pb-2 border-b border-ai/20">7. お問い合わせ窓口</h2>
+            <p class="text-sumi/80 leading-relaxed mb-4">
+              個人情報の取扱いに関するお問い合わせは、下記までご連絡ください。
+            </p>
+            <div class="bg-shironeri p-6 rounded-lg">
+              <p class="font-serif text-lg text-ai mb-2">小田井窯</p>
+              <p class="text-sumi/80">〒507-0071 岐阜県多治見市小田町1-39</p>
+              <p class="text-sumi/80">TEL: 0572-22-2161</p>
+              <p class="text-sumi/80">FAX: 0572-22-2163</p>
+            </div>
+          </div>
+
+          <!-- 8. ポリシーの変更 -->
+          <div class="policy-section">
+            <h2 class="font-serif text-xl md:text-2xl text-ai mb-4 pb-2 border-b border-ai/20">8. プライバシーポリシーの変更</h2>
+            <p class="text-sumi/80 leading-relaxed">
+              当窯は、必要に応じて本プライバシーポリシーを変更することがあります。
+              変更した場合は、当ウェブサイトにて公表いたします。
+            </p>
+          </div>
+        </div>
+
+        <!-- 制定日 -->
+        <div class="mt-16 pt-8 border-t border-sumi/10 text-right">
+          <p class="text-sumi/60">制定日：2024年1月1日</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

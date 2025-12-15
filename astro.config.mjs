@@ -7,4 +7,11 @@ export default defineConfig({
   site: 'https://otai.co.jp',
   integrations: [tailwind()],
   output: 'static',
+  i18n: {
+    defaultLocale: 'ja',
+    locales: ['ja', 'en'],
+    routing: {
+      prefixDefaultLocale: false,
+    },
+  },
 });

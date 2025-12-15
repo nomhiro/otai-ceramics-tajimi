@@ -1,0 +1,221 @@
+---
+/**
+ * 会社概要・アクセスページ
+ * 会社情報とGoogleマップによるアクセス案内
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionTitle from '../components/SectionTitle.astro';
+---
+
+<BaseLayout title="会社概要・アクセス" description="小田井窯の会社概要とアクセス情報。岐阜県多治見市にある美濃焼の窯元です。">
+  <!-- ヒーロー -->
+  <section class="bg-ai text-hakuji section-padding-sm">
+    <div class="container-ma text-center">
+      <h1 class="hero-title font-serif text-3xl md:text-4xl lg:text-5xl mb-6 tracking-wider">会社概要・アクセス</h1>
+      <p class="hero-subtitle text-hakuji/80 text-lg">小田井窯へのご案内</p>
+    </div>
+  </section>
+
+  <!-- 会社概要 -->
+  <section class="section-padding">
+    <div class="max-w-4xl mx-auto px-6">
+      <SectionTitle title="会社概要" />
+      <div class="overflow-x-auto">
+        <table class="company-table w-full">
+          <tbody class="divide-y divide-gray-200">
+            <tr>
+              <th class="py-5 px-4 text-left font-medium text-ai w-1/3 bg-kinari/30">社名</th>
+              <td class="py-5 px-4 bg-hakuji">株式会社小田井商店</td>
+            </tr>
+            <tr>
+              <th class="py-5 px-4 text-left font-medium text-ai bg-kinari/30">屋号</th>
+              <td class="py-5 px-4 bg-hakuji">小田井窯（おたいがま）</td>
+            </tr>
+            <tr>
+              <th class="py-5 px-4 text-left font-medium text-ai bg-kinari/30">代表者</th>
+              <td class="py-5 px-4 bg-hakuji">加藤誠亮</td>
+            </tr>
+            <tr>
+              <th class="py-5 px-4 text-left font-medium text-ai bg-kinari/30">所在地</th>
+              <td class="py-5 px-4 bg-hakuji">
+                〒507-0071<br />
+                岐阜県多治見市小田町1-39
+              </td>
+            </tr>
+            <tr>
+              <th class="py-5 px-4 text-left font-medium text-ai bg-kinari/30">TEL</th>
+              <td class="py-5 px-4 bg-hakuji">0572-22-2161（代）</td>
+            </tr>
+            <tr>
+              <th class="py-5 px-4 text-left font-medium text-ai bg-kinari/30">FAX</th>
+              <td class="py-5 px-4 bg-hakuji">0572-22-2163</td>
+            </tr>
+            <tr>
+              <th class="py-5 px-4 text-left font-medium text-ai bg-kinari/30">設立</th>
+              <td class="py-5 px-4 bg-hakuji">昭和24年（1949年）</td>
+            </tr>
+            <tr>
+              <th class="py-5 px-4 text-left font-medium text-ai bg-kinari/30">取扱商品</th>
+              <td class="py-5 px-4 bg-hakuji">和洋中食器、名入徳利盃、オリジナル陶器</td>
+            </tr>
+            <tr>
+              <th class="py-5 px-4 text-left font-medium text-ai bg-kinari/30">営業時間</th>
+              <td class="py-5 px-4 bg-hakuji">月曜日〜金曜日 午前8時〜午後5時</td>
+            </tr>
+            <tr>
+              <th class="py-5 px-4 text-left font-medium text-ai bg-kinari/30">休業日</th>
+              <td class="py-5 px-4 bg-hakuji">土日祝祭日、夏期休暇（8/12〜8/16）、年末年始（12/29〜1/5）</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- アクセス -->
+  <section class="section-padding bg-hakuji">
+    <div class="max-w-4xl mx-auto px-6">
+      <SectionTitle title="アクセス" />
+
+      <!-- Googleマップ -->
+      <div class="map-container mb-12 rounded-lg overflow-hidden shadow-lg">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3251.8!2d137.1282!3d35.3322!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6003a1c2d8a6c8ed%3A0x1234567890abcdef!2z5bCP55Sw5LqV56qv!5e0!3m2!1sja!2sjp!4v1234567890"
+          width="100%"
+          height="400"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="小田井窯の地図"
+        ></iframe>
+      </div>
+
+      <!-- アクセス方法 -->
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- 電車 -->
+        <div class="access-card bg-white p-6 rounded-lg shadow-md">
+          <div class="flex items-center mb-4">
+            <div class="w-12 h-12 bg-ai rounded-full flex items-center justify-center mr-4">
+              <svg class="w-6 h-6 text-hakuji" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+              </svg>
+            </div>
+            <h3 class="font-serif text-xl text-ai">電車でお越しの方</h3>
+          </div>
+          <ul class="text-sumi/80 space-y-3">
+            <li class="flex items-start">
+              <span class="text-shu mr-2">●</span>
+              <span>JR中央本線「多治見駅」下車</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-shu mr-2">●</span>
+              <span>駅から車で約10分</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-shu mr-2">●</span>
+              <span>名古屋駅からJR中央本線で約40分</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- 車 -->
+        <div class="access-card bg-white p-6 rounded-lg shadow-md">
+          <div class="flex items-center mb-4">
+            <div class="w-12 h-12 bg-shu rounded-full flex items-center justify-center mr-4">
+              <svg class="w-6 h-6 text-hakuji" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"></path>
+              </svg>
+            </div>
+            <h3 class="font-serif text-xl text-ai">お車でお越しの方</h3>
+          </div>
+          <ul class="text-sumi/80 space-y-3">
+            <li class="flex items-start">
+              <span class="text-shu mr-2">●</span>
+              <span>中央自動車道「多治見IC」から約15分</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-shu mr-2">●</span>
+              <span>東海環状自動車道「土岐南多治見IC」から約10分</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-shu mr-2">●</span>
+              <span>駐車場完備（無料）</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- お問い合わせへの導線 -->
+  <section class="section-padding">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <p class="text-sumi/80 text-lg mb-6">
+        ご来店の際は、事前にお電話またはお問い合わせフォームよりご連絡いただけますと幸いです。
+      </p>
+      <a href="/contact/" class="btn-primary inline-block">
+        お問い合わせ
+      </a>
+    </div>
+  </section>
+</BaseLayout>
+
+<!-- アニメーション -->
+<script>
+  import { gsap, prefersReducedMotion } from '../utils/animations';
+  import { fadeInOnScroll } from '../utils/scrollAnimations';
+
+  window.addEventListener('gsap:ready', () => {
+    if (prefersReducedMotion()) return;
+
+    // ヒーローアニメーション
+    const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    heroTl
+      .from('.hero-title', { y: 50, opacity: 0, duration: 0.8 })
+      .from('.hero-subtitle', { y: 30, opacity: 0, duration: 0.6 }, '-=0.4');
+
+    // 会社概要テーブル
+    fadeInOnScroll('.section-header', { y: 30 });
+    gsap.from('.company-table tbody tr', {
+      y: 20,
+      opacity: 0,
+      duration: 0.4,
+      stagger: 0.08,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: '.company-table',
+        start: 'top 80%',
+        toggleActions: 'play none none reverse',
+      },
+    });
+
+    // マップ
+    gsap.from('.map-container', {
+      y: 40,
+      opacity: 0,
+      duration: 0.8,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: '.map-container',
+        start: 'top 80%',
+        toggleActions: 'play none none reverse',
+      },
+    });
+
+    // アクセスカード
+    gsap.from('.access-card', {
+      y: 50,
+      opacity: 0,
+      duration: 0.6,
+      stagger: 0.2,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: '.access-card',
+        start: 'top 85%',
+        toggleActions: 'play none none reverse',
+      },
+    });
+  });
+</script>
