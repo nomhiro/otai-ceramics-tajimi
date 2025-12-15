@@ -1,18 +1,8 @@
-import { AzureFunction, Context, HttpRequest } from "@azure/functions";
-
-interface ContactFormData {
-  name: string;
-  email: string;
-  phone?: string;
-  category: string;
-  message: string;
-}
-
 const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY;
 const TO_EMAIL = process.env.CONTACT_TO_EMAIL || "webmaster@otai.co.jp";
 const FROM_EMAIL = process.env.CONTACT_FROM_EMAIL || "noreply@otai.co.jp";
 
-const httpTrigger: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
+module.exports = async function (context, req) {
   context.log("Contact form submission received");
 
   // CORS headers
@@ -40,7 +30,7 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
   }
 
   try {
-    const data = req.body as ContactFormData;
+    const data = req.body;
 
     // Validate required fields
     if (!data.name || !data.email || !data.category || !data.message) {
@@ -63,7 +53,7 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
       return;
     }
 
-    const categoryLabels: Record<string, string> = {
+    const categoryLabels = {
       product: "商品について",
       custom: "オリジナル制作について",
       catalog: "カタログ請求",
@@ -138,5 +128,3 @@ ${data.message}
     };
   }
 };
-
-export default httpTrigger;
