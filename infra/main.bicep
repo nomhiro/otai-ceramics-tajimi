@@ -9,6 +9,9 @@ param environmentName string
 @description('Azure region for resources')
 param location string = 'japaneast'
 
+@description('Azure region for Static Web Apps (limited availability: westus2, centralus, eastus2, westeurope, eastasia)')
+param staticWebAppLocation string = 'eastasia'
+
 @description('SendGrid API Key for contact form emails')
 @secure()
 param sendGridApiKey string = ''
@@ -38,7 +41,7 @@ module swa 'core/host/staticwebapp.bicep' = {
   scope: rg
   params: {
     name: 'swa-otai-${resourceToken}'
-    location: location
+    location: staticWebAppLocation
     sku: 'Free'
     tags: union(tags, { 'azd-service-name': 'web' })
     sendGridApiKey: sendGridApiKey

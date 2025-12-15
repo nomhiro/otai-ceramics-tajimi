@@ -2,15 +2,15 @@
   "name": "otai-ceramics-api",
   "version": "1.0.0",
   "description": "Azure Functions API for Otai Ceramics",
-  "main": "contact/index.ts",
   "scripts": {
     "build": "tsc",
     "start": "func start"
   },
   "dependencies": {
-    "@azure/functions": "^4.0.0"
+    "@azure/functions": "^3.5.0"
   },
   "devDependencies": {
+    "@types/node": "^18.0.0",
     "typescript": "^5.0.0"
   }
 }

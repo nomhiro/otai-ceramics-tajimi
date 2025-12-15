@@ -11,13 +11,25 @@ services:
 
 hooks:
   preprovision:
-    shell: sh
-    run: echo "Provisioning Azure resources..."
+    windows:
+      shell: pwsh
+      run: Write-Host "Provisioning Azure resources..."
+    posix:
+      shell: sh
+      run: echo "Provisioning Azure resources..."
 
   prepackage:
-    shell: sh
-    run: npm install
+    windows:
+      shell: pwsh
+      run: npm install
+    posix:
+      shell: sh
+      run: npm install
 
   predeploy:
-    shell: sh
-    run: npm run build
+    windows:
+      shell: pwsh
+      run: npm run build
+    posix:
+      shell: sh
+      run: npm run build

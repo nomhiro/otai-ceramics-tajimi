@@ -6,7 +6,7 @@
       "value": "${AZURE_ENV_NAME}"
     },
     "location": {
-      "value": "${AZURE_LOCATION}"
+      "value": "japaneast"
     },
     "sendGridApiKey": {
       "value": "${SENDGRID_API_KEY}"

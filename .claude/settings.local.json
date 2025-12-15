@@ -61,7 +61,8 @@
       "Bash(iconv:*)",
       "Bash(npm create:*)",
       "Bash(npm install:*)",
-      "Bash(npm run build:*)"
+      "Bash(npm run build:*)",
+      "Bash(git -C /c/Users/nom40/Documents/otai/otai-ceramics-tajimi log --oneline --all)"
     ]
   },
   "enableAllProjectMcpServers": true,

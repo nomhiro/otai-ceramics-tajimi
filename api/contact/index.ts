@@ -1,4 +1,4 @@
-import type { HttpRequest, HttpResponseInit, InvocationContext } from "@azure/functions";
+import { AzureFunction, Context, HttpRequest } from "@azure/functions";
 
 interface ContactFormData {
   name: string;
@@ -12,7 +12,7 @@ const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY;
 const TO_EMAIL = process.env.CONTACT_TO_EMAIL || "webmaster@otai.co.jp";
 const FROM_EMAIL = process.env.CONTACT_FROM_EMAIL || "noreply@otai.co.jp";
 
-export async function handler(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
+const httpTrigger: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
   context.log("Contact form submission received");
 
   // CORS headers
@@ -24,39 +24,43 @@ export async function handler(request: HttpRequest, context: InvocationContext):
   };
 
   // Handle preflight request
-  if (request.method === "OPTIONS") {
-    return { status: 204, headers };
+  if (req.method === "OPTIONS") {
+    context.res = { status: 204, headers };
+    return;
   }
 
   // Only allow POST
-  if (request.method !== "POST") {
-    return {
+  if (req.method !== "POST") {
+    context.res = {
       status: 405,
       headers,
       body: JSON.stringify({ error: "Method not allowed" }),
     };
+    return;
   }
 
   try {
-    const data = await request.json() as ContactFormData;
+    const data = req.body as ContactFormData;
 
     // Validate required fields
     if (!data.name || !data.email || !data.category || !data.message) {
-      return {
+      context.res = {
         status: 400,
         headers,
         body: JSON.stringify({ error: "必須項目を入力してください" }),
       };
+      return;
     }
 
     // Validate email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(data.email)) {
-      return {
+      context.res = {
         status: 400,
         headers,
         body: JSON.stringify({ error: "メールアドレスの形式が正しくありません" }),
       };
+      return;
     }
 
     const categoryLabels: Record<string, string> = {
@@ -112,7 +116,7 @@ ${data.message}
       });
 
       if (!sendGridResponse.ok) {
-        context.error("SendGrid error:", await sendGridResponse.text());
+        context.log.error("SendGrid error:", await sendGridResponse.text());
         throw new Error("メール送信に失敗しました");
       }
     } else {
@@ -120,19 +124,19 @@ ${data.message}
       context.log("Contact form data (SendGrid not configured):", data);
     }
 
-    return {
+    context.res = {
       status: 200,
       headers,
       body: JSON.stringify({ success: true, message: "お問い合わせを受け付けました" }),
     };
   } catch (error) {
-    context.error("Error processing contact form:", error);
-    return {
+    context.log.error("Error processing contact form:", error);
+    context.res = {
       status: 500,
       headers,
       body: JSON.stringify({ error: "サーバーエラーが発生しました" }),
     };
   }
-}
+};
 
-export default handler;
+export default httpTrigger;
