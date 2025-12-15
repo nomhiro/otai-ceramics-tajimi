@@ -1,67 +1,72 @@
 ---
+/**
+ * お問い合わせページ - 和モダンデザイン
+ * フォームとスクロールアニメーション
+ */
 import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionTitle from '../components/SectionTitle.astro';
 ---
 
 <BaseLayout title="お問い合わせ" description="小田井窯へのお問い合わせ。商品のご質問、カタログのご請求、オリジナル制作のご相談など、お気軽にどうぞ。">
-  <!-- Hero -->
-  <section class="bg-gosu-blue text-white py-16 md:py-24">
-    <div class="max-w-4xl mx-auto px-4 text-center">
-      <h1 class="font-serif text-3xl md:text-4xl mb-4">お問い合わせ</h1>
-      <p class="text-gray-300">疑問質問なんでもどうぞ。カタログのご請求も承ります。</p>
+  <!-- ヒーロー -->
+  <section class="contact-hero bg-ai text-hakuji section-padding-sm">
+    <div class="container-ma text-center">
+      <h1 class="hero-title font-serif text-3xl md:text-4xl lg:text-5xl mb-6 tracking-wider">お問い合わせ</h1>
+      <p class="hero-subtitle text-hakuji/80 text-lg">疑問質問なんでもどうぞ。カタログのご請求も承ります。</p>
     </div>
   </section>
 
-  <!-- Contact Form -->
-  <section class="py-16 md:py-24">
-    <div class="max-w-2xl mx-auto px-4">
-      <form id="contact-form" class="space-y-6">
-        <div>
-          <label for="name" class="block text-sm font-medium text-sumi mb-2">
-            お名前 <span class="text-akae-red">*</span>
+  <!-- お問い合わせフォーム -->
+  <section class="section-padding">
+    <div class="max-w-2xl mx-auto px-6">
+      <form id="contact-form" class="space-y-8">
+        <div class="form-field">
+          <label for="name" class="form-label">
+            お名前 <span class="text-shu">*</span>
           </label>
           <input
             type="text"
             id="name"
             name="name"
             required
-            class="w-full px-4 py-3 border border-gray-300 focus:border-gosu-blue focus:outline-none transition-colors"
+            class="form-input"
           />
         </div>
 
-        <div>
-          <label for="email" class="block text-sm font-medium text-sumi mb-2">
-            メールアドレス <span class="text-akae-red">*</span>
+        <div class="form-field">
+          <label for="email" class="form-label">
+            メールアドレス <span class="text-shu">*</span>
           </label>
           <input
             type="email"
             id="email"
             name="email"
             required
-            class="w-full px-4 py-3 border border-gray-300 focus:border-gosu-blue focus:outline-none transition-colors"
+            class="form-input"
           />
         </div>
 
-        <div>
-          <label for="phone" class="block text-sm font-medium text-sumi mb-2">
+        <div class="form-field">
+          <label for="phone" class="form-label">
             電話番号
           </label>
           <input
             type="tel"
             id="phone"
             name="phone"
-            class="w-full px-4 py-3 border border-gray-300 focus:border-gosu-blue focus:outline-none transition-colors"
+            class="form-input"
           />
         </div>
 
-        <div>
-          <label for="category" class="block text-sm font-medium text-sumi mb-2">
-            お問い合わせ種別 <span class="text-akae-red">*</span>
+        <div class="form-field">
+          <label for="category" class="form-label">
+            お問い合わせ種別 <span class="text-shu">*</span>
           </label>
           <select
             id="category"
             name="category"
             required
-            class="w-full px-4 py-3 border border-gray-300 focus:border-gosu-blue focus:outline-none transition-colors"
+            class="form-input"
           >
             <option value="">選択してください</option>
             <option value="product">商品について</option>
@@ -71,54 +76,59 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           </select>
         </div>
 
-        <div>
-          <label for="message" class="block text-sm font-medium text-sumi mb-2">
-            お問い合わせ内容 <span class="text-akae-red">*</span>
+        <div class="form-field">
+          <label for="message" class="form-label">
+            お問い合わせ内容 <span class="text-shu">*</span>
           </label>
           <textarea
             id="message"
             name="message"
             rows="6"
             required
-            class="w-full px-4 py-3 border border-gray-300 focus:border-gosu-blue focus:outline-none transition-colors resize-none"
+            class="form-input resize-none"
           ></textarea>
         </div>
 
-        <div class="text-center">
+        <div class="text-center pt-4">
           <button type="submit" class="btn-primary" id="submit-btn">
             送信する
           </button>
         </div>
 
-        <div id="form-message" class="hidden text-center py-4"></div>
+        <div id="form-message" class="hidden text-center py-4 text-lg"></div>
       </form>
     </div>
   </section>
 
-  <!-- Contact Info -->
-  <section class="py-16 md:py-24 bg-white">
-    <div class="max-w-4xl mx-auto px-4">
-      <h2 class="section-title">その他のお問い合わせ方法</h2>
+  <!-- その他のお問い合わせ方法 -->
+  <section class="contact-info section-padding bg-hakuji">
+    <div class="max-w-4xl mx-auto px-6">
+      <SectionTitle title="その他のお問い合わせ方法" />
       <div class="grid md:grid-cols-2 gap-8">
-        <div class="text-center p-6 border border-gray-200">
-          <h3 class="font-serif text-lg text-gosu-blue mb-4">お電話</h3>
-          <p class="text-2xl font-medium text-sumi mb-2">0572-22-2161</p>
-          <p class="text-sm text-gray-500">
+        <div class="info-card text-center">
+          <h3 class="font-serif text-xl text-ai mb-4">お電話</h3>
+          <p class="text-2xl md:text-3xl font-medium text-sumi mb-3">0572-22-2161</p>
+          <p class="text-sm text-sumi/60 leading-relaxed">
             月〜金 午前8時〜午後5時<br />
             ※土日祝祭日休業
           </p>
         </div>
-        <div class="text-center p-6 border border-gray-200">
-          <h3 class="font-serif text-lg text-gosu-blue mb-4">FAX</h3>
-          <p class="text-2xl font-medium text-sumi mb-2">0572-22-2163</p>
-          <p class="text-sm text-gray-500">24時間受付</p>
+        <div class="info-card text-center">
+          <h3 class="font-serif text-xl text-ai mb-4">FAX</h3>
+          <p class="text-2xl md:text-3xl font-medium text-sumi mb-3">0572-22-2163</p>
+          <p class="text-sm text-sumi/60">24時間受付</p>
         </div>
       </div>
     </div>
   </section>
 </BaseLayout>
 
+<!-- フォーム送信とアニメーション -->
 <script>
+  import { gsap, prefersReducedMotion } from '../utils/animations';
+  import { fadeInOnScroll, formFieldsReveal } from '../utils/scrollAnimations';
+
+  // フォーム送信
   const form = document.getElementById('contact-form') as HTMLFormElement;
   const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
   const formMessage = document.getElementById('form-message') as HTMLDivElement;
@@ -142,20 +152,58 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       });
 
       if (response.ok) {
-        formMessage.classList.remove('hidden', 'text-akae-red');
+        formMessage.classList.remove('hidden', 'text-shu');
         formMessage.classList.add('text-yuu-green');
         formMessage.textContent = 'お問い合わせを受け付けました。ありがとうございます。';
         form.reset();
+
+        // 成功メッセージアニメーション
+        if (!prefersReducedMotion()) {
+          gsap.from(formMessage, { y: 20, opacity: 0, duration: 0.5 });
+        }
       } else {
         throw new Error('送信に失敗しました');
       }
     } catch (error) {
       formMessage.classList.remove('hidden', 'text-yuu-green');
-      formMessage.classList.add('text-akae-red');
+      formMessage.classList.add('text-shu');
       formMessage.textContent = '送信に失敗しました。お手数ですがお電話にてお問い合わせください。';
     } finally {
       submitBtn.disabled = false;
       submitBtn.textContent = '送信する';
     }
+  });
+
+  // 初期アニメーション
+  window.addEventListener('gsap:ready', () => {
+    if (prefersReducedMotion()) return;
+
+    // ヒーローアニメーション
+    const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    heroTl
+      .from('.hero-title', { y: 50, opacity: 0, duration: 0.8 })
+      .from('.hero-subtitle', { y: 30, opacity: 0, duration: 0.6 }, '-=0.4');
+
+    // フォームフィールド
+    formFieldsReveal('#contact-form', '.form-field');
+
+    // 送信ボタン
+    fadeInOnScroll('#submit-btn', { y: 20, delay: 0.5 });
+
+    // お問い合わせ情報セクション
+    fadeInOnScroll('.contact-info .section-header', { y: 30 });
+
+    gsap.from('.contact-info .info-card', {
+      y: 50,
+      opacity: 0,
+      duration: 0.6,
+      stagger: 0.2,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: '.contact-info .grid',
+        start: 'top 80%',
+        toggleActions: 'play none none reverse',
+      },
+    });
   });
 </script>

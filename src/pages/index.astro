@@ -1,5 +1,10 @@
 ---
+/**
+ * ホームページ - 和モダンデザイン
+ * スクロールアニメーション付き
+ */
 import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionTitle from '../components/SectionTitle.astro';
 import { getCollection } from 'astro:content';
 
 const featuredProducts = await getCollection('products', ({ data }) => data.featured);
@@ -18,133 +23,196 @@ const seriesList = [
 ---
 
 <BaseLayout title="ホーム">
-  <!-- Hero Section -->
-  <section class="relative bg-gosu-blue text-white py-24 md:py-32">
-    <div class="max-w-6xl mx-auto px-4 text-center">
-      <h1 class="font-serif text-3xl md:text-5xl mb-6 leading-relaxed">
+  <!-- ヒーローセクション -->
+  <section class="hero-section relative bg-ai text-hakuji section-padding">
+    <div class="container-ma text-center">
+      <h1 class="hero-title font-serif text-3xl md:text-4xl lg:text-5xl mb-8 leading-relaxed tracking-wider">
         美濃焼の伝統と<br class="md:hidden" />欧州の作風を融合
       </h1>
-      <p class="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+      <p class="hero-subtitle text-lg md:text-xl text-hakuji/80 mb-10 max-w-2xl mx-auto leading-relaxed">
         陶器の町、岐阜県多治見市より、南欧風オリジナル陶器とお酒の徳利、盃をお届けします
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="/products/" class="btn-primary bg-white text-gosu-blue">商品を見る</a>
-        <a href="/contact/" class="btn-secondary border-white text-white hover:bg-white hover:text-gosu-blue">お問い合わせ</a>
+        <a href="/products/" class="hero-cta btn-primary bg-hakuji text-ai hover:bg-hakuji/90">商品を見る</a>
+        <a href="/contact/" class="hero-cta btn-secondary border-hakuji text-hakuji hover:bg-hakuji hover:text-ai">お問い合わせ</a>
       </div>
     </div>
   </section>
 
-  <!-- Introduction -->
-  <section class="py-16 md:py-24">
-    <div class="max-w-4xl mx-auto px-4 text-center">
-      <h2 class="section-title">小田井窯について</h2>
-      <p class="text-lg leading-relaxed text-gray-700 mb-8">
+  <!-- イントロダクション -->
+  <section class="intro-section section-padding">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <SectionTitle title="小田井窯について" />
+      <p class="intro-text text-lg leading-loose text-sumi/80 mb-8">
         小田井窯では、美濃焼伝統の技術の中に欧州の作風を取り入れて、特色のある作品を創り出しております。
         コバルト色の美しい洋皿、一風変わった染付、飾り皿などは、きっとお使いいただく皆様方の心に、潤いを与えるものと存じます。
       </p>
-      <p class="text-lg leading-relaxed text-gray-700 mb-8">
-        陶器に関する事ならまず、<strong>生産者</strong>であり、<strong>商社</strong>でもある<strong>小田井窯</strong>にご相談ください。
+      <p class="intro-text text-lg leading-loose text-sumi/80 mb-10">
+        陶器に関する事ならまず、<strong class="text-ai">生産者</strong>であり、<strong class="text-ai">商社</strong>でもある<strong class="text-ai">小田井窯</strong>にご相談ください。
         お客様のオリジナル商品など、ご希望を叶えるためのアイデアをご提案いたします。
       </p>
-      <a href="/about/" class="btn-secondary">詳しく見る</a>
+      <a href="/about/" class="intro-cta btn-secondary">詳しく見る</a>
     </div>
   </section>
 
-  <!-- Series -->
-  <section class="py-16 md:py-24 bg-white">
-    <div class="max-w-6xl mx-auto px-4">
-      <h2 class="section-title">商品シリーズ</h2>
-      <p class="text-center text-gray-600 mb-12">
-        商品はすべて手描きです。ひとつひとつ職人が丹精こめて描きました。
-      </p>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+  <!-- 商品シリーズ -->
+  <section class="series-section section-padding bg-hakuji">
+    <div class="container-ma">
+      <SectionTitle title="商品シリーズ" subtitle="商品はすべて手描きです。ひとつひとつ職人が丹精こめて描きました。" />
+      <div class="series-grid grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
         {seriesList.map((series) => (
           <a
             href={`/products/?series=${series.slug}`}
-            class="product-card p-6 text-center group"
+            class="product-card p-6 md:p-8 text-center group"
           >
-            <div class="w-16 h-16 mx-auto mb-4 bg-kinari rounded-full flex items-center justify-center">
-              <span class="font-serif text-2xl text-gosu-blue">{series.name[0]}</span>
+            <div class="series-icon w-16 h-16 md:w-20 md:h-20 mx-auto mb-4 bg-kinari rounded-full flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+              <span class="font-serif text-2xl md:text-3xl text-ai">{series.name[0]}</span>
             </div>
-            <h3 class="font-serif text-lg text-sumi group-hover:text-gosu-blue transition-colors">
+            <h3 class="font-serif text-lg md:text-xl text-sumi group-hover:text-ai transition-colors duration-300">
               {series.name}
             </h3>
-            <p class="text-sm text-gray-500 mt-2">{series.description}</p>
+            <p class="text-sm text-sumi/60 mt-2 leading-relaxed">{series.description}</p>
           </a>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- Featured Products -->
+  <!-- おすすめ商品 -->
   {featuredProducts.length > 0 && (
-    <section class="py-16 md:py-24">
-      <div class="max-w-6xl mx-auto px-4">
-        <h2 class="section-title">おすすめ商品</h2>
-        <div class="grid md:grid-cols-3 gap-8">
+    <section class="featured-section section-padding">
+      <div class="container-ma">
+        <SectionTitle title="おすすめ商品" />
+        <div class="featured-grid grid md:grid-cols-3 gap-8 md:gap-10">
           {featuredProducts.slice(0, 3).map((product) => (
-            <a href={`/products/${product.data.slug}/`} class="product-card group">
-              <div class="aspect-square bg-gray-100">
+            <a href={`/products/${product.slug}/`} class="product-card group">
+              <div class="aspect-square bg-gray-50 overflow-hidden">
                 <img
                   src={product.data.images[0]}
                   alt={product.data.title}
-                  class="w-full h-full object-cover"
+                  class="w-full h-full object-cover transition-transform duration-600 group-hover:scale-105"
                   loading="lazy"
                 />
               </div>
-              <div class="p-4">
-                <h3 class="font-serif text-lg text-sumi group-hover:text-gosu-blue transition-colors">
+              <div class="p-6">
+                <h3 class="font-serif text-lg text-sumi group-hover:text-ai transition-colors duration-300">
                   {product.data.title}
                 </h3>
-                <p class="text-gosu-blue font-medium mt-2">
+                <p class="text-ai font-medium mt-3">
                   ¥{product.data.price.toLocaleString()}
+                  <span class="text-sm text-sumi/60">（税込）</span>
                 </p>
               </div>
             </a>
           ))}
         </div>
-        <div class="text-center mt-8">
+        <div class="text-center mt-12">
           <a href="/products/" class="btn-secondary">すべての商品を見る</a>
         </div>
       </div>
     </section>
   )}
 
-  <!-- Custom Orders -->
-  <section class="py-16 md:py-24 bg-gosu-blue text-white">
-    <div class="max-w-4xl mx-auto px-4 text-center">
-      <h2 class="font-serif text-2xl md:text-3xl mb-6">オリジナル制作・OEM</h2>
-      <p class="text-lg text-gray-300 mb-8">
+  <!-- オリジナル制作 -->
+  <section class="custom-section section-padding bg-ai text-hakuji">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <h2 class="custom-title font-serif text-2xl md:text-3xl lg:text-4xl mb-8 tracking-wider">オリジナル制作・OEM</h2>
+      <p class="custom-desc text-lg text-hakuji/80 mb-10 leading-relaxed">
         飲食店様の名入れ徳利盃、記念品、オリジナル食器など、
         お客様のご要望に合わせた陶器をお作りします。
       </p>
-      <ul class="text-left max-w-md mx-auto mb-8 space-y-2">
-        <li class="flex items-center gap-2">
-          <span class="text-akae-red">✓</span>
-          マグカップ印入り 250円〜
+      <ul class="custom-list text-left max-w-md mx-auto mb-10 space-y-4">
+        <li class="flex items-center gap-3">
+          <span class="text-shu text-xl">✓</span>
+          <span>マグカップ印入り 250円〜</span>
         </li>
-        <li class="flex items-center gap-2">
-          <span class="text-akae-red">✓</span>
-          手描きオリジナルカップ 1,500円〜
+        <li class="flex items-center gap-3">
+          <span class="text-shu text-xl">✓</span>
+          <span>手描きオリジナルカップ 1,500円〜</span>
         </li>
-        <li class="flex items-center gap-2">
-          <span class="text-akae-red">✓</span>
-          名入れ徳利盃（盃100円〜、徳利200円〜）
+        <li class="flex items-center gap-3">
+          <span class="text-shu text-xl">✓</span>
+          <span>名入れ徳利盃（盃100円〜、徳利200円〜）</span>
         </li>
       </ul>
-      <a href="/custom/" class="btn-primary bg-white text-gosu-blue">詳しく見る</a>
+      <a href="/custom/" class="custom-cta btn-primary bg-hakuji text-ai hover:bg-hakuji/90">詳しく見る</a>
     </div>
   </section>
 
-  <!-- Contact CTA -->
-  <section class="py-16 md:py-24">
-    <div class="max-w-4xl mx-auto px-4 text-center">
-      <h2 class="section-title">お問い合わせ</h2>
-      <p class="text-lg text-gray-700 mb-8">
+  <!-- お問い合わせCTA -->
+  <section class="contact-cta section-padding">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <SectionTitle title="お問い合わせ" />
+      <p class="cta-text text-lg text-sumi/80 mb-10 leading-relaxed">
         商品のご質問、カタログのご請求、オリジナル制作のご相談など、
         お気軽にお問い合わせください。
       </p>
-      <a href="/contact/" class="btn-primary">お問い合わせフォームへ</a>
+      <a href="/contact/" class="cta-btn btn-primary">お問い合わせフォームへ</a>
     </div>
   </section>
 </BaseLayout>
+
+<!-- スクロールアニメーション -->
+<script>
+  import { gsap, ScrollTrigger, prefersReducedMotion } from '../utils/animations';
+  import { fadeInOnScroll, staggerGridReveal, sectionTimeline } from '../utils/scrollAnimations';
+
+  window.addEventListener('gsap:ready', () => {
+    if (prefersReducedMotion()) return;
+    initHomeAnimations();
+  });
+
+  function initHomeAnimations() {
+    // ヒーローセクション（初期ロード時）
+    const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    heroTl
+      .from('.hero-title', { y: 60, opacity: 0, duration: 1 })
+      .from('.hero-subtitle', { y: 40, opacity: 0, duration: 0.8 }, '-=0.6')
+      .from('.hero-cta', { y: 30, opacity: 0, stagger: 0.15, duration: 0.6 }, '-=0.4');
+
+    // イントロダクションセクション
+    fadeInOnScroll('.intro-section .section-header', { y: 30 });
+    gsap.from('.intro-text', {
+      y: 40,
+      opacity: 0,
+      duration: 0.8,
+      stagger: 0.2,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: '.intro-section',
+        start: 'top 75%',
+        toggleActions: 'play none none reverse',
+      },
+    });
+    fadeInOnScroll('.intro-cta', { y: 20, delay: 0.3 });
+
+    // 商品シリーズグリッド
+    fadeInOnScroll('.series-section .section-header', { y: 30 });
+    staggerGridReveal('.series-grid', '.product-card', {
+      stagger: 0.08,
+      y: 50,
+      duration: 0.5,
+    });
+
+    // おすすめ商品
+    fadeInOnScroll('.featured-section .section-header', { y: 30 });
+    staggerGridReveal('.featured-grid', '.product-card', {
+      stagger: 0.15,
+      y: 60,
+      duration: 0.7,
+    });
+
+    // オリジナル制作セクション
+    sectionTimeline('.custom-section', [
+      { selector: '.custom-title', from: { y: 40, opacity: 0, duration: 0.7 } },
+      { selector: '.custom-desc', from: { y: 30, opacity: 0, duration: 0.6 }, position: '-=0.4' },
+      { selector: '.custom-list li', from: { x: -30, opacity: 0, duration: 0.5, stagger: 0.1 }, position: '-=0.3' },
+      { selector: '.custom-cta', from: { y: 20, opacity: 0, duration: 0.5 }, position: '-=0.2' },
+    ], { start: 'top 70%' });
+
+    // お問い合わせCTA
+    fadeInOnScroll('.contact-cta .section-header', { y: 30 });
+    fadeInOnScroll('.cta-text', { y: 25, delay: 0.15 });
+    fadeInOnScroll('.cta-btn', { y: 20, delay: 0.3 });
+  }
+</script>

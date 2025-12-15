@@ -1,4 +1,8 @@
 ---
+/**
+ * 商品詳細ページ - 和モダンデザイン
+ * 画像ギャラリーとスクロールアニメーション
+ */
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection, render } from 'astro:content';
 
@@ -26,36 +30,37 @@ const seriesInfo: Record<string, { name: string; description: string }> = {
 ---
 
 <BaseLayout title={product.data.title} description={`${product.data.title} - 小田井窯の${seriesInfo[product.data.series]?.name || ''}シリーズ`}>
-  <section class="py-16 md:py-24">
-    <div class="max-w-6xl mx-auto px-4">
-      <!-- Breadcrumb -->
-      <nav class="text-sm mb-8">
-        <ol class="flex items-center gap-2 text-gray-500">
-          <li><a href="/" class="hover:text-gosu-blue">ホーム</a></li>
-          <li>/</li>
-          <li><a href="/products/" class="hover:text-gosu-blue">商品一覧</a></li>
-          <li>/</li>
-          <li class="text-sumi">{product.data.title}</li>
+  <section class="section-padding">
+    <div class="max-w-6xl mx-auto px-6">
+      <!-- パンくずリスト -->
+      <nav class="breadcrumb text-sm mb-10">
+        <ol class="flex items-center gap-2 text-sumi/50">
+          <li><a href="/" class="hover:text-ai transition-colors duration-300">ホーム</a></li>
+          <li class="text-sumi/30">/</li>
+          <li><a href="/products/" class="hover:text-ai transition-colors duration-300">商品一覧</a></li>
+          <li class="text-sumi/30">/</li>
+          <li class="text-sumi font-medium">{product.data.title}</li>
         </ol>
       </nav>
 
-      <div class="grid md:grid-cols-2 gap-12">
-        <!-- Product Images -->
-        <div>
-          <div class="aspect-square bg-gray-100 mb-4">
+      <div class="grid md:grid-cols-2 gap-12 lg:gap-16">
+        <!-- 商品画像 -->
+        <div class="product-gallery">
+          <div class="main-image-container aspect-square bg-gray-50 mb-4 overflow-hidden">
             <img
               src={product.data.images[0]}
               alt={product.data.title}
-              class="w-full h-full object-cover"
+              class="w-full h-full object-cover transition-transform duration-600"
               id="main-image"
             />
           </div>
           {product.data.images.length > 1 && (
-            <div class="grid grid-cols-4 gap-2">
+            <div class="thumbnail-grid grid grid-cols-4 gap-3">
               {product.data.images.map((image: string, index: number) => (
                 <button
-                  class="aspect-square bg-gray-100 border-2 border-transparent hover:border-gosu-blue transition-colors thumbnail-btn"
+                  class={`thumbnail-btn aspect-square bg-gray-50 border-2 transition-all duration-300 overflow-hidden ${index === 0 ? 'border-ai' : 'border-transparent hover:border-ai/50'}`}
                   data-image={image}
+                  data-index={index}
                 >
                   <img
                     src={image}
@@ -68,64 +73,152 @@ const seriesInfo: Record<string, { name: string; description: string }> = {
           )}
         </div>
 
-        <!-- Product Info -->
-        <div>
-          <span class="text-sm text-gosu-blue font-medium">
+        <!-- 商品情報 -->
+        <div class="product-info">
+          <span class="product-series inline-block text-sm text-ai font-medium tracking-wide uppercase mb-3">
             {seriesInfo[product.data.series]?.name || product.data.series}シリーズ
           </span>
-          <h1 class="font-serif text-2xl md:text-3xl text-sumi mt-2 mb-4">
+          <h1 class="product-title font-serif text-2xl md:text-3xl lg:text-4xl text-sumi mb-6 tracking-wider leading-relaxed">
             {product.data.title}
           </h1>
-          <p class="text-2xl text-gosu-blue font-medium mb-6">
-            ¥{product.data.price.toLocaleString()}<span class="text-sm text-gray-500">（税込）</span>
+          <p class="product-price text-2xl md:text-3xl text-ai font-medium mb-8">
+            ¥{product.data.price.toLocaleString()}
+            <span class="text-base text-sumi/50">（税込）</span>
           </p>
 
-          <div class="border-t border-b border-gray-200 py-4 mb-6">
-            <dl class="space-y-2">
-              <div class="flex">
-                <dt class="w-24 text-gray-500">サイズ</dt>
-                <dd>{product.data.size}</dd>
+          <div class="product-specs border-t border-b border-sumi/10 py-6 mb-8">
+            <dl class="space-y-4">
+              <div class="flex items-center">
+                <dt class="w-24 text-sm text-sumi/60 font-medium">サイズ</dt>
+                <dd class="text-sumi">{product.data.size}</dd>
               </div>
-              <div class="flex">
-                <dt class="w-24 text-gray-500">在庫</dt>
+              <div class="flex items-center">
+                <dt class="w-24 text-sm text-sumi/60 font-medium">在庫</dt>
                 <dd>
                   {product.data.inStock ? (
-                    <span class="text-yuu-green">在庫あり</span>
+                    <span class="text-yuu-green font-medium">在庫あり</span>
                   ) : (
-                    <span class="text-akae-red">在庫なし</span>
+                    <span class="text-shu font-medium">在庫なし</span>
                   )}
                 </dd>
               </div>
             </dl>
           </div>
 
-          <div class="prose prose-sm text-gray-700 mb-8">
+          <div class="product-description prose prose-sm text-sumi/80 mb-10 leading-relaxed">
             <Content />
           </div>
 
-          <a href="/contact/" class="btn-primary inline-block">
+          <a href="/contact/" class="product-cta btn-primary inline-block">
             この商品について問い合わせる
           </a>
 
-          <p class="text-xs text-gray-500 mt-4">
+          <p class="product-note text-xs text-sumi/50 mt-6 leading-relaxed">
             ※ 商品はすべて手描きです。お届けする製品が見本と若干異なることもございます。
           </p>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- 関連商品への導線 -->
+  <section class="related-section py-12 bg-kinari">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <a href={`/products/?series=${product.data.series}`} class="text-ai hover:text-shu transition-colors duration-300 font-medium">
+        「{seriesInfo[product.data.series]?.name || product.data.series}」シリーズの他の商品を見る →
+      </a>
+    </div>
+  </section>
 </BaseLayout>
 
+<!-- 画像切替とアニメーション -->
 <script>
+  import { gsap, prefersReducedMotion } from '../../utils/animations';
+  import { imageTransition } from '../../utils/scrollAnimations';
+
+  // 画像切替機能
   const mainImage = document.getElementById('main-image') as HTMLImageElement;
   const thumbnails = document.querySelectorAll('.thumbnail-btn');
 
   thumbnails.forEach(thumb => {
     thumb.addEventListener('click', () => {
       const newSrc = thumb.getAttribute('data-image');
-      if (newSrc && mainImage) {
-        mainImage.src = newSrc;
+      if (newSrc && mainImage && mainImage.src !== newSrc) {
+        // サムネイルのアクティブ状態を更新
+        thumbnails.forEach(t => {
+          t.classList.remove('border-ai');
+          t.classList.add('border-transparent');
+        });
+        thumb.classList.remove('border-transparent');
+        thumb.classList.add('border-ai');
+
+        // 画像切替アニメーション
+        if (!prefersReducedMotion()) {
+          imageTransition(mainImage, newSrc);
+        } else {
+          mainImage.src = newSrc;
+        }
       }
+    });
+  });
+
+  // 初期アニメーション
+  window.addEventListener('gsap:ready', () => {
+    if (prefersReducedMotion()) return;
+
+    // パンくずリスト スライドイン
+    gsap.from('.breadcrumb', {
+      x: -30,
+      opacity: 0,
+      duration: 0.6,
+      ease: 'power2.out',
+    });
+
+    // メイン画像 スケールイン
+    gsap.from('.main-image-container', {
+      scale: 0.95,
+      opacity: 0,
+      duration: 0.8,
+      ease: 'power2.out',
+      delay: 0.2,
+    });
+
+    // サムネイル スタッガー
+    gsap.from('.thumbnail-btn', {
+      y: 20,
+      opacity: 0,
+      duration: 0.4,
+      stagger: 0.1,
+      ease: 'power2.out',
+      delay: 0.5,
+    });
+
+    // 商品情報 順次表示
+    const infoTl = gsap.timeline({
+      defaults: { ease: 'power2.out' },
+      delay: 0.3,
+    });
+
+    infoTl
+      .from('.product-series', { y: 20, opacity: 0, duration: 0.5 })
+      .from('.product-title', { y: 30, opacity: 0, duration: 0.6 }, '-=0.3')
+      .from('.product-price', { y: 20, opacity: 0, duration: 0.5 }, '-=0.3')
+      .from('.product-specs', { y: 20, opacity: 0, duration: 0.5 }, '-=0.2')
+      .from('.product-description', { y: 20, opacity: 0, duration: 0.5 }, '-=0.2')
+      .from('.product-cta', { y: 20, opacity: 0, duration: 0.5 }, '-=0.2')
+      .from('.product-note', { y: 10, opacity: 0, duration: 0.4 }, '-=0.2');
+
+    // 関連セクション フェードイン
+    gsap.from('.related-section', {
+      y: 30,
+      opacity: 0,
+      duration: 0.6,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: '.related-section',
+        start: 'top 90%',
+        toggleActions: 'play none none reverse',
+      },
     });
   });
 </script>

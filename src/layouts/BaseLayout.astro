@@ -1,4 +1,8 @@
 ---
+/**
+ * BaseLayout - 和モダンデザイン
+ * 小田井窯ウェブサイト基本レイアウト
+ */
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -27,5 +31,22 @@ const { title, description = '美濃焼の伝統を受け継ぐ小田井窯。�
       <slot />
     </main>
     <Footer />
+
+    <!-- GSAP 初期化スクリプト -->
+    <script>
+      import { gsap, ScrollTrigger, prefersReducedMotion } from '../utils/animations';
+
+      // アニメーション準備完了イベントを発火
+      document.addEventListener('DOMContentLoaded', () => {
+        if (!prefersReducedMotion()) {
+          window.dispatchEvent(new CustomEvent('gsap:ready'));
+        }
+      });
+
+      // Astro ページ遷移時に ScrollTrigger をリフレッシュ
+      document.addEventListener('astro:page-load', () => {
+        ScrollTrigger.refresh();
+      });
+    </script>
   </body>
 </html>

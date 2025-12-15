@@ -1,47 +1,233 @@
+/**
+ * グローバルスタイル - 和モダンデザイン
+ * 小田井窯ウェブサイト
+ */
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* ============================================
+   ベーススタイル
+   ============================================ */
 @layer base {
   html {
     font-family: 'Noto Sans JP', sans-serif;
     scroll-behavior: smooth;
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Noto Serif JP', serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   body {
     @apply bg-kinari text-sumi;
+    line-height: 1.8;
+  }
+
+  /* タイポグラフィ階層 */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Noto Serif JP', serif;
+    letter-spacing: 0.05em;
+  }
+
+  h1 {
+    @apply text-3xl md:text-4xl lg:text-5xl;
+    line-height: 1.3;
+  }
+
+  h2 {
+    @apply text-2xl md:text-3xl lg:text-4xl;
+    line-height: 1.4;
+  }
+
+  h3 {
+    @apply text-xl md:text-2xl;
+    line-height: 1.5;
+  }
+
+  p {
+    @apply text-base md:text-lg;
+    line-height: 1.9;
+  }
+
+  /* フォーカス状態（アクセシビリティ） */
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-ai;
+  }
+
+  /* リンクのデフォルトスタイル */
+  a {
+    @apply transition-colors duration-300;
   }
 }
 
+/* ============================================
+   コンポーネントスタイル
+   ============================================ */
 @layer components {
+  /* ボタン - プライマリ */
   .btn-primary {
-    @apply bg-gosu-blue text-white px-6 py-3 font-medium
-           hover:bg-opacity-90 transition-opacity duration-200;
+    @apply bg-ai text-hakuji px-8 py-4 font-medium tracking-wide
+           hover:bg-opacity-90 transition-all duration-400
+           focus-visible:ring-2 focus-visible:ring-ai focus-visible:ring-offset-2;
   }
 
+  /* ボタン - セカンダリ */
   .btn-secondary {
-    @apply border border-gosu-blue text-gosu-blue px-6 py-3 font-medium
-           hover:bg-gosu-blue hover:text-white transition-colors duration-200;
+    @apply border-2 border-ai text-ai px-8 py-4 font-medium tracking-wide
+           hover:bg-ai hover:text-hakuji transition-all duration-400;
   }
 
+  /* セクションタイトル */
   .section-title {
-    @apply text-2xl md:text-3xl font-serif text-gosu-blue mb-8 text-center;
+    @apply text-2xl md:text-3xl lg:text-4xl font-serif text-ai mb-12 text-center tracking-wider;
   }
 
+  /* 商品カード */
   .product-card {
-    @apply bg-white border border-gray-200 overflow-hidden
-           hover:border-gosu-blue transition-colors duration-200;
+    @apply bg-hakuji border border-gray-100 overflow-hidden
+           hover:shadow-lg transition-shadow duration-400;
+  }
+
+  /* 和紙テクスチャオーバーレイ */
+  .washi-texture {
+    position: relative;
+  }
+
+  .washi-texture::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('/textures/washi-subtle.svg');
+    background-repeat: repeat;
+    opacity: 0.04;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .washi-texture > * {
+    position: relative;
+    z-index: 2;
+  }
+
+  /* 筆ストロークアンダーライン */
+  .brush-underline {
+    position: relative;
+    display: inline-block;
+  }
+
+  .brush-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, currentColor 10%, currentColor 90%, transparent);
+    opacity: 0.3;
+    border-radius: 2px;
+  }
+
+  /* キャプションテキスト */
+  .text-caption {
+    @apply text-sm tracking-wide text-sumi/70;
+  }
+
+  /* フォーム入力フィールド */
+  .form-input {
+    @apply w-full px-4 py-3 border border-gray-300 bg-hakuji
+           focus:border-ai focus:outline-none transition-colors duration-300;
+  }
+
+  /* フォームラベル */
+  .form-label {
+    @apply block text-sm font-medium text-sumi mb-2;
+  }
+
+  /* 情報カード */
+  .info-card {
+    @apply bg-hakuji border border-gray-200 p-6
+           hover:border-ai transition-colors duration-300;
   }
 }
 
-/* 縦書きテキスト用 */
-.vertical-text {
-  writing-mode: vertical-rl;
-  text-orientation: upright;
+/* ============================================
+   ユーティリティスタイル
+   ============================================ */
+@layer utilities {
+  /* 縦書きテキスト */
+  .vertical-text {
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+  }
+
+  /* アニメーション基本状態 */
+  .animate-fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  .animate-fade-in {
+    opacity: 0;
+  }
+
+  .animate-scale-in {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  /* GSAP autoAlpha 用 */
+  .gsap-hidden {
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  /* will-change ヒント */
+  .will-animate {
+    will-change: transform, opacity;
+  }
+
+  /* transform-origin */
+  .origin-bottom {
+    transform-origin: bottom center;
+  }
+
+  /* コンテナ余白（余白の美） */
+  .container-ma {
+    @apply max-w-5xl mx-auto px-6;
+  }
+
+  /* セクション余白 */
+  .section-padding {
+    @apply py-20 md:py-32 lg:py-40;
+  }
+
+  /* セクション余白（小） */
+  .section-padding-sm {
+    @apply py-16 md:py-24;
+  }
+}
+
+/* ============================================
+   アクセシビリティ - 動きの軽減
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .gsap-hidden {
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .animate-fade-up,
+  .animate-fade-in,
+  .animate-scale-in {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }

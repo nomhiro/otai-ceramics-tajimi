@@ -60,7 +60,8 @@
       "Bash(curl:*)",
       "Bash(iconv:*)",
       "Bash(npm create:*)",
-      "Bash(npm install:*)"
+      "Bash(npm install:*)",
+      "Bash(npm run build:*)"
     ]
   },
   "enableAllProjectMcpServers": true,

@@ -1,4 +1,8 @@
 ---
+/**
+ * Header コンポーネント - 和モダンデザイン
+ * 固定ヘッダー、スクロール時の影、ホバーアンダーライン
+ */
 const navItems = [
   { href: '/', label: 'ホーム' },
   { href: '/about/', label: '小田井窯について' },
@@ -8,48 +12,65 @@ const navItems = [
 ];
 ---
 
-<header class="bg-white border-b border-gray-200">
-  <div class="max-w-6xl mx-auto px-4 py-4">
+<header
+  class="fixed top-0 left-0 right-0 z-50 bg-kinari/95 backdrop-blur-sm border-b border-sumi/10 transition-all duration-400"
+  id="main-header"
+>
+  <div class="container-ma py-5">
     <div class="flex items-center justify-between">
-      <!-- Logo -->
-      <a href="/" class="flex items-center gap-3">
-        <div class="text-gosu-blue">
-          <h1 class="font-serif text-xl md:text-2xl font-medium">小田井窯</h1>
-          <p class="text-xs text-gray-500 tracking-wider">OTAI CERAMICS TAJIMI</p>
+      <!-- ロゴ -->
+      <a href="/" class="flex items-center gap-4 group">
+        <div class="text-ai">
+          <h1 class="font-serif text-xl md:text-2xl font-medium tracking-wider">
+            小田井窯
+          </h1>
+          <p class="text-xs text-sumi/60 tracking-widest uppercase">
+            Otai Ceramics
+          </p>
         </div>
       </a>
 
-      <!-- Desktop Navigation -->
-      <nav class="hidden md:flex items-center gap-8">
+      <!-- デスクトップナビゲーション -->
+      <nav class="hidden md:flex items-center gap-10">
         {navItems.map((item) => (
           <a
             href={item.href}
-            class="font-serif text-sumi hover:text-gosu-blue transition-colors duration-200"
+            class="nav-link font-serif text-sumi hover:text-ai transition-colors duration-300 relative py-2"
           >
             {item.label}
+            <span class="nav-underline absolute bottom-0 left-0 w-full h-0.5 bg-ai scale-x-0 origin-left transition-transform duration-300"></span>
           </a>
         ))}
       </nav>
 
-      <!-- Mobile Menu Button -->
+      <!-- モバイルメニューボタン -->
       <button
         id="menu-toggle"
-        class="md:hidden p-2 text-sumi"
+        class="md:hidden p-2 text-sumi hover:text-ai transition-colors"
         aria-label="メニューを開く"
+        aria-expanded="false"
       >
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+            d="M4 6h16M4 12h16M4 18h16"
+          />
         </svg>
       </button>
     </div>
 
-    <!-- Mobile Navigation -->
-    <nav id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t border-gray-200 pt-4">
-      <div class="flex flex-col gap-4">
+    <!-- モバイルナビゲーション -->
+    <nav
+      id="mobile-menu"
+      class="hidden md:hidden mt-6 pb-6 border-t border-sumi/10 pt-6"
+    >
+      <div class="flex flex-col gap-5">
         {navItems.map((item) => (
           <a
             href={item.href}
-            class="font-serif text-sumi hover:text-gosu-blue transition-colors duration-200"
+            class="font-serif text-lg text-sumi hover:text-ai transition-colors"
           >
             {item.label}
           </a>
@@ -59,11 +80,39 @@ const navItems = [
   </div>
 </header>
 
+<!-- ヘッダー分のスペーサー -->
+<div class="h-20"></div>
+
 <script>
+  // モバイルメニュートグル
   const menuToggle = document.getElementById('menu-toggle');
   const mobileMenu = document.getElementById('mobile-menu');
 
   menuToggle?.addEventListener('click', () => {
-    mobileMenu?.classList.toggle('hidden');
+    const isExpanded = mobileMenu?.classList.toggle('hidden') === false;
+    menuToggle.setAttribute('aria-expanded', String(isExpanded));
+  });
+
+  // スクロール時のヘッダー挙動
+  const header = document.getElementById('main-header');
+  let lastScroll = 0;
+
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.scrollY;
+
+    if (currentScroll > 100) {
+      header?.classList.add('shadow-sm');
+    } else {
+      header?.classList.remove('shadow-sm');
+    }
+
+    lastScroll = currentScroll;
   });
 </script>
+
+<style>
+  /* ナビリンクホバー時にアンダーラインを表示 */
+  .nav-link:hover .nav-underline {
+    transform: scaleX(1);
+  }
+</style>

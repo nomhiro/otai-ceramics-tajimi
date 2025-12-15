@@ -1,5 +1,10 @@
 ---
+/**
+ * 商品一覧ページ - 和モダンデザイン
+ * フィルター機能とスクロールアニメーション
+ */
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionTitle from '../../components/SectionTitle.astro';
 import { getCollection } from 'astro:content';
 
 const allProducts = await getCollection('products');
@@ -17,27 +22,27 @@ const seriesInfo: Record<string, { name: string; description: string }> = {
 ---
 
 <BaseLayout title="商品一覧" description="小田井窯の商品一覧。染付、鳥絵、楽々絵など8つのシリーズをご用意しています。">
-  <!-- Hero -->
-  <section class="bg-gosu-blue text-white py-16 md:py-24">
-    <div class="max-w-4xl mx-auto px-4 text-center">
-      <h1 class="font-serif text-3xl md:text-4xl mb-4">商品一覧</h1>
-      <p class="text-gray-300">すべて手描き。職人が丹精込めて制作しています。</p>
+  <!-- ヒーロー -->
+  <section class="products-hero bg-ai text-hakuji section-padding-sm">
+    <div class="container-ma text-center">
+      <h1 class="hero-title font-serif text-3xl md:text-4xl lg:text-5xl mb-6 tracking-wider">商品一覧</h1>
+      <p class="hero-subtitle text-hakuji/80 text-lg">すべて手描き。職人が丹精込めて制作しています。</p>
     </div>
   </section>
 
-  <!-- Series Filter -->
-  <section class="py-8 bg-white border-b">
-    <div class="max-w-6xl mx-auto px-4">
-      <div class="flex flex-wrap gap-2 justify-center" id="series-filter">
+  <!-- シリーズフィルター -->
+  <section class="py-8 bg-hakuji border-b border-sumi/10">
+    <div class="container-ma">
+      <div class="flex flex-wrap gap-3 justify-center" id="series-filter">
         <button
-          class="px-4 py-2 text-sm border border-gosu-blue text-gosu-blue hover:bg-gosu-blue hover:text-white transition-colors filter-btn active"
+          class="filter-btn px-5 py-2.5 text-sm border-2 border-ai text-hakuji bg-ai transition-all duration-300 active"
           data-series="all"
         >
           すべて
         </button>
         {Object.entries(seriesInfo).map(([slug, info]) => (
           <button
-            class="px-4 py-2 text-sm border border-gray-300 text-gray-600 hover:border-gosu-blue hover:text-gosu-blue transition-colors filter-btn"
+            class="filter-btn px-5 py-2.5 text-sm border-2 border-sumi/20 text-sumi/70 hover:border-ai hover:text-ai transition-all duration-300"
             data-series={slug}
           >
             {info.name}
@@ -47,36 +52,37 @@ const seriesInfo: Record<string, { name: string; description: string }> = {
     </div>
   </section>
 
-  <!-- Products Grid -->
-  <section class="py-16 md:py-24">
-    <div class="max-w-6xl mx-auto px-4">
-      <div class="grid md:grid-cols-3 lg:grid-cols-4 gap-6" id="products-grid">
+  <!-- 商品グリッド -->
+  <section class="section-padding">
+    <div class="container-ma">
+      <div class="grid md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8" id="products-grid">
         {allProducts.map((product) => (
           <a
             href={`/products/${product.id}/`}
             class="product-card group"
             data-series={product.data.series}
           >
-            <div class="aspect-square bg-gray-100">
+            <div class="aspect-square bg-gray-50 overflow-hidden">
               <img
                 src={product.data.images[0]}
                 alt={product.data.title}
-                class="w-full h-full object-cover"
+                class="w-full h-full object-cover transition-transform duration-600 group-hover:scale-105"
                 loading="lazy"
               />
             </div>
-            <div class="p-4">
-              <span class="text-xs text-gosu-blue font-medium">
+            <div class="p-5">
+              <span class="text-xs text-ai font-medium tracking-wide uppercase">
                 {seriesInfo[product.data.series]?.name || product.data.series}
               </span>
-              <h3 class="font-serif text-lg text-sumi group-hover:text-gosu-blue transition-colors mt-1">
+              <h3 class="font-serif text-lg text-sumi group-hover:text-ai transition-colors duration-300 mt-2 leading-relaxed">
                 {product.data.title}
               </h3>
-              <p class="text-gosu-blue font-medium mt-2">
+              <p class="text-ai font-medium mt-3">
                 ¥{product.data.price.toLocaleString()}
+                <span class="text-sm text-sumi/60">（税込）</span>
               </p>
               {!product.data.inStock && (
-                <span class="text-xs text-akae-red">在庫なし</span>
+                <span class="inline-block mt-2 text-xs text-shu">在庫なし</span>
               )}
             </div>
           </a>
@@ -84,16 +90,16 @@ const seriesInfo: Record<string, { name: string; description: string }> = {
       </div>
 
       {allProducts.length === 0 && (
-        <div class="text-center py-12">
-          <p class="text-gray-500">商品がありません。</p>
+        <div class="text-center py-16">
+          <p class="text-sumi/60 text-lg">商品がありません。</p>
         </div>
       )}
     </div>
   </section>
 
-  <!-- Note -->
-  <section class="py-8 bg-kinari">
-    <div class="max-w-4xl mx-auto px-4 text-center text-sm text-gray-600">
+  <!-- 注意事項 -->
+  <section class="note-section py-10 bg-kinari">
+    <div class="max-w-4xl mx-auto px-6 text-center text-sm text-sumi/70 leading-relaxed">
       <p>
         商品はすべて手描きです。お届けする製品が見本と若干異なることもございます。（色の濃淡や動物絵の表情など）
       </p>
@@ -101,35 +107,59 @@ const seriesInfo: Record<string, { name: string; description: string }> = {
   </section>
 </BaseLayout>
 
+<!-- フィルター機能とアニメーション -->
 <script>
+  import { gsap, prefersReducedMotion } from '../../utils/animations';
+  import { staggerGridReveal } from '../../utils/scrollAnimations';
+
+  // フィルター機能
   const filterBtns = document.querySelectorAll('.filter-btn');
-  const productCards = document.querySelectorAll('#products-grid > a');
+  const productCards = document.querySelectorAll('#products-grid > a') as NodeListOf<HTMLElement>;
 
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       const series = btn.getAttribute('data-series');
 
-      // Update button styles
+      // ボタンスタイル更新
       filterBtns.forEach(b => {
-        b.classList.remove('active', 'bg-gosu-blue', 'text-white', 'border-gosu-blue');
-        b.classList.add('border-gray-300', 'text-gray-600');
+        b.classList.remove('active', 'bg-ai', 'text-hakuji', 'border-ai');
+        b.classList.add('border-sumi/20', 'text-sumi/70');
       });
-      btn.classList.add('active', 'bg-gosu-blue', 'text-white', 'border-gosu-blue');
-      btn.classList.remove('border-gray-300', 'text-gray-600');
+      btn.classList.add('active', 'bg-ai', 'text-hakuji', 'border-ai');
+      btn.classList.remove('border-sumi/20', 'text-sumi/70');
 
-      // Filter products
+      // 商品フィルター
       productCards.forEach(card => {
         const cardSeries = card.getAttribute('data-series');
         if (series === 'all' || cardSeries === series) {
-          (card as HTMLElement).style.display = 'block';
+          card.style.display = 'block';
         } else {
-          (card as HTMLElement).style.display = 'none';
+          card.style.display = 'none';
         }
       });
+
+      // フィルター後アニメーション
+      if (!prefersReducedMotion()) {
+        const visibleCards = Array.from(productCards).filter(
+          card => card.style.display !== 'none'
+        );
+
+        gsap.fromTo(
+          visibleCards,
+          { y: 30, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.4,
+            stagger: 0.05,
+            ease: 'power2.out',
+          }
+        );
+      }
     });
   });
 
-  // Check URL for series parameter
+  // URLパラメータ対応
   const urlParams = new URLSearchParams(window.location.search);
   const seriesParam = urlParams.get('series');
   if (seriesParam) {
@@ -138,4 +168,31 @@ const seriesInfo: Record<string, { name: string; description: string }> = {
       (btn as HTMLElement).click();
     }
   }
+
+  // 初期アニメーション
+  window.addEventListener('gsap:ready', () => {
+    if (prefersReducedMotion()) return;
+
+    // ヒーローアニメーション
+    const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    heroTl
+      .from('.hero-title', { y: 50, opacity: 0, duration: 0.8 })
+      .from('.hero-subtitle', { y: 30, opacity: 0, duration: 0.6 }, '-=0.4');
+
+    // フィルターボタン
+    gsap.from('.filter-btn', {
+      y: 20,
+      opacity: 0,
+      duration: 0.4,
+      stagger: 0.05,
+      ease: 'power2.out',
+    });
+
+    // 商品グリッド
+    staggerGridReveal('#products-grid', '.product-card', {
+      stagger: 0.08,
+      y: 50,
+      duration: 0.5,
+    });
+  });
 </script>
