@@ -1,0 +1,231 @@
+---
+/**
+ * 染付講座 - 教育コンテンツ
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionTitle from '../../components/SectionTitle.astro';
+---
+
+<BaseLayout title="染付講座 - 学ぶ" description="青と白のコントラストが美しい染付。呉須を使った絵付け技法の基礎を学びます。">
+  <!-- ヒーロー -->
+  <section class="bg-ai text-hakuji section-padding-sm">
+    <div class="container-ma text-center">
+      <h1 class="hero-title font-serif text-3xl md:text-4xl lg:text-5xl mb-6 tracking-wider">染付講座</h1>
+      <p class="hero-subtitle text-hakuji/80 text-lg">藍と白の美しいコントラスト</p>
+    </div>
+  </section>
+
+  <!-- 染付とは -->
+  <section class="section-padding">
+    <div class="container-ma">
+      <div class="prose-content space-y-6 text-sumi/80 leading-loose">
+        <p class="text-lg">
+          <strong class="text-ai">染付（そめつけ）</strong>は、白い素地に青色の絵や模様を描いた陶磁器です。
+          その清々しい青と白のコントラストは、日本の食卓に欠かせない美しさとして愛されてきました。
+        </p>
+        <p>
+          染付の歴史は古く、14世紀の中国・元の時代に始まったとされています。
+          日本には16世紀末に伝わり、有田焼や九谷焼など各地で独自の発展を遂げました。
+          美濃焼においても、江戸時代から染付が作られてきました。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 呉須について -->
+  <section class="section-padding bg-ai/5">
+    <div class="container-ma">
+      <SectionTitle title="呉須（ごす）とは" />
+      <div class="prose-content space-y-6 text-sumi/80 leading-relaxed">
+        <p>
+          呉須は、染付の青色を出すための顔料です。
+          酸化コバルトを主成分とし、焼成すると鮮やかな藍色に発色します。
+        </p>
+        <div class="bg-white p-6 rounded-lg">
+          <h4 class="font-serif text-lg text-ai mb-3">呉須の種類</h4>
+          <ul class="list-disc list-inside space-y-2 text-sm">
+            <li><strong>本呉須</strong>：天然のコバルト鉱石から作られた伝統的な呉須</li>
+            <li><strong>合成呉須</strong>：化学的に精製された現代的な呉須</li>
+            <li><strong>鉄呉須</strong>：鉄分を含み、やや黒みがかった青になる</li>
+          </ul>
+        </div>
+        <p>
+          呉須は、焼く前は黒っぽい灰色に見えます。
+          1200℃以上の高温で焼成することで、初めてあの美しい青色に変わるのです。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 染付の技法 -->
+  <section class="section-padding bg-hakuji">
+    <div class="max-w-5xl mx-auto px-6">
+      <SectionTitle title="染付の技法" />
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="technique-card bg-white p-6 rounded-lg shadow-md">
+          <h3 class="font-serif text-xl text-ai mb-3">線描き（せんがき）</h3>
+          <p class="text-sumi/80 text-sm leading-relaxed">
+            細い筆で輪郭線を描く技法。
+            模様の骨格となる線を、一定の太さと濃さで描きます。
+            熟練の技が必要な基本技法です。
+          </p>
+        </div>
+        <div class="technique-card bg-white p-6 rounded-lg shadow-md">
+          <h3 class="font-serif text-xl text-ai mb-3">濃み（だみ）</h3>
+          <p class="text-sumi/80 text-sm leading-relaxed">
+            線描きの内側を塗りつぶす技法。
+            呉須の濃淡で陰影をつけ、立体感を出します。
+            「濃み筆」という太い筆を使います。
+          </p>
+        </div>
+        <div class="technique-card bg-white p-6 rounded-lg shadow-md">
+          <h3 class="font-serif text-xl text-ai mb-3">たらし込み</h3>
+          <p class="text-sumi/80 text-sm leading-relaxed">
+            水で溶いた呉須を素地にたらし、自然ににじませる技法。
+            偶然性を活かした柔らかな表現ができます。
+          </p>
+        </div>
+        <div class="technique-card bg-white p-6 rounded-lg shadow-md">
+          <h3 class="font-serif text-xl text-ai mb-3">吹き墨（ふきずみ）</h3>
+          <p class="text-sumi/80 text-sm leading-relaxed">
+            呉須を霧状に吹き付ける技法。
+            グラデーションや背景の表現に使われます。
+            型紙と組み合わせることも。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 染付の工程 -->
+  <section class="section-padding">
+    <div class="container-ma">
+      <SectionTitle title="染付ができるまで" />
+      <div class="space-y-6">
+        <div class="step-card flex gap-6 items-start">
+          <div class="flex-shrink-0 w-12 h-12 bg-ai rounded-full flex items-center justify-center">
+            <span class="text-hakuji font-bold">1</span>
+          </div>
+          <div>
+            <h3 class="font-serif text-lg text-ai mb-2">素焼き</h3>
+            <p class="text-sumi/80">
+              成形・乾燥した器を約800℃で焼きます。
+              これにより、絵具が染み込みやすい素地ができます。
+            </p>
+          </div>
+        </div>
+        <div class="step-card flex gap-6 items-start">
+          <div class="flex-shrink-0 w-12 h-12 bg-ai rounded-full flex items-center justify-center">
+            <span class="text-hakuji font-bold">2</span>
+          </div>
+          <div>
+            <h3 class="font-serif text-lg text-ai mb-2">呉須で絵付け</h3>
+            <p class="text-sumi/80">
+              素焼きの器に、呉須で絵や模様を描きます。
+              この段階では灰色っぽく見えます。
+            </p>
+          </div>
+        </div>
+        <div class="step-card flex gap-6 items-start">
+          <div class="flex-shrink-0 w-12 h-12 bg-ai rounded-full flex items-center justify-center">
+            <span class="text-hakuji font-bold">3</span>
+          </div>
+          <div>
+            <h3 class="font-serif text-lg text-ai mb-2">施釉（せゆう）</h3>
+            <p class="text-sumi/80">
+              透明な釉薬をかけます。
+              この釉薬が焼成後にガラス質の層となり、絵を保護します。
+            </p>
+          </div>
+        </div>
+        <div class="step-card flex gap-6 items-start">
+          <div class="flex-shrink-0 w-12 h-12 bg-shu rounded-full flex items-center justify-center">
+            <span class="text-hakuji font-bold">4</span>
+          </div>
+          <div>
+            <h3 class="font-serif text-lg text-ai mb-2">本焼き</h3>
+            <p class="text-sumi/80">
+              約1250℃で焼き上げます。
+              高温で呉須が発色し、美しい藍色に変わります。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 小田井窯の染付 -->
+  <section class="section-padding bg-kinari">
+    <div class="container-ma">
+      <SectionTitle title="小田井窯の染付" />
+      <div class="prose-content space-y-6 text-sumi/80 leading-relaxed">
+        <p>
+          小田井窯では、伝統的な染付技法を用いながら、
+          現代の食卓に合うデザインの器を作っています。
+        </p>
+        <p>
+          縦縞模様の「染付」シリーズは、シンプルながらも存在感のあるデザイン。
+          手描きならではの、温かみのある線が特徴です。
+        </p>
+        <div class="text-center pt-4">
+          <a href="/products/?series=some" class="btn-primary inline-block">
+            染付シリーズを見る
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ナビゲーション -->
+  <section class="section-padding bg-hakuji">
+    <div class="container-ma text-center">
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="/learn/" class="btn-secondary inline-block">
+          学ぶトップへ
+        </a>
+        <a href="/learn/guide/" class="btn-primary inline-block">
+          器の選び方へ
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  import { gsap, prefersReducedMotion } from '../../utils/animations';
+
+  window.addEventListener('gsap:ready', () => {
+    if (prefersReducedMotion()) return;
+
+    const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    heroTl
+      .from('.hero-title', { y: 50, opacity: 0, duration: 0.8 })
+      .from('.hero-subtitle', { y: 30, opacity: 0, duration: 0.6 }, '-=0.4');
+
+    gsap.from('.technique-card', {
+      y: 40,
+      opacity: 0,
+      duration: 0.6,
+      stagger: 0.1,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: '.technique-card',
+        start: 'top 85%',
+        toggleActions: 'play none none reverse',
+      },
+    });
+
+    gsap.from('.step-card', {
+      x: -30,
+      opacity: 0,
+      duration: 0.6,
+      stagger: 0.15,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: '.step-card',
+        start: 'top 80%',
+        toggleActions: 'play none none reverse',
+      },
+    });
+  });
+</script>

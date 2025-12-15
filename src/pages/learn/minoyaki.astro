@@ -1,0 +1,158 @@
+---
+/**
+ * 美濃焼とは - 教育コンテンツ
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionTitle from '../../components/SectionTitle.astro';
+---
+
+<BaseLayout title="美濃焼とは - 学ぶ" description="日本を代表する陶磁器産地・美濃焼の歴史と特徴。志野・織部・黄瀬戸・瀬戸黒など多彩な技法を解説します。">
+  <!-- ヒーロー -->
+  <section class="bg-ai text-hakuji section-padding-sm">
+    <div class="container-ma text-center">
+      <h1 class="hero-title font-serif text-3xl md:text-4xl lg:text-5xl mb-6 tracking-wider">美濃焼とは</h1>
+      <p class="hero-subtitle text-hakuji/80 text-lg">1300年の歴史を持つ日本の陶磁器</p>
+    </div>
+  </section>
+
+  <!-- 美濃焼の概要 -->
+  <section class="section-padding">
+    <div class="container-ma">
+      <div class="prose-content space-y-6 text-sumi/80 leading-loose">
+        <p class="text-lg">
+          <strong class="text-ai">美濃焼（みのやき）</strong>は、岐阜県東濃地方（多治見市・土岐市・瑞浪市など）で
+          生産される陶磁器の総称です。日本国内の食器生産量の約60%を占め、
+          日本最大の陶磁器産地として知られています。
+        </p>
+        <p>
+          その歴史は古く、平安時代（10世紀頃）に始まり、安土桃山時代には
+          茶の湯文化の隆盛とともに「志野」「織部」「黄瀬戸」「瀬戸黒」など、
+          独創的な焼き物が次々と生み出されました。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 美濃焼の種類 -->
+  <section class="section-padding bg-hakuji">
+    <div class="max-w-5xl mx-auto px-6">
+      <SectionTitle title="美濃焼の代表的な種類" />
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="type-card bg-white p-6 rounded-lg shadow-md">
+          <h3 class="font-serif text-xl text-ai mb-3">志野（しの）</h3>
+          <p class="text-sumi/80 text-sm leading-relaxed">
+            白い長石釉（ちょうせきゆう）をかけた温かみのある白色が特徴。
+            釉薬の下から透けて見える鉄絵や、ぽってりとした厚みのある風合いが魅力です。
+            桃山時代に生まれた日本初の「白いやきもの」とされています。
+          </p>
+        </div>
+        <div class="type-card bg-white p-6 rounded-lg shadow-md">
+          <h3 class="font-serif text-xl text-ai mb-3">織部（おりべ）</h3>
+          <p class="text-sumi/80 text-sm leading-relaxed">
+            鮮やかな緑色の釉薬と大胆な幾何学模様が特徴。
+            千利休の弟子・古田織部が好んだことからこの名がつきました。
+            自由で斬新なデザインは、現代でも新鮮な魅力を放っています。
+          </p>
+        </div>
+        <div class="type-card bg-white p-6 rounded-lg shadow-md">
+          <h3 class="font-serif text-xl text-ai mb-3">黄瀬戸（きぜと）</h3>
+          <p class="text-sumi/80 text-sm leading-relaxed">
+            淡い黄色（あぶらげ色）の釉薬が特徴。
+            「胆礬（たんぱん）」と呼ばれる緑色の斑点や、
+            「菖蒲手（あやめで）」と呼ばれる縦縞の模様が入ったものもあります。
+          </p>
+        </div>
+        <div class="type-card bg-white p-6 rounded-lg shadow-md">
+          <h3 class="font-serif text-xl text-ai mb-3">瀬戸黒（せとぐろ）</h3>
+          <p class="text-sumi/80 text-sm leading-relaxed">
+            漆黒の艶やかな色合いが特徴の茶碗。
+            高温の窯から取り出し急冷することで、この深い黒色が生まれます。
+            引き出し黒（ひきだしぐろ）とも呼ばれます。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 美濃焼の産地 -->
+  <section class="section-padding">
+    <div class="container-ma">
+      <SectionTitle title="美濃焼の産地" subtitle="岐阜県東濃地方" />
+      <div class="prose-content space-y-6 text-sumi/80 leading-relaxed">
+        <p>
+          美濃焼の産地は、岐阜県南東部の「東濃（とうのう）」地方に広がっています。
+          多治見市、土岐市、瑞浪市、可児市などがその中心地です。
+        </p>
+        <div class="bg-kinari p-6 rounded-lg">
+          <h4 class="font-serif text-lg text-ai mb-3">小田井窯のある多治見市</h4>
+          <p class="text-sm">
+            多治見市は美濃焼の中心地として知られ、「美濃焼ミュージアム」や
+            「セラミックパークMINO」など、やきもの文化を体験できる施設も充実しています。
+            小田井窯も、この多治見市で三代にわたり陶器を作り続けています。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 現代の美濃焼 -->
+  <section class="section-padding bg-hakuji">
+    <div class="container-ma">
+      <SectionTitle title="現代の美濃焼" />
+      <div class="prose-content space-y-6 text-sumi/80 leading-relaxed">
+        <p>
+          現代の美濃焼は、伝統的な技法を守りながらも、
+          現代の食卓に合うデザインや機能性を追求しています。
+        </p>
+        <p>
+          電子レンジや食洗機に対応した実用的な器から、
+          一点物の作家作品まで、幅広いニーズに応えています。
+        </p>
+        <p>
+          小田井窯では、美濃焼の伝統である手描きの絵付けを大切にしながら、
+          日々の暮らしに寄り添う器づくりを心がけています。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ナビゲーション -->
+  <section class="section-padding">
+    <div class="container-ma text-center">
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="/learn/" class="btn-secondary inline-block">
+          学ぶトップへ
+        </a>
+        <a href="/learn/basics/" class="btn-primary inline-block">
+          陶器の基本へ
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  import { gsap, prefersReducedMotion } from '../../utils/animations';
+
+  window.addEventListener('gsap:ready', () => {
+    if (prefersReducedMotion()) return;
+
+    const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    heroTl
+      .from('.hero-title', { y: 50, opacity: 0, duration: 0.8 })
+      .from('.hero-subtitle', { y: 30, opacity: 0, duration: 0.6 }, '-=0.4');
+
+    gsap.from('.type-card', {
+      y: 40,
+      opacity: 0,
+      duration: 0.6,
+      stagger: 0.1,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: '.type-card',
+        start: 'top 85%',
+        toggleActions: 'play none none reverse',
+      },
+    });
+  });
+</script>

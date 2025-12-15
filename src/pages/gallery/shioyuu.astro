@@ -1,0 +1,132 @@
+---
+/**
+ * 塩釉作品ギャラリーページ
+ * 先代 加藤静男の作品
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionTitle from '../../components/SectionTitle.astro';
+import { getCollection } from 'astro:content';
+
+const gallery = await getCollection('gallery');
+const shioyuu = gallery.filter(item => item.data.category === 'shioyuu');
+---
+
+<BaseLayout title="塩釉作品 - 先代 加藤静男" description="先代・加藤静男による塩釉作品のギャラリー。平成13年「美濃の民芸展」出品作品を含む。">
+  <!-- ヒーロー -->
+  <section class="bg-ai text-hakuji section-padding-sm">
+    <div class="container-ma text-center">
+      <h1 class="hero-title font-serif text-3xl md:text-4xl lg:text-5xl mb-6 tracking-wider">塩釉作品</h1>
+      <p class="hero-subtitle text-hakuji/80 text-lg">先代 加藤静男の作品</p>
+    </div>
+  </section>
+
+  <!-- 塩釉について -->
+  <section class="section-padding">
+    <div class="container-ma">
+      <div class="prose-content space-y-6 text-sumi/80 leading-loose">
+        <h2 class="font-serif text-2xl text-ai text-center mb-6">塩釉（しおゆう）とは</h2>
+        <p>
+          塩釉は、焼成中の高温の窯の中に食塩を投入することで生まれる釉薬です。
+          塩が蒸発してできた塩化ナトリウムの蒸気が、器の表面の珪酸と反応し、
+          独特の光沢と質感を持つ釉薬層を形成します。
+        </p>
+        <p>
+          この技法は14世紀頃のドイツで始まったとされ、日本では明治時代以降に
+          研究・実践されるようになりました。美濃地方でも、先人たちが
+          この技法に取り組み、独自の表現を追求してきました。
+        </p>
+        <p>
+          塩釉の特徴は、その予測できない美しさにあります。窯の中での塩の動き、
+          火の流れ、器の置き場所によって、一つとして同じものはできません。
+          そこに陶芸家の技と窯の神秘が交わり、唯一無二の作品が生まれるのです。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 作家紹介 -->
+  <section class="section-padding bg-kinari">
+    <div class="container-ma">
+      <SectionTitle title="加藤静男" subtitle="先代 小田井窯当主" />
+      <div class="text-sumi/80 leading-loose space-y-4">
+        <p>
+          先代・加藤静男は、塩釉技法を独自に研究し、美濃焼の伝統に新たな表現を加えました。
+        </p>
+        <p>
+          平成13年（2001年）には、「美濃の民芸展」に塩釉作品を出品し、高い評価を受けました。
+          ここに展示する作品は、その出品作品の一部です。
+        </p>
+        <p>
+          素朴でありながら力強く、土の温かみを感じさせる作風は、
+          多くの人々に愛されてきました。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 作品一覧 -->
+  <section class="section-padding bg-hakuji">
+    <div class="container-ma">
+      <SectionTitle title="作品一覧" subtitle="平成13年「美濃の民芸展」出品作品" />
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {shioyuu.map((item) => (
+          <div class="gallery-card bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow group">
+            <div class="aspect-square bg-kinari overflow-hidden">
+              <img
+                src={item.data.image}
+                alt={item.data.title}
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                loading="lazy"
+                onerror="this.onerror=null; this.src='/images/placeholder-gallery.svg';"
+              />
+            </div>
+            <div class="p-4 text-center">
+              <h3 class="font-serif text-sm text-ai">{item.data.title}</h3>
+              <p class="text-sumi/60 text-xs mt-1">{item.data.artist} 作</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ナビゲーション -->
+  <section class="section-padding">
+    <div class="container-ma text-center">
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="/gallery/" class="btn-secondary inline-block">
+          ギャラリートップへ
+        </a>
+        <a href="/gallery/jokki/" class="btn-primary inline-block">
+          ジョッキコレクションを見る
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  import { gsap, prefersReducedMotion } from '../../utils/animations';
+
+  window.addEventListener('gsap:ready', () => {
+    if (prefersReducedMotion()) return;
+
+    const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    heroTl
+      .from('.hero-title', { y: 50, opacity: 0, duration: 0.8 })
+      .from('.hero-subtitle', { y: 30, opacity: 0, duration: 0.6 }, '-=0.4');
+
+    gsap.from('.gallery-card', {
+      y: 40,
+      opacity: 0,
+      duration: 0.6,
+      stagger: 0.08,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: '.gallery-card',
+        start: 'top 85%',
+        toggleActions: 'play none none reverse',
+      },
+    });
+  });
+</script>

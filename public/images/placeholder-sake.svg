@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" fill="none">
+  <rect width="400" height="400" fill="#F5F3EF"/>
+  <path d="M180 100 L180 280 Q180 320 200 320 Q220 320 220 280 L220 100 Q200 120 180 100Z" stroke="#2B4B6E" stroke-width="2" fill="none"/>
+  <ellipse cx="200" cy="100" rx="20" ry="8" stroke="#2B4B6E" stroke-width="2" fill="none"/>
+  <text x="200" y="360" text-anchor="middle" font-family="serif" font-size="16" fill="#2B4B6E">酒器</text>
+</svg>

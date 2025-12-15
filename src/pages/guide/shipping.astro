@@ -1,0 +1,227 @@
+---
+/**
+ * ご利用ガイド - 送料・配送
+ * 地域別送料表と配送に関する情報
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { shippingRates, FREE_SHIPPING_THRESHOLD, shippingNotes, deliveryInfo } from '../../data/shipping';
+---
+
+<BaseLayout title="送料・配送" description="小田井窯の送料・配送についてご案内します。地域別送料、送料無料条件、配送日時指定についてご確認いただけます。">
+  <!-- ヒーロー -->
+  <section class="bg-ai text-hakuji section-padding-sm">
+    <div class="container-md text-center">
+      <h1 class="font-serif text-3xl md:text-4xl lg:text-5xl mb-6 tracking-wider">送料・配送</h1>
+      <p class="text-hakuji/80 text-lg">お届けまでの流れと送料について</p>
+    </div>
+  </section>
+
+  <!-- ガイドナビゲーション -->
+  <section class="bg-kinari py-8 border-b border-sumi/10">
+    <div class="container-ma">
+      <nav class="flex flex-wrap justify-center gap-4">
+        <a href="/guide/" class="px-4 py-2 bg-white text-sumi hover:bg-ai hover:text-hakuji rounded transition-colors">お買い物の流れ</a>
+        <a href="/guide/shipping/" class="px-4 py-2 bg-ai text-hakuji rounded font-medium">送料・配送</a>
+        <a href="/guide/payment/" class="px-4 py-2 bg-white text-sumi hover:bg-ai hover:text-hakuji rounded transition-colors">お支払い方法</a>
+        <a href="/guide/return/" class="px-4 py-2 bg-white text-sumi hover:bg-ai hover:text-hakuji rounded transition-colors">返品・交換</a>
+      </nav>
+    </div>
+  </section>
+
+  <!-- 送料無料バナー -->
+  <section class="bg-akae text-hakuji py-8">
+    <div class="container-ma text-center">
+      <p class="text-2xl md:text-3xl font-serif mb-2">
+        {FREE_SHIPPING_THRESHOLD.toLocaleString()}円以上で<strong>送料無料</strong>
+      </p>
+      <p class="text-hakuji/80">
+        お買い上げ金額が{FREE_SHIPPING_THRESHOLD.toLocaleString()}円（税込）以上の場合、送料は無料となります。
+      </p>
+    </div>
+  </section>
+
+  <!-- 送料表 -->
+  <section class="section-padding">
+    <div class="container-ma">
+      <h2 class="font-serif text-2xl md:text-3xl text-center text-ai mb-8">地域別送料表</h2>
+
+      <p class="text-center text-sumi/70 mb-8">
+        当店は岐阜県多治見市にございます。送料は以下のとおりです。
+      </p>
+
+      <!-- 送料表 -->
+      <div class="overflow-x-auto">
+        <table class="w-full border-collapse bg-white rounded-lg overflow-hidden shadow-sm">
+          <thead>
+            <tr class="bg-ai text-hakuji">
+              <th class="py-4 px-6 text-left font-serif">地域</th>
+              <th class="py-4 px-6 text-left font-serif">都道府県</th>
+              <th class="py-4 px-6 text-right font-serif">送料（税込）</th>
+            </tr>
+          </thead>
+          <tbody>
+            {shippingRates.map((rate, index) => (
+              <tr class={index % 2 === 0 ? 'bg-white' : 'bg-kinari/50'}>
+                <td class="py-4 px-6 font-medium text-ai border-b border-sumi/10">{rate.region}</td>
+                <td class="py-4 px-6 text-sumi/80 border-b border-sumi/10 text-sm">
+                  {rate.prefectures.join('、')}
+                </td>
+                <td class="py-4 px-6 text-right font-medium text-akae border-b border-sumi/10">
+                  ¥{rate.rate.toLocaleString()}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 注意事項 -->
+      <div class="mt-8 bg-kinari p-6 rounded-lg">
+        <h3 class="font-serif text-lg text-ai mb-4">送料に関するご注意</h3>
+        <ul class="text-sumi/80 space-y-2">
+          {shippingNotes.map((note) => (
+            <li class="flex items-start gap-2">
+              <span class="text-ai">・</span>
+              <span>{note}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 配送について -->
+  <section class="section-padding bg-kinari">
+    <div class="container-ma">
+      <h2 class="font-serif text-2xl md:text-3xl text-center text-ai mb-12">配送について</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- 配送業者 -->
+        <div class="bg-white p-6 rounded-lg">
+          <h3 class="font-serif text-lg text-ai mb-4 flex items-center gap-2">
+            <span class="text-2xl">🚚</span>
+            配送業者
+          </h3>
+          <p class="text-sumi/80">{deliveryInfo.carrier}</p>
+        </div>
+
+        <!-- 納期 -->
+        <div class="bg-white p-6 rounded-lg">
+          <h3 class="font-serif text-lg text-ai mb-4 flex items-center gap-2">
+            <span class="text-2xl">📦</span>
+            納期
+          </h3>
+          <ul class="text-sumi/80 space-y-2">
+            <li><strong>在庫商品：</strong>{deliveryInfo.inStockDelivery}</li>
+            <li><strong>受注生産品：</strong>{deliveryInfo.madeToOrderDelivery}</li>
+          </ul>
+        </div>
+
+        <!-- 営業時間 -->
+        <div class="bg-white p-6 rounded-lg">
+          <h3 class="font-serif text-lg text-ai mb-4 flex items-center gap-2">
+            <span class="text-2xl">🕐</span>
+            営業日・時間
+          </h3>
+          <ul class="text-sumi/80 space-y-2">
+            <li><strong>営業日：</strong>{deliveryInfo.businessDays}</li>
+            <li><strong>営業時間：</strong>{deliveryInfo.businessHours}</li>
+          </ul>
+        </div>
+
+        <!-- 休業日 -->
+        <div class="bg-white p-6 rounded-lg">
+          <h3 class="font-serif text-lg text-ai mb-4 flex items-center gap-2">
+            <span class="text-2xl">📅</span>
+            休業日
+          </h3>
+          <ul class="text-sumi/80 space-y-1">
+            {deliveryInfo.holidays.map((holiday) => (
+              <li>・{holiday}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 配送日時指定 -->
+  <section class="section-padding">
+    <div class="container-ma">
+      <h2 class="font-serif text-2xl md:text-3xl text-center text-ai mb-8">配達日・時間指定</h2>
+
+      <div class="bg-white p-8 rounded-lg border border-sumi/10">
+        <p class="text-sumi/80 leading-relaxed mb-6">
+          <strong class="text-ai">{deliveryInfo.dateSpecification}</strong>です。
+          ご注文時にご希望の配達日・時間帯をお知らせください。
+        </p>
+
+        <h3 class="font-serif text-lg text-ai mb-4">配達時間帯</h3>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+          <div class="bg-kinari p-4 rounded text-center">
+            <p class="text-sumi/80">午前中</p>
+          </div>
+          <div class="bg-kinari p-4 rounded text-center">
+            <p class="text-sumi/80">14:00〜16:00</p>
+          </div>
+          <div class="bg-kinari p-4 rounded text-center">
+            <p class="text-sumi/80">16:00〜18:00</p>
+          </div>
+          <div class="bg-kinari p-4 rounded text-center">
+            <p class="text-sumi/80">18:00〜20:00</p>
+          </div>
+          <div class="bg-kinari p-4 rounded text-center">
+            <p class="text-sumi/80">19:00〜21:00</p>
+          </div>
+        </div>
+
+        <p class="mt-6 text-sm text-sumi/60">
+          ※配送業者の都合により、ご希望に添えない場合がございます。予めご了承ください。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 重要事項 -->
+  <section class="section-padding bg-kinari">
+    <div class="container-ma">
+      <h2 class="font-serif text-2xl text-center text-ai mb-8">ご注意事項</h2>
+
+      <div class="bg-white p-6 rounded-lg space-y-4">
+        <div>
+          <h3 class="font-medium text-ai mb-2">受付時間について</h3>
+          <p class="text-sumi/80">{deliveryInfo.cutoffTime}</p>
+        </div>
+        <div>
+          <h3 class="font-medium text-ai mb-2">発送地域について</h3>
+          <p class="text-sumi/80">商品の発送は<strong>日本国内のみ</strong>とさせていただいております。</p>
+        </div>
+        <div>
+          <h3 class="font-medium text-ai mb-2">梱包について</h3>
+          <p class="text-sumi/80">
+            陶器は割れ物ですので、十分な緩衝材を使用して丁寧に梱包いたします。
+            複数商品をご注文の場合は、まとめて1梱包で発送いたします。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-ai text-hakuji section-padding">
+    <div class="container-ma text-center">
+      <h2 class="font-serif text-2xl md:text-3xl mb-6">ご不明な点はお気軽にご連絡ください</h2>
+      <p class="text-hakuji/80 mb-8">
+        送料や配送に関するご質問は、お電話またはお問い合わせフォームよりお気軽にどうぞ。
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/contact/" class="inline-block bg-hakuji text-ai px-8 py-3 rounded font-medium hover:bg-kinari transition-colors">
+          お問い合わせフォーム
+        </a>
+        <a href="tel:0572-22-2161" class="inline-block border-2 border-hakuji text-hakuji px-8 py-3 rounded font-medium hover:bg-hakuji hover:text-ai transition-colors">
+          電話: 0572-22-2161
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

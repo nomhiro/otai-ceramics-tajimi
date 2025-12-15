@@ -7,14 +7,16 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import SectionTitle from '../../components/SectionTitle.astro';
 import { getCollection } from 'astro:content';
 
-// 酒器カテゴリの商品を取得（sakeシリーズがあれば）
-const allProducts = await getCollection('products');
-const sakeProducts = allProducts.filter(product =>
-  product.data.series === 'sake' ||
-  product.data.tags?.includes('酒器') ||
-  product.data.tags?.includes('徳利') ||
-  product.data.tags?.includes('盃')
-);
+// 酒器コレクションからデータを取得
+const sakeware = await getCollection('sakeware');
+const tokuri = sakeware.filter(item => item.data.type === 'tokuri');
+const choko = sakeware.filter(item => item.data.type === 'choko');
+
+// 猪口をカテゴリ分け
+const guinomi = choko.filter(item => item.data.title.includes('ぐい呑み'));
+const chokoItems = choko.filter(item => item.data.title.includes('猪口'));
+const hiragai = choko.filter(item => item.data.title.includes('平盃'));
+const katakuchi = choko.filter(item => item.data.title.includes('片口'));
 ---
 
 <BaseLayout title="徳利・盃 - 酒器専門" description="小田井窯の徳利・盃専門ページ。オリジナルの名入れ酒器、料亭・居酒屋向けの業務用酒器も承ります。">
@@ -28,7 +30,7 @@ const sakeProducts = allProducts.filter(product =>
 
   <!-- イントロダクション -->
   <section class="section-padding">
-    <div class="max-w-4xl mx-auto px-6">
+    <div class="container-ma">
       <div class="prose-content space-y-6 text-sumi/80 text-lg leading-loose text-center">
         <p>
           日本酒を味わう時間をより豊かにする、小田井窯の酒器。<br />
@@ -42,78 +44,116 @@ const sakeProducts = allProducts.filter(product =>
     </div>
   </section>
 
-  <!-- 徳利の種類 -->
+  <!-- 徳利一覧 -->
   <section class="section-padding bg-hakuji">
-    <div class="max-w-5xl mx-auto px-6">
-      <SectionTitle title="徳利（とっくり）" subtitle="お酒を注ぐ器" />
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="sake-card bg-white p-6 rounded-lg shadow-md text-center">
-          <div class="w-24 h-32 mx-auto mb-4 bg-kinari rounded-lg flex items-center justify-center">
-            <span class="font-serif text-4xl text-ai">壱</span>
+    <div class="container-ma">
+      <SectionTitle title="徳利（とっくり）" subtitle="{tokuri.length}種類" />
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {tokuri.map((item) => (
+          <div class="sake-card bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+            <div class="aspect-square bg-kinari">
+              <img
+                src={item.data.images[0]}
+                alt={item.data.title}
+                class="w-full h-full object-cover"
+                loading="lazy"
+                onerror="this.onerror=null; this.src='/images/placeholder-sake.svg';"
+              />
+            </div>
+            <div class="p-4 text-center">
+              <h3 class="font-serif text-sm md:text-base text-ai mb-1">{item.data.title}</h3>
+              {item.data.capacity && (
+                <p class="text-sumi/60 text-xs">{item.data.capacity}</p>
+              )}
+            </div>
           </div>
-          <h3 class="font-serif text-lg text-ai mb-2">一合徳利</h3>
-          <p class="text-sumi/70 text-sm">
-            約180ml。一人酒や少人数での晩酌に最適なサイズです。
-          </p>
-        </div>
-        <div class="sake-card bg-white p-6 rounded-lg shadow-md text-center">
-          <div class="w-24 h-32 mx-auto mb-4 bg-kinari rounded-lg flex items-center justify-center">
-            <span class="font-serif text-4xl text-ai">弐</span>
-          </div>
-          <h3 class="font-serif text-lg text-ai mb-2">二合徳利</h3>
-          <p class="text-sumi/70 text-sm">
-            約360ml。二人での食事やお酌を楽しむのにちょうど良いサイズ。
-          </p>
-        </div>
-        <div class="sake-card bg-white p-6 rounded-lg shadow-md text-center">
-          <div class="w-24 h-32 mx-auto mb-4 bg-kinari rounded-lg flex items-center justify-center">
-            <span class="font-serif text-4xl text-ai">参</span>
-          </div>
-          <h3 class="font-serif text-lg text-ai mb-2">三合徳利</h3>
-          <p class="text-sumi/70 text-sm">
-            約540ml。宴会や大人数での食事に。存在感のある佇まい。
-          </p>
-        </div>
+        ))}
       </div>
     </div>
   </section>
 
-  <!-- 盃の種類 -->
+  <!-- 猪口・ぐい呑み -->
   <section class="section-padding">
-    <div class="max-w-5xl mx-auto px-6">
-      <SectionTitle title="盃（さかずき）・猪口（ちょこ）" subtitle="お酒を味わう器" />
-      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="sake-card bg-hakuji p-5 rounded-lg text-center">
-          <h3 class="font-serif text-lg text-ai mb-2">ぐい呑み</h3>
-          <p class="text-sumi/70 text-sm">
-            手のひらに収まる小ぶりなサイズ。一口で飲み干す粋な器。
-          </p>
-        </div>
-        <div class="sake-card bg-hakuji p-5 rounded-lg text-center">
-          <h3 class="font-serif text-lg text-ai mb-2">猪口</h3>
-          <p class="text-sumi/70 text-sm">
-            小さめの杯。熱燗をちびちびと楽しむのに最適です。
-          </p>
-        </div>
-        <div class="sake-card bg-hakuji p-5 rounded-lg text-center">
-          <h3 class="font-serif text-lg text-ai mb-2">平盃</h3>
-          <p class="text-sumi/70 text-sm">
-            浅く広い形状。香りを楽しみたい吟醸酒などにおすすめ。
-          </p>
-        </div>
-        <div class="sake-card bg-hakuji p-5 rounded-lg text-center">
-          <h3 class="font-serif text-lg text-ai mb-2">片口</h3>
-          <p class="text-sumi/70 text-sm">
-            注ぎ口がついた器。冷酒を入れて卓上に置いても様になります。
-          </p>
-        </div>
+    <div class="container-ma">
+      <SectionTitle title="猪口・ぐい呑み" subtitle="お酒を味わう器" />
+      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
+        {[...chokoItems, ...guinomi].map((item) => (
+          <div class="sake-card bg-hakuji rounded-lg overflow-hidden hover:shadow-md transition-shadow">
+            <div class="aspect-square bg-white">
+              <img
+                src={item.data.images[0]}
+                alt={item.data.title}
+                class="w-full h-full object-cover"
+                loading="lazy"
+                onerror="this.onerror=null; this.src='/images/placeholder-sake.svg';"
+              />
+            </div>
+            <div class="p-3 text-center">
+              <h3 class="font-serif text-xs md:text-sm text-ai">{item.data.title}</h3>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   </section>
+
+  <!-- 平盃 -->
+  {hiragai.length > 0 && (
+    <section class="section-padding bg-kinari">
+      <div class="container-ma">
+        <SectionTitle title="平盃（ひらはい）" subtitle="香りを楽しむ器" />
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
+          {hiragai.map((item) => (
+            <div class="sake-card bg-white rounded-lg overflow-hidden hover:shadow-md transition-shadow">
+              <div class="aspect-square">
+                <img
+                  src={item.data.images[0]}
+                  alt={item.data.title}
+                  class="w-full h-full object-cover"
+                  loading="lazy"
+                  onerror="this.onerror=null; this.src='/images/placeholder-sake.svg';"
+                />
+              </div>
+              <div class="p-3 text-center">
+                <h3 class="font-serif text-xs md:text-sm text-ai">{item.data.title}</h3>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- 片口 -->
+  {katakuchi.length > 0 && (
+    <section class="section-padding">
+      <div class="container-ma">
+        <SectionTitle title="片口（かたくち）" subtitle="注ぎ口のある器" />
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+          {katakuchi.map((item) => (
+            <div class="sake-card bg-hakuji rounded-lg overflow-hidden hover:shadow-md transition-shadow">
+              <div class="aspect-square bg-white">
+                <img
+                  src={item.data.images[0]}
+                  alt={item.data.title}
+                  class="w-full h-full object-cover"
+                  loading="lazy"
+                  onerror="this.onerror=null; this.src='/images/placeholder-sake.svg';"
+                />
+              </div>
+              <div class="p-3 text-center">
+                <h3 class="font-serif text-sm text-ai">{item.data.title}</h3>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
 
   <!-- オリジナル名入れ -->
   <section class="section-padding bg-ai text-hakuji">
-    <div class="max-w-4xl mx-auto px-6">
+    <div class="container-ma">
       <SectionTitle title="オリジナル名入れ酒器" subtitle="飲食店様・企業様向け" align="center" />
       <div class="space-y-8">
         <p class="text-center text-hakuji/90 text-lg">
@@ -124,7 +164,7 @@ const sakeProducts = allProducts.filter(product =>
         <div class="grid md:grid-cols-3 gap-6">
           <div class="text-center">
             <div class="w-16 h-16 mx-auto mb-4 bg-hakuji/20 rounded-full flex items-center justify-center">
-              <span class="text-2xl">🏮</span>
+              <span class="text-2xl">&#x1F3EE;</span>
             </div>
             <h3 class="font-serif text-lg mb-2">居酒屋・料亭</h3>
             <p class="text-hakuji/70 text-sm">
@@ -133,7 +173,7 @@ const sakeProducts = allProducts.filter(product =>
           </div>
           <div class="text-center">
             <div class="w-16 h-16 mx-auto mb-4 bg-hakuji/20 rounded-full flex items-center justify-center">
-              <span class="text-2xl">🏨</span>
+              <span class="text-2xl">&#x1F3E8;</span>
             </div>
             <h3 class="font-serif text-lg mb-2">旅館・ホテル</h3>
             <p class="text-hakuji/70 text-sm">
@@ -142,7 +182,7 @@ const sakeProducts = allProducts.filter(product =>
           </div>
           <div class="text-center">
             <div class="w-16 h-16 mx-auto mb-4 bg-hakuji/20 rounded-full flex items-center justify-center">
-              <span class="text-2xl">🍶</span>
+              <span class="text-2xl">&#x1F376;</span>
             </div>
             <h3 class="font-serif text-lg mb-2">酒蔵・酒販店</h3>
             <p class="text-hakuji/70 text-sm">
@@ -162,7 +202,7 @@ const sakeProducts = allProducts.filter(product =>
 
   <!-- 酒器の選び方 -->
   <section class="section-padding">
-    <div class="max-w-4xl mx-auto px-6">
+    <div class="container-ma">
       <SectionTitle title="酒器の選び方" />
       <div class="space-y-8">
         <div class="tip-card flex gap-6 items-start">
@@ -207,7 +247,7 @@ const sakeProducts = allProducts.filter(product =>
 
   <!-- お問い合わせ -->
   <section class="section-padding bg-hakuji">
-    <div class="max-w-4xl mx-auto px-6 text-center">
+    <div class="container-ma text-center">
       <SectionTitle title="酒器のご相談" />
       <p class="text-sumi/80 text-lg mb-6">
         酒器選びのご相談、名入れ酒器のお見積もりなど、お気軽にお問い合わせください。
@@ -242,7 +282,7 @@ const sakeProducts = allProducts.filter(product =>
       y: 40,
       opacity: 0,
       duration: 0.6,
-      stagger: 0.1,
+      stagger: 0.05,
       ease: 'power2.out',
       scrollTrigger: {
         trigger: '.sake-card',

@@ -1,0 +1,139 @@
+---
+/**
+ * ジョッキコレクションページ
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionTitle from '../../components/SectionTitle.astro';
+import { getCollection } from 'astro:content';
+
+const gallery = await getCollection('gallery');
+const jokki = gallery.filter(item => item.data.category === 'jokki');
+
+// オリジナルと所蔵品を分類
+const original = jokki.filter(item => item.data.title.includes('ジョッキ'));
+const collection = jokki.filter(item => item.data.title.includes('コレクション'));
+---
+
+<BaseLayout title="ジョッキコレクション - ギャラリー" description="小田井窯オリジナルジョッキと、長年収集してきた陶器製ジョッキのコレクション。">
+  <!-- ヒーロー -->
+  <section class="bg-ai text-hakuji section-padding-sm">
+    <div class="container-ma text-center">
+      <h1 class="hero-title font-serif text-3xl md:text-4xl lg:text-5xl mb-6 tracking-wider">ジョッキコレクション</h1>
+      <p class="hero-subtitle text-hakuji/80 text-lg">{jokki.length}点の所蔵品</p>
+    </div>
+  </section>
+
+  <!-- イントロダクション -->
+  <section class="section-padding">
+    <div class="container-ma text-center">
+      <p class="text-sumi/80 text-lg leading-loose">
+        陶器製のジョッキは、ビールの泡立ちをきめ細かくし、保冷性にも優れています。<br />
+        小田井窯オリジナルのジョッキと、長年にわたり収集してきたコレクションをご紹介します。
+      </p>
+    </div>
+  </section>
+
+  <!-- オリジナルジョッキ -->
+  {original.length > 0 && (
+    <section class="section-padding bg-hakuji">
+      <div class="container-ma">
+        <SectionTitle title="小田井窯オリジナル" subtitle="{original.length}点" />
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {original.map((item) => (
+            <div class="gallery-card bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow group">
+              <div class="aspect-square bg-kinari overflow-hidden">
+                <img
+                  src={item.data.image}
+                  alt={item.data.title}
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  loading="lazy"
+                  onerror="this.onerror=null; this.src='/images/placeholder-gallery.svg';"
+                />
+              </div>
+              <div class="p-4 text-center">
+                <h3 class="font-serif text-sm text-ai">{item.data.title}</h3>
+                {item.data.description && (
+                  <p class="text-sumi/60 text-xs mt-1">{item.data.description}</p>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- 所蔵コレクション -->
+  {collection.length > 0 && (
+    <section class="section-padding">
+      <div class="container-ma">
+        <SectionTitle title="所蔵コレクション" subtitle="{collection.length}点" />
+        <p class="text-center text-sumi/70 mb-8 max-w-2xl mx-auto">
+          小田井窯が長年にわたり収集してきた陶器製ジョッキのコレクション。
+          様々な産地、時代の作品をご覧いただけます。
+        </p>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {collection.map((item) => (
+            <div class="gallery-card bg-hakuji rounded-lg overflow-hidden hover:shadow-md transition-shadow group">
+              <div class="aspect-square overflow-hidden">
+                <img
+                  src={item.data.image}
+                  alt={item.data.title}
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  loading="lazy"
+                  onerror="this.onerror=null; this.src='/images/placeholder-gallery.svg';"
+                />
+              </div>
+              <div class="p-4 text-center">
+                <h3 class="font-serif text-sm text-ai">{item.data.title}</h3>
+                {item.data.description && (
+                  <p class="text-sumi/60 text-xs mt-1">{item.data.description}</p>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- ナビゲーション -->
+  <section class="section-padding bg-kinari">
+    <div class="container-ma text-center">
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="/gallery/" class="btn-secondary inline-block">
+          ギャラリートップへ
+        </a>
+        <a href="/gallery/shioyuu/" class="btn-primary inline-block">
+          塩釉作品を見る
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  import { gsap, prefersReducedMotion } from '../../utils/animations';
+
+  window.addEventListener('gsap:ready', () => {
+    if (prefersReducedMotion()) return;
+
+    const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    heroTl
+      .from('.hero-title', { y: 50, opacity: 0, duration: 0.8 })
+      .from('.hero-subtitle', { y: 30, opacity: 0, duration: 0.6 }, '-=0.4');
+
+    gsap.from('.gallery-card', {
+      y: 40,
+      opacity: 0,
+      duration: 0.6,
+      stagger: 0.08,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: '.gallery-card',
+        start: 'top 85%',
+        toggleActions: 'play none none reverse',
+      },
+    });
+  });
+</script>

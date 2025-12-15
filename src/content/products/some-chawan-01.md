@@ -6,7 +6,7 @@ images:
 price: 3500
 size: "直径12cm × 高さ7cm"
 inStock: true
-featured: true
+featured: false
 ---
 
 呉須による藍色の絵付けが美しい長茶碗です。

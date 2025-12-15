@@ -1,0 +1,182 @@
+---
+/**
+ * ギャラリートップページ
+ * ジョッキコレクションと塩釉作品
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionTitle from '../../components/SectionTitle.astro';
+import { getCollection } from 'astro:content';
+
+// ギャラリーコレクションからデータを取得
+const gallery = await getCollection('gallery');
+const jokki = gallery.filter(item => item.data.category === 'jokki');
+const shioyuu = gallery.filter(item => item.data.category === 'shioyuu');
+---
+
+<BaseLayout title="ギャラリー - 小田井窯コレクション" description="小田井窯のジョッキコレクションと、先代・加藤静男の塩釉作品をご紹介します。">
+  <!-- ヒーロー -->
+  <section class="bg-ai text-hakuji section-padding-sm">
+    <div class="container-ma text-center">
+      <h1 class="hero-title font-serif text-3xl md:text-4xl lg:text-5xl mb-6 tracking-wider">ギャラリー</h1>
+      <p class="hero-subtitle text-hakuji/80 text-lg">小田井窯の歴史と作品</p>
+    </div>
+  </section>
+
+  <!-- イントロダクション -->
+  <section class="section-padding">
+    <div class="container-ma text-center">
+      <p class="text-sumi/80 text-lg leading-loose">
+        小田井窯が長年にわたり収集・制作してきた作品をご紹介します。<br />
+        陶器製ジョッキのコレクションと、先代・加藤静男による塩釉作品の数々をお楽しみください。
+      </p>
+    </div>
+  </section>
+
+  <!-- ジョッキコレクション -->
+  <section class="section-padding bg-hakuji">
+    <div class="container-ma">
+      <SectionTitle title="ジョッキコレクション" subtitle="{jokki.length}点の所蔵品" />
+      <p class="text-center text-sumi/70 mb-8 max-w-2xl mx-auto">
+        小田井窯オリジナルのジョッキと、長年にわたり収集してきた陶器製ジョッキのコレクション。
+        ビールや麦茶を注げば、いつもの飲み物が格別な一杯に。
+      </p>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {jokki.slice(0, 8).map((item) => (
+          <div class="gallery-card bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow group">
+            <div class="aspect-square bg-kinari overflow-hidden">
+              <img
+                src={item.data.image}
+                alt={item.data.title}
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                loading="lazy"
+                onerror="this.onerror=null; this.src='/images/placeholder-gallery.svg';"
+              />
+            </div>
+            <div class="p-4 text-center">
+              <h3 class="font-serif text-sm text-ai">{item.data.title}</h3>
+              {item.data.description && (
+                <p class="text-sumi/60 text-xs mt-1">{item.data.description}</p>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+      {jokki.length > 8 && (
+        <div class="text-center mt-8">
+          <a href="/gallery/jokki/" class="btn-secondary inline-block">
+            すべてのジョッキを見る ({jokki.length}点)
+          </a>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- 塩釉作品 -->
+  <section class="section-padding">
+    <div class="container-ma">
+      <SectionTitle title="塩釉作品" subtitle="先代 加藤静男の作品" />
+      <div class="max-w-3xl mx-auto mb-8">
+        <p class="text-sumi/80 leading-loose text-center">
+          塩釉（しおゆう）とは、焼成中に窯の中に塩を投入し、
+          塩の蒸気と土が反応して生まれる独特の釉薬です。<br />
+          先代・加藤静男が手がけた塩釉作品は、平成13年「美濃の民芸展」に出品されました。
+        </p>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {shioyuu.slice(0, 8).map((item) => (
+          <div class="gallery-card bg-hakuji rounded-lg overflow-hidden hover:shadow-md transition-shadow group">
+            <div class="aspect-square overflow-hidden">
+              <img
+                src={item.data.image}
+                alt={item.data.title}
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                loading="lazy"
+                onerror="this.onerror=null; this.src='/images/placeholder-gallery.svg';"
+              />
+            </div>
+            <div class="p-4 text-center">
+              <h3 class="font-serif text-sm text-ai">{item.data.title}</h3>
+              {item.data.artist && (
+                <p class="text-sumi/60 text-xs mt-1">{item.data.artist} 作</p>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+      {shioyuu.length > 8 && (
+        <div class="text-center mt-8">
+          <a href="/gallery/shioyuu/" class="btn-secondary inline-block">
+            すべての塩釉作品を見る ({shioyuu.length}点)
+          </a>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- 小田井窯の歴史 -->
+  <section class="section-padding bg-kinari">
+    <div class="container-ma">
+      <SectionTitle title="小田井窯の歴史" />
+      <div class="prose-content space-y-6 text-sumi/80 leading-loose">
+        <p>
+          小田井窯は、美濃焼の産地・岐阜県多治見市で三代にわたり陶器を作り続けてきました。
+        </p>
+        <p>
+          先代・加藤静男は塩釉技法を得意とし、その作品は「美濃の民芸展」をはじめ
+          多くの展示会で高い評価を受けました。
+        </p>
+        <p>
+          現在は、伝統的な技法を守りながらも、現代の食卓に合う実用的な器づくりを心がけています。
+          一つひとつ手描きで絵付けされた器は、日々の暮らしに彩りを添えます。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- お問い合わせ -->
+  <section class="section-padding bg-hakuji">
+    <div class="container-ma text-center">
+      <SectionTitle title="作品についてのお問い合わせ" />
+      <p class="text-sumi/80 text-lg mb-6">
+        ギャラリー作品に関するご質問は、お気軽にお問い合わせください。
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="/contact/" class="btn-primary inline-block">
+          お問い合わせ
+        </a>
+        <a href="/products/" class="btn-secondary inline-block">
+          商品一覧へ
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<!-- アニメーション -->
+<script>
+  import { gsap, prefersReducedMotion } from '../../utils/animations';
+
+  window.addEventListener('gsap:ready', () => {
+    if (prefersReducedMotion()) return;
+
+    // ヒーローアニメーション
+    const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    heroTl
+      .from('.hero-title', { y: 50, opacity: 0, duration: 0.8 })
+      .from('.hero-subtitle', { y: 30, opacity: 0, duration: 0.6 }, '-=0.4');
+
+    // カード
+    gsap.from('.gallery-card', {
+      y: 40,
+      opacity: 0,
+      duration: 0.6,
+      stagger: 0.08,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: '.gallery-card',
+        start: 'top 85%',
+        toggleActions: 'play none none reverse',
+      },
+    });
+  });
+</script>

@@ -1,0 +1,137 @@
+---
+/**
+ * 学ぶトップページ
+ * 陶器・美濃焼についての教育コンテンツ
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionTitle from '../../components/SectionTitle.astro';
+---
+
+<BaseLayout title="学ぶ - 陶器と美濃焼の世界" description="美濃焼の歴史、陶器の基礎知識、染付技法など、やきものの世界を学べるコンテンツをご紹介します。">
+  <!-- ヒーロー -->
+  <section class="bg-ai text-hakuji section-padding-sm">
+    <div class="container-ma text-center">
+      <h1 class="hero-title font-serif text-3xl md:text-4xl lg:text-5xl mb-6 tracking-wider">学ぶ</h1>
+      <p class="hero-subtitle text-hakuji/80 text-lg">陶器と美濃焼の世界</p>
+    </div>
+  </section>
+
+  <!-- イントロダクション -->
+  <section class="section-padding">
+    <div class="container-ma text-center">
+      <p class="text-sumi/80 text-lg leading-loose">
+        器を選ぶ楽しさは、その背景を知ることでさらに深まります。<br />
+        美濃焼の歴史、陶器の基礎知識、絵付けの技法など、<br />
+        やきものの世界をご紹介します。
+      </p>
+    </div>
+  </section>
+
+  <!-- コンテンツ一覧 -->
+  <section class="section-padding bg-hakuji">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- 美濃焼とは -->
+        <a href="/learn/minoyaki/" class="learn-card group bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+          <div class="aspect-video bg-ai/10 flex items-center justify-center">
+            <span class="text-6xl">&#x1F3FA;</span>
+          </div>
+          <div class="p-6">
+            <h2 class="font-serif text-xl text-ai mb-3 group-hover:text-shu transition-colors">美濃焼とは</h2>
+            <p class="text-sumi/70 text-sm leading-relaxed">
+              日本を代表する陶磁器産地、美濃焼。1300年の歴史を持ち、
+              志野・織部・黄瀬戸・瀬戸黒など多彩な技法が生まれた地です。
+            </p>
+          </div>
+        </a>
+
+        <!-- 陶器の基本 -->
+        <a href="/learn/basics/" class="learn-card group bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+          <div class="aspect-video bg-shu/10 flex items-center justify-center">
+            <span class="text-6xl">&#x1F52C;</span>
+          </div>
+          <div class="p-6">
+            <h2 class="font-serif text-xl text-ai mb-3 group-hover:text-shu transition-colors">陶器の基本</h2>
+            <p class="text-sumi/70 text-sm leading-relaxed">
+              陶器を構成する4つの要素「窯・釉・土・顔料」。
+              それぞれの役割と、器ができるまでの工程を解説します。
+            </p>
+          </div>
+        </a>
+
+        <!-- 染付講座 -->
+        <a href="/learn/sometsuke/" class="learn-card group bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+          <div class="aspect-video bg-kinari flex items-center justify-center">
+            <span class="text-6xl">&#x1F58C;&#xFE0F;</span>
+          </div>
+          <div class="p-6">
+            <h2 class="font-serif text-xl text-ai mb-3 group-hover:text-shu transition-colors">染付講座</h2>
+            <p class="text-sumi/70 text-sm leading-relaxed">
+              青と白のコントラストが美しい染付。
+              呉須（ごす）を使った絵付け技法の基礎を学びます。
+            </p>
+          </div>
+        </a>
+
+        <!-- 器の選び方 -->
+        <a href="/learn/guide/" class="learn-card group bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+          <div class="aspect-video bg-moegi/20 flex items-center justify-center">
+            <span class="text-6xl">&#x1F37D;&#xFE0F;</span>
+          </div>
+          <div class="p-6">
+            <h2 class="font-serif text-xl text-ai mb-3 group-hover:text-shu transition-colors">器の選び方</h2>
+            <p class="text-sumi/70 text-sm leading-relaxed">
+              料理を引き立てる器選びのコツ。
+              サイズ、形、色合いなど、日々の食卓を彩るヒントをご紹介。
+            </p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- お問い合わせ -->
+  <section class="section-padding">
+    <div class="container-ma text-center">
+      <SectionTitle title="器選びのご相談" />
+      <p class="text-sumi/80 text-lg mb-6">
+        「どんな器を選べばいいかわからない」「贈り物に適した器は？」など、<br />
+        お気軽にご相談ください。
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="/contact/" class="btn-primary inline-block">
+          お問い合わせ
+        </a>
+        <a href="/products/" class="btn-secondary inline-block">
+          商品一覧へ
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  import { gsap, prefersReducedMotion } from '../../utils/animations';
+
+  window.addEventListener('gsap:ready', () => {
+    if (prefersReducedMotion()) return;
+
+    const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    heroTl
+      .from('.hero-title', { y: 50, opacity: 0, duration: 0.8 })
+      .from('.hero-subtitle', { y: 30, opacity: 0, duration: 0.6 }, '-=0.4');
+
+    gsap.from('.learn-card', {
+      y: 40,
+      opacity: 0,
+      duration: 0.6,
+      stagger: 0.15,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: '.learn-card',
+        start: 'top 85%',
+        toggleActions: 'play none none reverse',
+      },
+    });
+  });
+</script>

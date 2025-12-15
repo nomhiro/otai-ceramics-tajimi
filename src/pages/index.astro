@@ -5,6 +5,7 @@
  */
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionTitle from '../components/SectionTitle.astro';
+import TrustBadges from '../components/TrustBadges.astro';
 import { getCollection } from 'astro:content';
 
 const featuredProducts = await getCollection('products', ({ data }) => data.featured);
@@ -23,25 +24,73 @@ const seriesList = [
 ---
 
 <BaseLayout title="ホーム">
-  <!-- ヒーローセクション -->
-  <section class="hero-section relative bg-ai text-hakuji section-padding">
-    <div class="container-ma text-center">
-      <h1 class="hero-title font-serif text-3xl md:text-4xl lg:text-5xl mb-8 leading-relaxed tracking-wider">
-        美濃焼の伝統と<br class="md:hidden" />欧州の作風を融合
-      </h1>
-      <p class="hero-subtitle text-lg md:text-xl text-hakuji/80 mb-10 max-w-2xl mx-auto leading-relaxed">
-        陶器の町、岐阜県多治見市より、南欧風オリジナル陶器とお酒の徳利、盃をお届けします
-      </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="/products/" class="hero-cta btn-primary bg-hakuji text-ai hover:bg-hakuji/90">商品を見る</a>
-        <a href="/contact/" class="hero-cta btn-secondary border-hakuji text-hakuji hover:bg-hakuji hover:text-ai">お問い合わせ</a>
+  <!-- ヒーローセクション - 伝統と革新の融合デザイン -->
+  <section class="hero-section relative overflow-hidden">
+    <!-- 背景グラデーション -->
+    <div class="absolute inset-0 bg-gradient-to-br from-kinari via-kinari to-amber-50/30"></div>
+
+    <!-- メインコンテンツ -->
+    <div class="relative container-ma py-16 md:py-24 lg:py-32">
+      <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+        <!-- テキストエリア -->
+        <div class="order-2 md:order-1 text-center md:text-left">
+          <p class="hero-label text-sm md:text-base text-ai font-medium tracking-widest mb-4 uppercase">
+            Since 1949 — 美濃焼の窯元
+          </p>
+          <h1 class="hero-title font-serif text-3xl md:text-4xl lg:text-5xl mb-6 leading-tight tracking-wide text-sumi">
+            <span class="block">美濃焼の伝統と</span>
+            <span class="block text-ai">欧州の作風を融合</span>
+          </h1>
+          <p class="hero-subtitle text-base md:text-lg text-sumi/70 mb-8 max-w-lg leading-relaxed">
+            岐阜県多治見市より、南欧風オリジナル陶器とお酒の徳利、盃をお届けします。
+            すべて手描きの一点もの。
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+            <a href="/products/" class="hero-cta btn-primary inline-flex items-center gap-2">
+              商品を見る
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+              </svg>
+            </a>
+            <a href="/contact/" class="hero-cta btn-secondary">お問い合わせ</a>
+          </div>
+        </div>
+
+        <!-- 画像エリア -->
+        <div class="order-1 md:order-2 hero-image-wrapper">
+          <div class="relative">
+            <!-- 装飾的な背景円 -->
+            <div class="absolute -inset-4 bg-ai/5 rounded-full blur-3xl"></div>
+            <!-- メイン画像 -->
+            <img
+              src="/images/legacy/hero-dishes.jpg"
+              alt="小田井窯の美濃焼食器"
+              class="hero-image relative w-full max-w-md mx-auto rounded-lg shadow-2xl"
+            />
+            <!-- 装飾バッジ -->
+            <div class="absolute -bottom-4 -left-4 md:-left-8 bg-ai text-hakuji px-4 py-2 rounded-lg shadow-lg">
+              <p class="text-xs font-medium">創業75年以上</p>
+              <p class="text-lg font-serif font-bold">手描き陶器</p>
+            </div>
+          </div>
+        </div>
       </div>
+    </div>
+
+    <!-- 波形の区切り線 -->
+    <div class="absolute bottom-0 left-0 right-0">
+      <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto">
+        <path d="M0 60V30C240 0 480 0 720 30C960 60 1200 60 1440 30V60H0Z" fill="currentColor" class="text-hakuji"/>
+      </svg>
     </div>
   </section>
 
+  <!-- 信頼性バッジ -->
+  <TrustBadges variant="hero" />
+
   <!-- イントロダクション -->
-  <section class="intro-section section-padding">
-    <div class="max-w-4xl mx-auto px-6 text-center">
+  <section class="intro-section section-padding bg-hakuji">
+    <div class="container-ma text-center">
       <SectionTitle title="小田井窯について" />
       <p class="intro-text text-lg leading-loose text-sumi/80 mb-8">
         小田井窯では、美濃焼伝統の技術の中に欧州の作風を取り入れて、特色のある作品を創り出しております。
@@ -56,17 +105,22 @@ const seriesList = [
   </section>
 
   <!-- 商品シリーズ -->
-  <section class="series-section section-padding bg-hakuji">
+  <section class="series-section section-padding bg-gradient-to-b from-kinari to-amber-50/50">
     <div class="container-ma">
       <SectionTitle title="商品シリーズ" subtitle="商品はすべて手描きです。ひとつひとつ職人が丹精こめて描きました。" />
       <div class="series-grid grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
         {seriesList.map((series) => (
           <a
             href={`/products/?series=${series.slug}`}
-            class="product-card p-6 md:p-8 text-center group"
+            class="product-card p-6 md:p-8 text-center group bg-hakuji hover:shadow-xl"
           >
-            <div class="series-icon w-16 h-16 md:w-20 md:h-20 mx-auto mb-4 bg-kinari rounded-full flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
-              <span class="font-serif text-2xl md:text-3xl text-ai">{series.name[0]}</span>
+            <div class="series-icon w-20 h-20 md:w-24 md:h-24 mx-auto mb-4 overflow-hidden rounded-lg border-2 border-ai/20 transition-all duration-300 group-hover:scale-105 group-hover:border-ai/40 group-hover:shadow-lg">
+              <img
+                src={`/images/products/series_${series.slug}.jpg`}
+                alt={series.name}
+                class="w-full h-full object-cover"
+                loading="lazy"
+              />
             </div>
             <h3 class="font-serif text-lg md:text-xl text-sumi group-hover:text-ai transition-colors duration-300">
               {series.name}
@@ -80,12 +134,12 @@ const seriesList = [
 
   <!-- おすすめ商品 -->
   {featuredProducts.length > 0 && (
-    <section class="featured-section section-padding">
+    <section class="featured-section section-padding bg-hakuji">
       <div class="container-ma">
         <SectionTitle title="おすすめ商品" />
         <div class="featured-grid grid md:grid-cols-3 gap-8 md:gap-10">
           {featuredProducts.slice(0, 3).map((product) => (
-            <a href={`/products/${product.slug}/`} class="product-card group">
+            <a href={`/products/${product.slug}/`} class="product-card group hover:shadow-xl bg-white">
               <div class="aspect-square bg-gray-50 overflow-hidden">
                 <img
                   src={product.data.images[0]}
@@ -115,7 +169,7 @@ const seriesList = [
 
   <!-- オリジナル制作 -->
   <section class="custom-section section-padding bg-ai text-hakuji">
-    <div class="max-w-4xl mx-auto px-6 text-center">
+    <div class="container-ma text-center">
       <h2 class="custom-title font-serif text-2xl md:text-3xl lg:text-4xl mb-8 tracking-wider">オリジナル制作・OEM</h2>
       <p class="custom-desc text-lg text-hakuji/80 mb-10 leading-relaxed">
         飲食店様の名入れ徳利盃、記念品、オリジナル食器など、
@@ -140,8 +194,11 @@ const seriesList = [
   </section>
 
   <!-- お問い合わせCTA -->
-  <section class="contact-cta section-padding">
-    <div class="max-w-4xl mx-auto px-6 text-center">
+  <section class="contact-cta section-padding bg-gradient-to-br from-kinari via-amber-50/30 to-kinari relative overflow-hidden">
+    <!-- 装飾的な円 -->
+    <div class="absolute top-0 right-0 w-64 h-64 bg-ai/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+    <div class="absolute bottom-0 left-0 w-48 h-48 bg-shu/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
+    <div class="container-ma text-center relative">
       <SectionTitle title="お問い合わせ" />
       <p class="cta-text text-lg text-sumi/80 mb-10 leading-relaxed">
         商品のご質問、カタログのご請求、オリジナル制作のご相談など、
@@ -166,9 +223,11 @@ const seriesList = [
     // ヒーローセクション（初期ロード時）
     const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
     heroTl
-      .from('.hero-title', { y: 60, opacity: 0, duration: 1 })
+      .from('.hero-label', { y: 30, opacity: 0, duration: 0.6 })
+      .from('.hero-title', { y: 60, opacity: 0, duration: 1 }, '-=0.3')
       .from('.hero-subtitle', { y: 40, opacity: 0, duration: 0.8 }, '-=0.6')
-      .from('.hero-cta', { y: 30, opacity: 0, stagger: 0.15, duration: 0.6 }, '-=0.4');
+      .from('.hero-cta', { y: 30, opacity: 0, stagger: 0.15, duration: 0.6 }, '-=0.4')
+      .from('.hero-image-wrapper', { x: 60, opacity: 0, duration: 1 }, '-=1.2');
 
     // イントロダクションセクション
     fadeInOnScroll('.intro-section .section-header', { y: 30 });

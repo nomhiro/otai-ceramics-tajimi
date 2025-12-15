@@ -62,12 +62,13 @@ const seriesInfo: Record<string, { name: string; description: string }> = {
             class="product-card group"
             data-series={product.data.series}
           >
-            <div class="aspect-square bg-gray-50 overflow-hidden">
+            <div class="aspect-square bg-kinari overflow-hidden">
               <img
                 src={product.data.images[0]}
                 alt={product.data.title}
                 class="w-full h-full object-cover transition-transform duration-600 group-hover:scale-105"
                 loading="lazy"
+                onerror="this.onerror=null; this.src='/images/placeholder-product.svg';"
               />
             </div>
             <div class="p-5">
@@ -99,7 +100,7 @@ const seriesInfo: Record<string, { name: string; description: string }> = {
 
   <!-- 注意事項 -->
   <section class="note-section py-10 bg-kinari">
-    <div class="max-w-4xl mx-auto px-6 text-center text-sm text-sumi/70 leading-relaxed">
+    <div class="container-ma text-center text-sm text-sumi/70 leading-relaxed">
       <p>
         商品はすべて手描きです。お届けする製品が見本と若干異なることもございます。（色の濃淡や動物絵の表情など）
       </p>
@@ -180,13 +181,16 @@ const seriesInfo: Record<string, { name: string; description: string }> = {
       .from('.hero-subtitle', { y: 30, opacity: 0, duration: 0.6 }, '-=0.4');
 
     // フィルターボタン
-    gsap.from('.filter-btn', {
-      y: 20,
-      opacity: 0,
-      duration: 0.4,
-      stagger: 0.05,
-      ease: 'power2.out',
-    });
+    gsap.fromTo('.filter-btn',
+      { y: 20, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.4,
+        stagger: 0.05,
+        ease: 'power2.out',
+      }
+    );
 
     // 商品グリッド
     staggerGridReveal('#products-grid', '.product-card', {

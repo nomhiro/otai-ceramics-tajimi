@@ -1,0 +1,242 @@
+---
+/**
+ * 陶器の基本 - 教育コンテンツ
+ * 窯・釉・土・顔料の4要素
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionTitle from '../../components/SectionTitle.astro';
+---
+
+<BaseLayout title="陶器の基本 - 学ぶ" description="陶器を構成する4つの要素「窯・釉・土・顔料」について解説。やきものの基礎知識を学べます。">
+  <!-- ヒーロー -->
+  <section class="bg-ai text-hakuji section-padding-sm">
+    <div class="container-ma text-center">
+      <h1 class="hero-title font-serif text-3xl md:text-4xl lg:text-5xl mb-6 tracking-wider">陶器の基本</h1>
+      <p class="hero-subtitle text-hakuji/80 text-lg">窯・釉・土・顔料 - やきものの4要素</p>
+    </div>
+  </section>
+
+  <!-- イントロダクション -->
+  <section class="section-padding">
+    <div class="container-ma text-center">
+      <p class="text-sumi/80 text-lg leading-loose">
+        やきものは、「土」を「窯」で焼き、「釉薬」をかけ、「顔料」で絵を描く。<br />
+        この4つの要素の組み合わせで、無限の表情が生まれます。
+      </p>
+    </div>
+  </section>
+
+  <!-- 窯（かま） -->
+  <section class="section-padding bg-shu/5">
+    <div class="container-ma">
+      <div class="element-card flex flex-col md:flex-row gap-8 items-center">
+        <div class="flex-shrink-0 w-32 h-32 bg-shu rounded-full flex items-center justify-center">
+          <span class="font-serif text-5xl text-hakuji">窯</span>
+        </div>
+        <div class="flex-1">
+          <h2 class="font-serif text-2xl text-ai mb-4">窯（かま）</h2>
+          <div class="prose-content space-y-4 text-sumi/80 leading-relaxed">
+            <p>
+              窯は、土を焼いてやきものに変える「火の力」を与える場所です。
+              窯の種類や焼き方によって、器の表情は大きく変わります。
+            </p>
+            <ul class="list-disc list-inside space-y-2 text-sm">
+              <li><strong>登り窯</strong>：斜面を利用した伝統的な窯。燃料は薪</li>
+              <li><strong>穴窯</strong>：最も原始的な形態。長時間の焼成が特徴</li>
+              <li><strong>ガス窯</strong>：温度管理がしやすく、安定した焼成が可能</li>
+              <li><strong>電気窯</strong>：小規模生産に適した現代的な窯</li>
+            </ul>
+            <p class="text-sm bg-kinari p-3 rounded">
+              焼成温度は、素焼きで約800℃、本焼きで約1200〜1300℃に達します。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 釉（ゆう） -->
+  <section class="section-padding bg-ai/5">
+    <div class="container-ma">
+      <div class="element-card flex flex-col md:flex-row-reverse gap-8 items-center">
+        <div class="flex-shrink-0 w-32 h-32 bg-ai rounded-full flex items-center justify-center">
+          <span class="font-serif text-5xl text-hakuji">釉</span>
+        </div>
+        <div class="flex-1">
+          <h2 class="font-serif text-2xl text-ai mb-4">釉（ゆう）・釉薬（ゆうやく）</h2>
+          <div class="prose-content space-y-4 text-sumi/80 leading-relaxed">
+            <p>
+              釉薬は、器の表面を覆うガラス質の層です。
+              水を通さなくしたり、色や光沢を与えたりする役割があります。
+            </p>
+            <ul class="list-disc list-inside space-y-2 text-sm">
+              <li><strong>灰釉（かいゆう）</strong>：木灰を主原料とした最も基本的な釉薬</li>
+              <li><strong>長石釉</strong>：志野に使われる白色の釉薬</li>
+              <li><strong>銅釉</strong>：織部の緑色を生む釉薬</li>
+              <li><strong>鉄釉</strong>：茶色や黒色を呈する釉薬</li>
+            </ul>
+            <p class="text-sm bg-kinari p-3 rounded">
+              同じ釉薬でも、厚さや焼成条件で表情が変わります。
+              これが「窯変（ようへん）」と呼ばれる偶然の美です。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 土（つち） -->
+  <section class="section-padding bg-kinari/50">
+    <div class="container-ma">
+      <div class="element-card flex flex-col md:flex-row gap-8 items-center">
+        <div class="flex-shrink-0 w-32 h-32 bg-moegi rounded-full flex items-center justify-center">
+          <span class="font-serif text-5xl text-hakuji">土</span>
+        </div>
+        <div class="flex-1">
+          <h2 class="font-serif text-2xl text-ai mb-4">土（つち）・陶土（とうど）</h2>
+          <div class="prose-content space-y-4 text-sumi/80 leading-relaxed">
+            <p>
+              やきものの原料となる土。産地によって成分が異なり、
+              焼き上がりの色や質感に大きく影響します。
+            </p>
+            <ul class="list-disc list-inside space-y-2 text-sm">
+              <li><strong>陶土</strong>：鉄分を含む粘土。素朴な風合いの陶器に</li>
+              <li><strong>磁土</strong>：白く純度の高い粘土。磁器の原料</li>
+              <li><strong>半磁土</strong>：陶土と磁土の中間的な性質を持つ</li>
+            </ul>
+            <p class="text-sm bg-white p-3 rounded">
+              美濃地方は良質な陶土に恵まれ、古くからやきもの産地として栄えてきました。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 顔料（がんりょう） -->
+  <section class="section-padding bg-hakuji">
+    <div class="container-ma">
+      <div class="element-card flex flex-col md:flex-row-reverse gap-8 items-center">
+        <div class="flex-shrink-0 w-32 h-32 bg-kitsune rounded-full flex items-center justify-center">
+          <span class="font-serif text-5xl text-hakuji">顔</span>
+        </div>
+        <div class="flex-1">
+          <h2 class="font-serif text-2xl text-ai mb-4">顔料（がんりょう）・絵具</h2>
+          <div class="prose-content space-y-4 text-sumi/80 leading-relaxed">
+            <p>
+              器に絵や模様を描くための色料。
+              焼成前に描く「下絵付け」と、焼成後に描く「上絵付け」があります。
+            </p>
+            <ul class="list-disc list-inside space-y-2 text-sm">
+              <li><strong>呉須（ごす）</strong>：染付に使う青色の顔料（コバルト）</li>
+              <li><strong>鉄絵具</strong>：茶色や黒の絵を描く</li>
+              <li><strong>赤絵具</strong>：上絵付けに使う赤色の顔料</li>
+              <li><strong>金彩</strong>：金箔や金泥を使った装飾</li>
+            </ul>
+            <p class="text-sm bg-white p-3 rounded">
+              小田井窯では、一つひとつ手描きで絵付けを行っています。
+              同じ絵柄でも、微妙な筆のタッチの違いが個性になります。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 製造工程 -->
+  <section class="section-padding">
+    <div class="max-w-5xl mx-auto px-6">
+      <SectionTitle title="器ができるまで" subtitle="基本的な製造工程" />
+      <div class="grid md:grid-cols-5 gap-4">
+        <div class="process-card text-center">
+          <div class="w-16 h-16 mx-auto mb-3 bg-ai rounded-full flex items-center justify-center">
+            <span class="text-hakuji font-bold text-lg">1</span>
+          </div>
+          <h3 class="font-serif text-sm text-ai mb-1">成形</h3>
+          <p class="text-sumi/60 text-xs">ろくろや型を使って形を作る</p>
+        </div>
+        <div class="process-card text-center">
+          <div class="w-16 h-16 mx-auto mb-3 bg-ai rounded-full flex items-center justify-center">
+            <span class="text-hakuji font-bold text-lg">2</span>
+          </div>
+          <h3 class="font-serif text-sm text-ai mb-1">乾燥</h3>
+          <p class="text-sumi/60 text-xs">自然乾燥させて水分を抜く</p>
+        </div>
+        <div class="process-card text-center">
+          <div class="w-16 h-16 mx-auto mb-3 bg-ai rounded-full flex items-center justify-center">
+            <span class="text-hakuji font-bold text-lg">3</span>
+          </div>
+          <h3 class="font-serif text-sm text-ai mb-1">素焼き</h3>
+          <p class="text-sumi/60 text-xs">約800℃で焼いて強度を出す</p>
+        </div>
+        <div class="process-card text-center">
+          <div class="w-16 h-16 mx-auto mb-3 bg-ai rounded-full flex items-center justify-center">
+            <span class="text-hakuji font-bold text-lg">4</span>
+          </div>
+          <h3 class="font-serif text-sm text-ai mb-1">絵付け・施釉</h3>
+          <p class="text-sumi/60 text-xs">絵を描き釉薬をかける</p>
+        </div>
+        <div class="process-card text-center">
+          <div class="w-16 h-16 mx-auto mb-3 bg-shu rounded-full flex items-center justify-center">
+            <span class="text-hakuji font-bold text-lg">5</span>
+          </div>
+          <h3 class="font-serif text-sm text-ai mb-1">本焼き</h3>
+          <p class="text-sumi/60 text-xs">約1250℃で焼き上げ完成</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ナビゲーション -->
+  <section class="section-padding bg-hakuji">
+    <div class="container-ma text-center">
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="/learn/" class="btn-secondary inline-block">
+          学ぶトップへ
+        </a>
+        <a href="/learn/sometsuke/" class="btn-primary inline-block">
+          染付講座へ
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  import { gsap, prefersReducedMotion } from '../../utils/animations';
+
+  window.addEventListener('gsap:ready', () => {
+    if (prefersReducedMotion()) return;
+
+    const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    heroTl
+      .from('.hero-title', { y: 50, opacity: 0, duration: 0.8 })
+      .from('.hero-subtitle', { y: 30, opacity: 0, duration: 0.6 }, '-=0.4');
+
+    gsap.from('.element-card', {
+      x: -50,
+      opacity: 0,
+      duration: 0.8,
+      stagger: 0.2,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: '.element-card',
+        start: 'top 80%',
+        toggleActions: 'play none none reverse',
+      },
+    });
+
+    gsap.from('.process-card', {
+      y: 30,
+      opacity: 0,
+      duration: 0.5,
+      stagger: 0.1,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: '.process-card',
+        start: 'top 85%',
+        toggleActions: 'play none none reverse',
+      },
+    });
+  });
+</script>

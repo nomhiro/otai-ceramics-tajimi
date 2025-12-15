@@ -6,7 +6,7 @@ images:
 price: 2800
 size: "直径8cm × 高さ9cm"
 inStock: true
-featured: true
+featured: false
 ---
 
 愛らしい鳥をモチーフにしたマグカップ。

@@ -149,6 +149,26 @@
     @apply bg-hakuji border border-gray-200 p-6
            hover:border-ai transition-colors duration-300;
   }
+
+  /* ============================================
+     元サイト（otai.co.jp）デザイン融合
+     ============================================ */
+
+  /* 元サイト風背景パターンオーバーレイ */
+  .otai-pattern-overlay {
+    position: relative;
+  }
+
+  .otai-pattern-overlay::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url('/images/legacy/otai-pattern.gif');
+    background-repeat: repeat;
+    opacity: 0.06;
+    pointer-events: none;
+    z-index: -1;
+  }
 }
 
 /* ============================================
@@ -192,9 +212,9 @@
     transform-origin: bottom center;
   }
 
-  /* コンテナ余白（余白の美） */
+  /* コンテナ余白（余白の美） - レスポンシブ対応 */
   .container-ma {
-    @apply max-w-5xl mx-auto px-6;
+    @apply max-w-5xl lg:max-w-6xl xl:max-w-7xl mx-auto px-4 sm:px-6;
   }
 
   /* セクション余白 */

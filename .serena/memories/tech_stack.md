@@ -1,5 +1,33 @@
 # 技術スタック
 
+## 最新更新: 2025-12-16 元サイトデザイン要素の融合
+
+### 元サイト（otai.co.jp）デザイン融合
+- 徳利アイコン（`/images/legacy/tokkuri-icon.gif`） - ヘッダーロゴ左
+- OTAI CERAMICS TAJIMIタイトル（`/images/legacy/otai-title.gif`） - ヘッダーロゴ下
+- 背景パターン（`/images/legacy/otai-pattern.gif`） - 全ページ透かし背景（opacity: 0.06）
+
+### 新規追加ファイル
+- `public/images/legacy/` - 元サイト画像アセット（3ファイル）
+
+---
+
+## 更新: 2025-12-15 ご利用ガイドページ群追加
+
+### 新規ページ
+- `/guide/` - お買い物の流れ
+- `/guide/shipping/` - 送料・配送（地域別送料表）
+- `/guide/payment/` - お支払い方法
+- `/guide/return/` - 返品・交換
+
+### 新規コンポーネント
+- `TrustBadges.astro` - 信頼性バッジ（創業75年、手描き、送料無料、返品可）
+
+### 新規データファイル
+- `src/data/shipping.ts` - 送料データ（地域別、10,000円以上送料無料）
+
+---
+
 ## フレームワーク
 - **Astro** v5.16.5 - 静的サイトジェネレーター（SSG）
 - **出力モード**: static（静的サイト生成）
