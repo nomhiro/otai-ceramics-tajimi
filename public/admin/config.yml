@@ -1,0 +1,51 @@
+backend:
+  name: github
+  repo: owner/otai-ceramics-tajimi  # TODO: GitHubリポジトリに変更
+  branch: main
+
+media_folder: "public/images"
+public_folder: "/images"
+
+locale: "ja"
+
+collections:
+  - name: "products"
+    label: "商品"
+    folder: "src/content/products"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "商品名", name: "title", widget: "string" }
+      - { label: "スラッグ（URL）", name: "slug", widget: "string", pattern: ['^[a-z0-9-]+$', 'スラッグは英小文字、数字、ハイフンのみ使用できます'] }
+      - label: "シリーズ"
+        name: "series"
+        widget: "select"
+        options:
+          - { label: "二輪花", value: "nirin" }
+          - { label: "鳥絵", value: "tori" }
+          - { label: "楽々絵", value: "raku" }
+          - { label: "波絵", value: "roku" }
+          - { label: "ばら絵", value: "bara" }
+          - { label: "動物絵", value: "sono" }
+          - { label: "染付", value: "some" }
+          - { label: "赤絵", value: "akae" }
+      - label: "画像"
+        name: "images"
+        widget: "list"
+        field: { label: "画像", name: "image", widget: "image" }
+        min: 1
+      - { label: "価格（税込）", name: "price", widget: "number", value_type: "int", min: 0 }
+      - { label: "サイズ", name: "size", widget: "string" }
+      - { label: "在庫あり", name: "inStock", widget: "boolean", default: true }
+      - { label: "おすすめ商品", name: "featured", widget: "boolean", default: false }
+      - { label: "商品説明", name: "body", widget: "markdown" }
+
+  - name: "news"
+    label: "お知らせ"
+    folder: "src/content/news"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "タイトル", name: "title", widget: "string" }
+      - { label: "日付", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
+      - { label: "本文", name: "body", widget: "markdown" }

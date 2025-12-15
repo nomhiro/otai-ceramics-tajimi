@@ -1,0 +1,23 @@
+name: otai-ceramics-tajimi
+metadata:
+  template: azd-init@1.0.0
+
+services:
+  web:
+    project: .
+    language: js
+    host: staticwebapp
+    dist: dist
+
+hooks:
+  preprovision:
+    shell: sh
+    run: echo "Provisioning Azure resources..."
+
+  prepackage:
+    shell: sh
+    run: npm install
+
+  predeploy:
+    shell: sh
+    run: npm run build

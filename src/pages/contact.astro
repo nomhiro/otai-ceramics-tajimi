@@ -1,0 +1,161 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="お問い合わせ" description="小田井窯へのお問い合わせ。商品のご質問、カタログのご請求、オリジナル制作のご相談など、お気軽にどうぞ。">
+  <!-- Hero -->
+  <section class="bg-gosu-blue text-white py-16 md:py-24">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h1 class="font-serif text-3xl md:text-4xl mb-4">お問い合わせ</h1>
+      <p class="text-gray-300">疑問質問なんでもどうぞ。カタログのご請求も承ります。</p>
+    </div>
+  </section>
+
+  <!-- Contact Form -->
+  <section class="py-16 md:py-24">
+    <div class="max-w-2xl mx-auto px-4">
+      <form id="contact-form" class="space-y-6">
+        <div>
+          <label for="name" class="block text-sm font-medium text-sumi mb-2">
+            お名前 <span class="text-akae-red">*</span>
+          </label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            required
+            class="w-full px-4 py-3 border border-gray-300 focus:border-gosu-blue focus:outline-none transition-colors"
+          />
+        </div>
+
+        <div>
+          <label for="email" class="block text-sm font-medium text-sumi mb-2">
+            メールアドレス <span class="text-akae-red">*</span>
+          </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            class="w-full px-4 py-3 border border-gray-300 focus:border-gosu-blue focus:outline-none transition-colors"
+          />
+        </div>
+
+        <div>
+          <label for="phone" class="block text-sm font-medium text-sumi mb-2">
+            電話番号
+          </label>
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            class="w-full px-4 py-3 border border-gray-300 focus:border-gosu-blue focus:outline-none transition-colors"
+          />
+        </div>
+
+        <div>
+          <label for="category" class="block text-sm font-medium text-sumi mb-2">
+            お問い合わせ種別 <span class="text-akae-red">*</span>
+          </label>
+          <select
+            id="category"
+            name="category"
+            required
+            class="w-full px-4 py-3 border border-gray-300 focus:border-gosu-blue focus:outline-none transition-colors"
+          >
+            <option value="">選択してください</option>
+            <option value="product">商品について</option>
+            <option value="custom">オリジナル制作について</option>
+            <option value="catalog">カタログ請求</option>
+            <option value="other">その他</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="message" class="block text-sm font-medium text-sumi mb-2">
+            お問い合わせ内容 <span class="text-akae-red">*</span>
+          </label>
+          <textarea
+            id="message"
+            name="message"
+            rows="6"
+            required
+            class="w-full px-4 py-3 border border-gray-300 focus:border-gosu-blue focus:outline-none transition-colors resize-none"
+          ></textarea>
+        </div>
+
+        <div class="text-center">
+          <button type="submit" class="btn-primary" id="submit-btn">
+            送信する
+          </button>
+        </div>
+
+        <div id="form-message" class="hidden text-center py-4"></div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Contact Info -->
+  <section class="py-16 md:py-24 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="section-title">その他のお問い合わせ方法</h2>
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="text-center p-6 border border-gray-200">
+          <h3 class="font-serif text-lg text-gosu-blue mb-4">お電話</h3>
+          <p class="text-2xl font-medium text-sumi mb-2">0572-22-2161</p>
+          <p class="text-sm text-gray-500">
+            月〜金 午前8時〜午後5時<br />
+            ※土日祝祭日休業
+          </p>
+        </div>
+        <div class="text-center p-6 border border-gray-200">
+          <h3 class="font-serif text-lg text-gosu-blue mb-4">FAX</h3>
+          <p class="text-2xl font-medium text-sumi mb-2">0572-22-2163</p>
+          <p class="text-sm text-gray-500">24時間受付</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+  const formMessage = document.getElementById('form-message') as HTMLDivElement;
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = '送信中...';
+
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        formMessage.classList.remove('hidden', 'text-akae-red');
+        formMessage.classList.add('text-yuu-green');
+        formMessage.textContent = 'お問い合わせを受け付けました。ありがとうございます。';
+        form.reset();
+      } else {
+        throw new Error('送信に失敗しました');
+      }
+    } catch (error) {
+      formMessage.classList.remove('hidden', 'text-yuu-green');
+      formMessage.classList.add('text-akae-red');
+      formMessage.textContent = '送信に失敗しました。お手数ですがお電話にてお問い合わせください。';
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = '送信する';
+    }
+  });
+</script>

@@ -1,0 +1,141 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const allProducts = await getCollection('products');
+
+const seriesInfo: Record<string, { name: string; description: string }> = {
+  nirin: { name: '二輪花', description: '白釉に二輪花の絵付け' },
+  tori: { name: '鳥絵', description: '鳥をモチーフにした絵付け' },
+  raku: { name: '楽々絵', description: '楽しい雰囲気の絵付け' },
+  roku: { name: '波絵', description: '波をモチーフにした絵付け' },
+  bara: { name: 'ばら絵', description: 'バラをモチーフにした絵付け' },
+  sono: { name: '動物絵', description: '動物をモチーフにした絵付け' },
+  some: { name: '染付', description: '呉須による藍色の絵付け' },
+  akae: { name: '赤絵', description: '赤色を基調にした絵付け' },
+};
+---
+
+<BaseLayout title="商品一覧" description="小田井窯の商品一覧。染付、鳥絵、楽々絵など8つのシリーズをご用意しています。">
+  <!-- Hero -->
+  <section class="bg-gosu-blue text-white py-16 md:py-24">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h1 class="font-serif text-3xl md:text-4xl mb-4">商品一覧</h1>
+      <p class="text-gray-300">すべて手描き。職人が丹精込めて制作しています。</p>
+    </div>
+  </section>
+
+  <!-- Series Filter -->
+  <section class="py-8 bg-white border-b">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="flex flex-wrap gap-2 justify-center" id="series-filter">
+        <button
+          class="px-4 py-2 text-sm border border-gosu-blue text-gosu-blue hover:bg-gosu-blue hover:text-white transition-colors filter-btn active"
+          data-series="all"
+        >
+          すべて
+        </button>
+        {Object.entries(seriesInfo).map(([slug, info]) => (
+          <button
+            class="px-4 py-2 text-sm border border-gray-300 text-gray-600 hover:border-gosu-blue hover:text-gosu-blue transition-colors filter-btn"
+            data-series={slug}
+          >
+            {info.name}
+          </button>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Products Grid -->
+  <section class="py-16 md:py-24">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="grid md:grid-cols-3 lg:grid-cols-4 gap-6" id="products-grid">
+        {allProducts.map((product) => (
+          <a
+            href={`/products/${product.id}/`}
+            class="product-card group"
+            data-series={product.data.series}
+          >
+            <div class="aspect-square bg-gray-100">
+              <img
+                src={product.data.images[0]}
+                alt={product.data.title}
+                class="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
+            <div class="p-4">
+              <span class="text-xs text-gosu-blue font-medium">
+                {seriesInfo[product.data.series]?.name || product.data.series}
+              </span>
+              <h3 class="font-serif text-lg text-sumi group-hover:text-gosu-blue transition-colors mt-1">
+                {product.data.title}
+              </h3>
+              <p class="text-gosu-blue font-medium mt-2">
+                ¥{product.data.price.toLocaleString()}
+              </p>
+              {!product.data.inStock && (
+                <span class="text-xs text-akae-red">在庫なし</span>
+              )}
+            </div>
+          </a>
+        ))}
+      </div>
+
+      {allProducts.length === 0 && (
+        <div class="text-center py-12">
+          <p class="text-gray-500">商品がありません。</p>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- Note -->
+  <section class="py-8 bg-kinari">
+    <div class="max-w-4xl mx-auto px-4 text-center text-sm text-gray-600">
+      <p>
+        商品はすべて手描きです。お届けする製品が見本と若干異なることもございます。（色の濃淡や動物絵の表情など）
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const productCards = document.querySelectorAll('#products-grid > a');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const series = btn.getAttribute('data-series');
+
+      // Update button styles
+      filterBtns.forEach(b => {
+        b.classList.remove('active', 'bg-gosu-blue', 'text-white', 'border-gosu-blue');
+        b.classList.add('border-gray-300', 'text-gray-600');
+      });
+      btn.classList.add('active', 'bg-gosu-blue', 'text-white', 'border-gosu-blue');
+      btn.classList.remove('border-gray-300', 'text-gray-600');
+
+      // Filter products
+      productCards.forEach(card => {
+        const cardSeries = card.getAttribute('data-series');
+        if (series === 'all' || cardSeries === series) {
+          (card as HTMLElement).style.display = 'block';
+        } else {
+          (card as HTMLElement).style.display = 'none';
+        }
+      });
+    });
+  });
+
+  // Check URL for series parameter
+  const urlParams = new URLSearchParams(window.location.search);
+  const seriesParam = urlParams.get('series');
+  if (seriesParam) {
+    const btn = document.querySelector(`[data-series="${seriesParam}"]`);
+    if (btn) {
+      (btn as HTMLElement).click();
+    }
+  }
+</script>

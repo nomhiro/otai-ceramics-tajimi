@@ -1,0 +1,45 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-gosu-blue text-white mt-16">
+  <div class="max-w-6xl mx-auto px-4 py-12">
+    <div class="grid md:grid-cols-3 gap-8">
+      <!-- Company Info -->
+      <div>
+        <h3 class="font-serif text-xl mb-4">株式会社小田井商店</h3>
+        <address class="not-italic text-sm leading-relaxed text-gray-300">
+          〒507-0828<br />
+          岐阜県多治見市三笠町2-10<br />
+          TEL: 0572-22-2161<br />
+          FAX: 0572-22-2163
+        </address>
+      </div>
+
+      <!-- Business Hours -->
+      <div>
+        <h3 class="font-serif text-xl mb-4">営業時間</h3>
+        <p class="text-sm text-gray-300">
+          月曜日〜金曜日<br />
+          午前8時〜午後5時<br />
+          <span class="text-xs">※土日祝祭日休業</span>
+        </p>
+      </div>
+
+      <!-- Links -->
+      <div>
+        <h3 class="font-serif text-xl mb-4">リンク</h3>
+        <ul class="space-y-2 text-sm">
+          <li><a href="/about/" class="text-gray-300 hover:text-white transition-colors">小田井窯について</a></li>
+          <li><a href="/products/" class="text-gray-300 hover:text-white transition-colors">商品一覧</a></li>
+          <li><a href="/custom/" class="text-gray-300 hover:text-white transition-colors">オリジナル制作</a></li>
+          <li><a href="/contact/" class="text-gray-300 hover:text-white transition-colors">お問い合わせ</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="border-t border-white/20 mt-8 pt-8 text-center text-sm text-gray-400">
+      <p>&copy; 1949-{currentYear} 株式会社小田井商店 All Rights Reserved.</p>
+    </div>
+  </div>
+</footer>
